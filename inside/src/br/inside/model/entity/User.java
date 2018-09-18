@@ -12,6 +12,15 @@ public class User {
 	@NotNull
 	private String senha;
 	
+	@NotNull
+	private Perfil perfil;
+	
+	public Perfil getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
 	public String getLogin() {
 		return login;
 	}

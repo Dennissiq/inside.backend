@@ -11,19 +11,17 @@ import br.inside.model.entity.User;
 @Service
 public class UserService {
 
-	@Autowired
 	private UserDAO dao;
 	
-	public String login(User user, HttpServletRequest request) {		
-		if(dao.login(user)) {
-			request.getSession().setAttribute("usuario", user);
-			if(user.getPerfil().getNome() == "Administrador")
-				return "projetos";
-			else
-				return "demandas";
-		}else {
-			request.getSession().setAttribute("error", "Login e/ou Senha inválidos.");
-			return "index";
-		}			
+	@Autowired
+	public UserService(UserDAO dao) {
+		this.dao = dao;
+	}
+
+	public boolean login(User user) {		
+		if(dao.login(user))
+			return true;
+		else
+			return false;		
 	}
 }

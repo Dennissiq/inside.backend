@@ -14,7 +14,7 @@ public class UserDAO {
 	EntityManager manager;
 	
 	public boolean login(User user) {
-		if(manager.find(User.class, user) != null)
+		if(manager.find(User.class, user.getLogin()) != null)
 			return true;
 		else
 			return false;
