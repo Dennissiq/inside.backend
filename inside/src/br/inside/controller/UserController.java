@@ -40,8 +40,8 @@ public class UserController {
 				return "Projetos";
 			else
 				return "Demandas";
-		}else {
-			session.setAttribute("error", "Login e/ou Senha inválidos.");
+		}else {			
+			model.addAttribute("error", "Login e/ou Senha inválidos.");
 			return "index";
 		}
 	}

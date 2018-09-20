@@ -12,23 +12,18 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		
 		String uri = request.getRequestURI();
 		
-		if(uri.endsWith("index") || uri.endsWith("login") || uri.endsWith("logou") ||
+		if(uri.endsWith("index") || uri.endsWith("login") || uri.endsWith("logout") ||
 			uri.contains("css") || uri.contains("js") ||
-			uri.contains("img")){
+			uri.contains("img")){					
 			
-			if (request.getSession().getAttribute("usuario") != null) {
-				return true;
-			}else {
-				response.sendRedirect("index");
-			}			
+			return true;		
 		}
 		
 		if (request.getSession().getAttribute("usuario") != null) {
 			return true;
 		}
 		
-		response.sendRedirect("index");
-		
+		response.sendRedirect("index");		
 		return false;
 	}
 }

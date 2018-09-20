@@ -35,5 +35,8 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
+	<mvc:interceptors>
+		<bean class="br.inside.interceptor.AutorizadorInterceptor"/>
+	</mvc:interceptors>
 	<tx:annotation-driven />
 </beans>
