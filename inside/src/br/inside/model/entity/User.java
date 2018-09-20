@@ -1,11 +1,17 @@
 package br.inside.model.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity(name="tb_usuario")
 public class User {
 	
+	@Id
 	@NotNull
 	private String login;
 	
@@ -13,6 +19,8 @@ public class User {
 	private String senha;
 	
 	@NotNull
+	@ManyToOne
+	@JoinColumn(name="id_perfil")
 	private Perfil perfil;
 	
 	public Perfil getPerfil() {
@@ -32,5 +40,10 @@ public class User {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [login=" + login + ", senha=" + senha + ", perfil={perfil.id=" + perfil.getId() + ",perfil.nome="+perfil.getNome() +"}]";
 	}
 }

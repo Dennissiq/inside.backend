@@ -1,9 +1,12 @@
 package br.inside.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.inside.model.entity.User;
 import br.inside.model.service.UserService;
 
+@Controller
 public class UserController {
 	@Autowired
 	private UserService uService;
@@ -20,14 +24,22 @@ public class UserController {
 		return "index";
 	}
 	
+	@RequestMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		session.invalidate();		
+		return "index";
+	}
+	
 	@RequestMapping("/login")
-	public String login(@Valid User user, BindingResult erros, Model model, HttpSession session) {
-		if(uService.login(user)){
-			session.setAttribute("usuario", user);
-			if(user.getPerfil().getNome() == "Administrador")
-				return "projetos";
+	public String login(@Valid User user, BindingResult erros, Model model, HttpSession session) throws IOException {
+		User userLogged = uService.login(user);
+		
+		if(userLogged != null){
+			session.setAttribute("usuario", userLogged);
+			if(userLogged.getPerfil().getNome().equals("Administrador"))
+				return "Projetos";
 			else
-				return "demandas";
+				return "Demandas";
 		}else {
 			session.setAttribute("error", "Login e/ou Senha inválidos.");
 			return "index";

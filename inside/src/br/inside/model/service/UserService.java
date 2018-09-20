@@ -1,6 +1,6 @@
 package br.inside.model.service;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,18 +10,19 @@ import br.inside.model.entity.User;
 
 @Service
 public class UserService {
-
+	
 	private UserDAO dao;
 	
 	@Autowired
-	public UserService(UserDAO dao) {
-		this.dao = dao;
+	public UserService(UserDAO udao) {
+		this.dao = udao;
 	}
 
-	public boolean login(User user) {		
-		if(dao.login(user))
-			return true;
+	public User login(User user) throws IOException {		
+		User userLogged = dao.login(user);
+		if(userLogged != null)
+			return userLogged;
 		else
-			return false;		
+			return null;		
 	}
 }
