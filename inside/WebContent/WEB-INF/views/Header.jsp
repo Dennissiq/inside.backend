@@ -24,5 +24,7 @@
 		<script src="node_modules/moment/locale/pt-br.js"></script>
 		<script src="js/daterangepicker.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 </head>

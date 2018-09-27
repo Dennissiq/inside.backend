@@ -40,7 +40,7 @@
 							 style="display:inline"></i> Cadastrar novo projeto</a>
 					</li>
 					<li>
-						<a href="analistas.html" class="text-white"> <i class="fas fa-users text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
+						<a href="listar_analistas" class="text-white"> <i class="fas fa-users text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
 							Analistas</a>
 					</li>
 					<li>

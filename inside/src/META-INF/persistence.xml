@@ -9,6 +9,8 @@
 		<!-- entidade mapeada -->
 		<class>br.inside.model.entity.User</class>
 		<class>br.inside.model.entity.Perfil</class>
+		<class>br.inside.model.entity.Funcionario</class>
+		<class>br.inside.model.entity.Cargo</class>
 		<properties>
 			<!-- dados da conexao -->
 						
