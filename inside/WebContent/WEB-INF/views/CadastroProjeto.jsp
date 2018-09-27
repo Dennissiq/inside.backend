@@ -46,7 +46,7 @@
                           <h5 class="text-gray">Nome do projeto</h5>
                         </div>
                         <div class="col-xxs-6 col-xs-6">
-                          <input type="text" name="descricao" class="form-control">
+                          <input type="text" name="descricao" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t pdd-30-xs-t">
@@ -54,7 +54,7 @@
                           <h5 class="text-gray">Detalhes</h5>
                         </div>
                         <div class="col-xxs-12 col-xs-12">
-                          <input type="text" name="detalhe" class="form-control">
+                          <input type="text" name="detalhe" class="form-control" required>
                         </div>
                       </div>
                      <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t">
@@ -62,7 +62,7 @@
                           <h5 class="text-gray">CNPJ do Cliente</h5>
                         </div>
                         <div class="col-xxs-12 col-xs-12">
-                          <input type="text" name="cliente.nome" class="form-control">
+                          <input type="text" name="cliente.nome" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t">
@@ -70,7 +70,7 @@
                           <h5 class="text-gray">Atividade</h5>
                         </div>
                         <div class="col-xxs-12 col-xs-12">
-                          <input type="text" name="atividade" class="form-control">
+                          <input type="text" name="atividade" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-xxs-6 col-xs-6 ">
@@ -78,7 +78,7 @@
                           <h5 class="text-gray">Data de início</h5>
                         </div>
                         <div class="col-xxs-12 col-xs-12">
-                          <input type="text" name="dataInicio" class="form-control">
+                          <input type="text" name="dataInicio" class="form-control" required>
                         </div>
                       </div>
                       </div>
@@ -88,7 +88,7 @@
                           <h5 class="text-gray">Data final</h5>
                         </div>
                         <div class="col-xxs-6 col-xs-6">
-                          <input type="text" name="dataFim" class="form-control">
+                          <input type="text" name="dataFim" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-xxs-6 col-xs-6 ">
@@ -96,7 +96,7 @@
                           <h5 class="text-gray">Horas</h5>
                         </div>
                         <div class="col-xxs-6 col-xs-6">
-                          <input type="text" name="horas" class="form-control">
+                          <input type="text" name="horas" class="form-control" required>
                         </div>
                       </div>
                        <div class="col-xxs-6 col-xs-6 ">
@@ -104,7 +104,7 @@
                           <h5 class="text-gray">Status</h5>
                         </div>
                         <div class="col-xxs-6 col-xs-6">
-                          <input type="text" name="status" class="form-control">
+                          <input type="text" name="status" class="form-control" required>
                         </div>
                       </div>
                     </div>

@@ -37,7 +37,8 @@ public class UserController {
 		if(userLogged != null){
 			session.setAttribute("usuario", userLogged);
 			if(userLogged.getPerfil().getNome().equals("Administrador")) //retornar o proprio perfil que sera o nome da sua 'index'; mudar o nome das jps
-				return "Projetos";
+				//return "Projetos";
+				return "redirect: projetos";
 			else
 				return "Demandas";
 		}else {			
