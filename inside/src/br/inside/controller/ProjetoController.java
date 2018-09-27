@@ -43,8 +43,10 @@ public class ProjetoController {
 	
 	@RequestMapping("/addProjeto")
 	public String addProjeto(@Valid Projeto projeto, Model model, HttpSession session) {		
+		Cliente c = new Cliente();
+		c.setId(1);
 		
-		projeto.getCliente().setId(1);
+		projeto.setCliente(c);
 		
 		projeto.setUser((User)session.getAttribute("usuario"));
 		projeto = projetoService.criar(projeto);

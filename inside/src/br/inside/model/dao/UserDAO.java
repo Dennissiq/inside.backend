@@ -1,11 +1,7 @@
 package br.inside.model.dao;
 
-import java.io.IOException;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -27,5 +23,10 @@ public class UserDAO {
 			return result;
 		
 		return null;		
+	}
+	
+	public User inserir(User user) {
+		manager.persist(user);
+		return user;
 	}
 }

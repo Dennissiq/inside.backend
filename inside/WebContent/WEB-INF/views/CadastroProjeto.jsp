@@ -10,53 +10,8 @@
 <div class="invisible-xs invisible-xxs">
   <div id="wrapper" class="toggled">
   
-      <div id="sidebar-wrapper" class='invisible-xs invisible-xxs'>
-        <ul class="sidebar-nav">
-          <li class="sidebar-brand  pdd-15-md-t pdd-15-lg-t pdd-15-xlg-t pdd-30-md-b pdd-30-lg-b pdd-30-xlg-b">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-11 col-lg-11 col-lg-offset-1 col-md-offset-1 pdd-15-md-t pdd-15-lg-t">
-                  <div class="col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2 pdd-15-md-b pdd-15-lg-b">
-                    <img src="./images/perfil.jpg" class="img-responsive img-circle" alt="">
-                  </div>
-                  <h4 class="text-white text-bold text-left">Fernando Pessoa</h4>
-                  <!-- <h5 class="text-white text-left ">Fullstack Developer</h5> -->
-                  <a href="#"><h6 class="text-white text-left"><i class='fa fa-edit'></i> Editar perfil</h6></a>
-                  <!-- <a href="#"><h6 class="text-white text-left"><i class='fa fa-sign-out-alt'></i> Sair</h6></a> -->
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="pdd-10-md-t pdd-10-lg-t">
-            <h6 class="text-primary">HOME</h6>
-          </li>
-          <div class="menu">
-            <li class="pdd-30-md-t pdd-30-lg-t">
-              <a href="projetos.html" class="text-white"><i class="fas fa-tasks text-white pdd-15-lg-r" aria-hidden="true"
-                  style="display:inline"></i> Projetos</a>
-            </li>
-            <li>
-              <a href="cadastroProjeto.html" class="text-white"><i class="fas fa-clipboard-check text-white pdd-15-lg-r" aria-hidden="true"
-                  style="display:inline"></i> Cadastrar novo projeto</a>
-            </li>
-            <li>
-              <a href="analistas.html" class="text-white"> <i class="fas fa-users text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
-                Analistas</a>
-            </li>
-            <li>
-              <a href="desempenhoAdmin.html" class="text-white"> <i class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
-                  style="display:inline"></i> Desempenho</a>
-            </li>
-          </div>
-        </ul>
-        <div class="pdd-50-lg-t">
-          <div class="pdd-500-lg-t">
-            <div class="col-md-9 col-lg-9 col-lg-offset-1">
-              <img class="img-responsive" src="./images/logo_2.png">
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Sidebar-->
+	<c:import url="importViews/SidebarAdmin.jsp"></c:import>
 
 
         <div class="pdd-15-lg-t pdd-15-md-t">
@@ -86,15 +41,15 @@
                   <div class="col-lg-12 col-md-12">                    
                   <form method="post" action="addProjeto" class="form-inline">
                     <div class="row row-card">
-                      <div class="col-xxs-12 col-xs-12 pdd-30-xxs-t pdd-30-xs-t">
+                      <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t pdd-30-xs-t">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Nome do projeto</h5>
                         </div>
-                        <div class="col-xxs-12 col-xs-12">
+                        <div class="col-xxs-6 col-xs-6">
                           <input type="text" name="descricao" class="form-control">
                         </div>
                       </div>
-                      <div class="col-xxs-12 col-xs-12 pdd-30-xxs-t pdd-30-xs-t">
+                      <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t pdd-30-xs-t">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Detalhes</h5>
                         </div>
@@ -102,7 +57,7 @@
                           <input type="text" name="detalhe" class="form-control">
                         </div>
                       </div>
-                      <div class="col-xxs-12 col-xs-12 pdd-30-xxs-t">
+                     <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">CNPJ do Cliente</h5>
                         </div>
@@ -110,7 +65,7 @@
                           <input type="text" name="cliente.nome" class="form-control">
                         </div>
                       </div>
-                      <div class="col-xxs-12 col-xs-12 pdd-30-xxs-t ">
+                      <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t">
                         <div class="col-xxs-3 col-xs-3">
                           <h5 class="text-gray">Atividade</h5>
                         </div>
@@ -118,7 +73,7 @@
                           <input type="text" name="atividade" class="form-control">
                         </div>
                       </div>
-                      <div class="col-xxs-12 col-xs-12 ">
+                      <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Data de início</h5>
                         </div>
@@ -128,19 +83,19 @@
                       </div>
                       </div>
                       <div class="row row-card">
-                      <div class="col-xxs-12 col-xs-12 ">
+                      <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Data final</h5>
                         </div>
-                        <div class="col-xxs-12 col-xs-12">
+                        <div class="col-xxs-6 col-xs-6">
                           <input type="text" name="dataFim" class="form-control">
                         </div>
                       </div>
-                      <div class="col-xxs-12 col-xs-12 ">
+                      <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Horas</h5>
                         </div>
-                        <div class="col-xxs-12 col-xs-12">
+                        <div class="col-xxs-6 col-xs-6">
                           <input type="text" name="horas" class="form-control">
                         </div>
                       </div>
@@ -148,13 +103,13 @@
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Status</h5>
                         </div>
-                        <div class="col-xxs-12 col-xs-12">
+                        <div class="col-xxs-6 col-xs-6">
                           <input type="text" name="status" class="form-control">
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-xxs-10 col-xs-10  col-xs-offset-1 col-xxs-offset-1 pdd-50-xxs-t pdd-50-xs-t pdd-30-xs-b pdd-30-xxs-b">
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4 pdd-50-lg-t pdd-50-md-t pdd-30-lg-b pdd-30-md-b">                      
                         <button type="submit" class=" btn btn-lg btn-primary text-white btn-block botao-cadastrar">Cadastrar</button>
                       </div>
                     </div>
@@ -206,15 +161,23 @@
                 <div class="col-xs-12 col-xxs-12">
                   <form method="post" action="addProjeto" class="form-inline">
                     <div class="row row-card">
-                      <div class="col-xxs-12 col-xs-12 pdd-30-xxs-t pdd-30-xs-t">
+                      <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t pdd-30-xs-t">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Nome do projeto</h5>
                         </div>
-                        <div class="col-xxs-12 col-xs-12">
+                        <div class="col-xxs-6 col-xs-6">
                           <input type="text" name="descricao" class="form-control">
                         </div>
                       </div>
-                      <div class="col-xxs-12 col-xs-12 pdd-30-xxs-t">
+                      <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t pdd-30-xs-t">
+                        <div class="col-xxs-12 col-xs-12">
+                          <h5 class="text-gray">Detalhes</h5>
+                        </div>
+                        <div class="col-xxs-12 col-xs-12">
+                          <input type="text" name="detalhe" class="form-control">
+                        </div>
+                      </div>
+                     <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">CNPJ do Cliente</h5>
                         </div>
@@ -222,9 +185,7 @@
                           <input type="text" name="cliente.nome" class="form-control">
                         </div>
                       </div>
-                    </div>
-                    <div class="row row-card">
-                      <div class="col-xxs-12 col-xs-12 pdd-30-xxs-t ">
+                      <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t">
                         <div class="col-xxs-3 col-xs-3">
                           <h5 class="text-gray">Atividade</h5>
                         </div>
@@ -232,7 +193,7 @@
                           <input type="text" name="atividade" class="form-control">
                         </div>
                       </div>
-                      <div class="col-xxs-12 col-xs-12 ">
+                      <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Data de início</h5>
                         </div>
@@ -240,19 +201,21 @@
                           <input type="text" name="dataInicio" class="form-control">
                         </div>
                       </div>
-                      <div class="col-xxs-12 col-xs-12 ">
+                      </div>
+                      <div class="row row-card">
+                      <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Data final</h5>
                         </div>
-                        <div class="col-xxs-12 col-xs-12">
+                        <div class="col-xxs-6 col-xs-6">
                           <input type="text" name="dataFim" class="form-control">
                         </div>
                       </div>
-                      <div class="col-xxs-12 col-xs-12 ">
+                      <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Horas</h5>
                         </div>
-                        <div class="col-xxs-12 col-xs-12">
+                        <div class="col-xxs-6 col-xs-6">
                           <input type="text" name="horas" class="form-control">
                         </div>
                       </div>
@@ -260,13 +223,13 @@
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Status</h5>
                         </div>
-                        <div class="col-xxs-12 col-xs-12">
+                        <div class="col-xxs-6 col-xs-6">
                           <input type="text" name="status" class="form-control">
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-xxs-10 col-xs-10  col-xs-offset-1 col-xxs-offset-1 pdd-50-xxs-t pdd-50-xs-t pdd-30-xs-b pdd-30-xxs-b">
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4 pdd-50-lg-t pdd-50-md-t pdd-30-lg-b pdd-30-md-b">                      
                         <button type="submit" class=" btn btn-lg btn-primary text-white btn-block botao-cadastrar">Cadastrar</button>
                       </div>
                     </div>

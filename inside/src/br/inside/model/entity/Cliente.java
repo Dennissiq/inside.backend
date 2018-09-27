@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 import com.sun.istack.internal.NotNull;
 
-@Entity
+@Entity(name="tb_cliente")
 public class Cliente {
 	
 	@Id

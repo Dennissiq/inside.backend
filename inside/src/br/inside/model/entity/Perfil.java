@@ -13,16 +13,16 @@ public class Perfil {
 	@Id
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String id;
+	private int id;
 	
 	@NotNull
 	private String nome;
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}	
 
