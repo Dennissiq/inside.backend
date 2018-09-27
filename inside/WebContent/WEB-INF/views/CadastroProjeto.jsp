@@ -99,7 +99,7 @@
                           <input type="text" name="horas" class="form-control">
                         </div>
                       </div>
-                       <div class="col-xxs-12 col-xs-12 ">
+                       <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Status</h5>
                         </div>

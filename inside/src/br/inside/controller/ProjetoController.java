@@ -43,15 +43,22 @@ public class ProjetoController {
 	
 	@RequestMapping("/addProjeto")
 	public String addProjeto(@Valid Projeto projeto, Model model, HttpSession session) {		
-		Cliente c = new Cliente();
-		c.setId(1);
+		try {
+			Cliente c = new Cliente();
+			c.setId(1);
+			
+			projeto.setCliente(c);
+			
+			projeto.setUser((User)session.getAttribute("usuario"));
+			projeto = projetoService.criar(projeto);
+			model.addAttribute("projeto", projeto);
+			
+			return this.projetosView(null, session, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 		
-		projeto.setCliente(c);
-		
-		projeto.setUser((User)session.getAttribute("usuario"));
-		projeto = projetoService.criar(projeto);
-		model.addAttribute("projeto", projeto);		
-		return this.projetosView(null, session, null);
+		return "CadastroProjeto";
 	}
 	
 	@RequestMapping("/atualizarProjeto")
