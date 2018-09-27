@@ -17,7 +17,7 @@ import br.inside.model.service.UserService;
 @Controller
 public class UserController {
 	@Autowired
-	private UserService uService;
+	private UserService userService;
 
 	@RequestMapping("/index")
 	public String loginForm(Model model, HttpSession session) {
@@ -32,7 +32,7 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	public String login(@Valid User user, BindingResult erros, Model model, HttpSession session) throws IOException {
-		User userLogged = uService.login(user);
+		User userLogged = userService.login(user);
 		
 		if(userLogged != null){
 			session.setAttribute("usuario", userLogged);

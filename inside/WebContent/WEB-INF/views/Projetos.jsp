@@ -32,19 +32,19 @@
 				</li>
 				<div class="menu">
 					<li class="pdd-30-md-t pdd-30-lg-t">
-						<a href="projetos.html" class="text-white"><i class="fas fa-tasks text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
+						<a href="projetos" class="text-white"><i class="fas fa-tasks text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
 							Projetos</a>
 					</li>
 					<li>
-						<a href="cadastroProjeto.html" class="text-white"><i class="fas fa-clipboard-check text-white pdd-15-lg-r" aria-hidden="true"
+						<a href="novoProjeto" class="text-white"><i class="fas fa-clipboard-check text-white pdd-15-lg-r" aria-hidden="true"
 							 style="display:inline"></i> Cadastrar novo projeto</a>
 					</li>
 					<li>
-						<a href="analistas.html" class="text-white"> <i class="fas fa-users text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
+						<a href="analistas" class="text-white"> <i class="fas fa-users text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
 							Analistas</a>
 					</li>
 					<li>
-						<a href="desempenhoAdmin.html" class="text-white"> <i class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
+						<a href="desempenhoAdmin" class="text-white"> <i class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
 							 style="display:inline"></i> Desempenho</a>
 					</li>
 				</div>
