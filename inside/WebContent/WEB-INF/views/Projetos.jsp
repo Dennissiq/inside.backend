@@ -30,46 +30,54 @@
 	
 				<div class="container-fluid pdd-30-lg-b pdd-30-md-b">
 					
-					 <c:if test="${not empty lista}">
-						<c:forEach var="projeto" items="${lista}">
-												<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
-						<div class="mat-card-kit">
-							<h2 class=" text-center text-gray text-bold pdd-15-lg-t pdd-15-md-b">${projeto.descricao}</h2>
-							<div class="line-gray"></div>	
-							<div class=" row row-card mat-card-kit">
-								<h5 class="mat-card-kit-title text-gray text-bold">Status do Projeto:<span class="text-warning">${projeto.status}</span></h5>
-								<div class="line-gray"></div>	
-								<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
-									<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 </span> </h5>
-									<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 0 </span> </h5> 
+					 
+					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
+						<h1 class="text-primary text-bold text-bold">Projetos</h1>
+						<c:if test="${not empty lista}">
+							<c:forEach var="projeto" items="${lista}">
+								<div class="mat-card-kit">
+									<h2 class=" text-center text-gray text-bold pdd-15-lg-t pdd-15-md-b">${projeto.descricao}</h2>
+									<div class="line-gray"></div>	
+									<div class=" row row-card mat-card-kit">
+										<h5 class="mat-card-kit-title text-gray text-bold">Status do Projeto:<span class="text-warning">${projeto.status}</span></h5>
+										<div class="line-gray"></div>	
+										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
+											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 </span> </h5>
+											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 0 </span> </h5> 
+										</div>
+										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
+											<h5 class="mat-card-kit-title text-gray text-bold">Tempo gasto no projeto: <span class="text-gray"> ${projeto.horas}h </span> </h5> 
+											<a href="cadastroDemanda.html">
+												<button type="button" class=" btn btn-sm btn-primary text-white btn-block">Adicionar nova demanda</button>
+											</a>
+										</div>
+									</div>
+									<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
+										<div class="">
+											<table class="table table-hover table-card">
+												<thead>
+													<tr>
+														<th class="legenda text-gray">Tarefa</th>
+														<th class="legenda text-gray">Responsável</th>
+														<th class="legenda text-gray text-center">Status</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="text-bold">Ajustes na integração</td>
+														<td class="text-bold">Fernando Pessoa</td>
+														<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Concluída</td>
+														<td><a href="#"><i class="fa fa-search text-gray" aria-hidden="true"></i></a>  </td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
-								<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
-									<h5 class="mat-card-kit-title text-gray text-bold">Tempo gasto no projeto: <span class="text-gray"> ${projeto.horas}h </span> </h5> 
-									<a href="cadastroDemanda.html">
-										<button type="button" class=" btn btn-sm btn-primary text-white btn-block">Adicionar nova demanda</button>
-									</a>
-								</div>
-							</div>
-							<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
-								<div class="">
-									<table class="table table-hover table-card">
-										<thead>
-											<tr>
-												<th class="legenda text-gray">Tarefa</th>
-												<th class="legenda text-gray">Responsável</th>
-												<th class="legenda text-gray">Status</th>
-											</tr>
-										</thead>
-										<tbody>
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>	
 						</c:forEach>
-					</c:if>					
+					</c:if>	
+					</div>	
+										
 				</div>
 			</div>
 		</div>

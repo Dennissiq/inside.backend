@@ -57,6 +57,8 @@
                           <input type="text" name="detalhe" class="form-control" required>
                         </div>
                       </div>
+                      </div>
+                      <div class="row row-card">
                      <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">CNPJ do Cliente</h5>
@@ -73,6 +75,8 @@
                           <input type="text" name="atividade" class="form-control" required>
                         </div>
                       </div>
+                      </div>
+                      <div class="row row-card">
                       <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Data de início</h5>
@@ -81,8 +85,8 @@
                           <input type="text" name="dataInicio" class="form-control" required>
                         </div>
                       </div>
-                      </div>
-                      <div class="row row-card">
+                     
+                      
                       <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Data final</h5>
@@ -91,6 +95,8 @@
                           <input type="text" name="dataFim" class="form-control" required>
                         </div>
                       </div>
+                      </div>
+                      <div class="row row-card">
                       <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Horas</h5>
