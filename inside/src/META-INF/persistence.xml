@@ -13,6 +13,7 @@
 		<class>br.inside.model.entity.Cliente</class>
 		<class>br.inside.model.entity.Funcionario</class>
 		<class>br.inside.model.entity.Cargo</class>
+		<class>br.inside.model.entity.Demanda</class>
 		<properties>
 			<!-- dados da conexao -->
 						

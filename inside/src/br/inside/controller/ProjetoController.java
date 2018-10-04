@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.inside.model.entity.Cliente;
 import br.inside.model.entity.Projeto;
 import br.inside.model.entity.User;
+import br.inside.model.service.DemandaService;
 import br.inside.model.service.ProjetoService;
 
 @Controller
@@ -20,6 +21,9 @@ public class ProjetoController {
 
 	@Autowired
 	private ProjetoService projetoService;
+	
+	@Autowired
+	private DemandaService demandaService;
 
 	@RequestMapping("/projetos")
 	public String projetosView(Model model, HttpSession session, String chave) {
@@ -30,9 +34,14 @@ public class ProjetoController {
 			lista = projetoService.listarProjetos(chave);
 		} else {
 			lista = projetoService.listarProjetos();
+			
+			for (Projeto projeto : lista) {
+				projeto.setDemandas(demandaService.listarDemandas(projeto));
+			}
 		}
 		
 		session.setAttribute("lista", lista);
+		System.out.println(lista);
 		return "Projetos";
 	}
 	
@@ -70,9 +79,9 @@ public class ProjetoController {
 	}
 	
 	@RequestMapping("/detalheProjeto")
-	public String visualizarFilme(@Valid Projeto projeto, Model model) {
+	public String detalheProjeto(@Valid Projeto projeto, Model model) {
 		projeto = projetoService.buscarProjeto(projeto.getId());
-		model.addAttribute("filme", projeto);
+		model.addAttribute("projeto", projeto);
 		return "DetalheProjeto";
 	}
 }

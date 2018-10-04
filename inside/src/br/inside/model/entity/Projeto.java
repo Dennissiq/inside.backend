@@ -1,14 +1,17 @@
 package br.inside.model.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -58,7 +61,19 @@ public class Projeto {
 	
 	@NotNull
 	private String status;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Demanda> demandas;
+	
+	public List<Demanda> getDemandas() {
+		return demandas;
+	}
 
+	public void setDemandas(List<Demanda> demandas) {
+		this.demandas = demandas;
+	}
+
+	
 	public int getId() {
 		return id;
 	}
@@ -138,12 +153,14 @@ public class Projeto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
 
 	@Override
 	public String toString() {
 		return "Projeto [id=" + id + ", descricao=" + descricao + ", cliente=" + cliente + ", detalhe=" + detalhe
 				+ ", atividade=" + atividade + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", horas="
-				+ horas + ", user=" + user + ", status=" + status + "]";
+				+ horas + ", user=" + user + ", status=" + status + ", demandas=" + demandas + "]";
 	}
 	
 }

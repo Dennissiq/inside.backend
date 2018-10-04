@@ -47,7 +47,7 @@
 										</div>
 										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
 											<h5 class="mat-card-kit-title text-gray text-bold">Tempo gasto no projeto: <span class="text-gray"> ${projeto.horas}h </span> </h5> 
-											<a href="cadastroDemanda.html">
+											<a href="novaDemanda?idProjeto=${projeto.id}">
 												<button type="button" class=" btn btn-sm btn-primary text-white btn-block">Adicionar nova demanda</button>
 											</a>
 										</div>
@@ -63,12 +63,16 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td class="text-bold">Ajustes na integração</td>
-														<td class="text-bold">Fernando Pessoa</td>
-														<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Concluída</td>
-														<td><a href="#"><i class="fa fa-search text-gray" aria-hidden="true"></i></a>  </td>
-													</tr>
+													<c:if test="${not empty projeto.demandas}">
+														<c:forEach var="demanda" items="${projeto.demandas}">
+														<tr>
+															<td class="text-bold">${demanda.descricao}</td>
+															<td class="text-bold">${demanda.funcionario.nome}</td>
+															<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Concluída</td>
+															<td><a href="#"><i class="fa fa-search text-gray" aria-hidden="true"></i></a>  </td>
+														</tr>
+														</c:forEach>
+													</c:if>	
 												</tbody>
 											</table>
 										</div>
