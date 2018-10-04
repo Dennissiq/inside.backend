@@ -70,7 +70,7 @@
               <div class="row">
                 <div class="col-md-12 col-lg-12">
                   <div class="container">     
-                    <a href="projetos.html" class='col-md-2 col-lg-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>             
+                    <a href="projetos" class='col-md-2 col-lg-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>             
                     <h2 class="col-md-10 col-lg-10 text-gray text-bold">Cadastrar nova demanda</h2>
                   </div>
                 </div>
@@ -101,14 +101,14 @@
                 </div>
               </div>
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
-                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+               <!--  <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
                   <h5 class="text-gray">Anexos</h5>
-                </div>
-                <div class="col-md-7 col-lg-7 text-primary">
+                </div> -->
+             <!--    <div class="col-md-7 col-lg-7 text-primary">
                   <a href="#" class='util-link'>
                     <i class='fa fa-upload fa-1x'></i> Carregar anexo
                   </a>
-                </div>
+                </div> -->
               </div>
               <div class="row row-card pdd-100-md-t pdd-100-lg-t pdd-30-md-b pdd-30-lg-b">              
                 <div class="col-lg-offset-4 col-md-offset-4 col-md-4 col-lg-4 text-primary">

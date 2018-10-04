@@ -67,9 +67,9 @@ public class DemandaController {
 	}
 	
 	@RequestMapping("/detalheDemanda")
-	public String detalheDemanda(@Valid Demanda demanda, Model model) {
-		demanda = demandaService.buscarDemanda(demanda.getId());
-		model.addAttribute("filme", demanda);
+	public String detalheDemanda(Model model, HttpSession session, int idDemanda) {
+		Demanda demanda = demandaService.buscarDemanda(idDemanda);
+		model.addAttribute("demanda", demanda);
 		return "DetalheDemanda";
 	}
 }
