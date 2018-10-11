@@ -40,7 +40,7 @@ public class UserController {
 				//return "Projetos";
 				return "redirect: projetos";
 			else
-				return "Demandas";
+				return "redirect: demandas";
 		}else {			
 			model.addAttribute("error", "Login e/ou Senha inválidos.");
 			return "index";

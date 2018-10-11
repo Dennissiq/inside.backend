@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
+import br.inside.model.entity.User;
 import br.inside.model.service.DemandaService;
 import br.inside.model.service.FuncionarioService;
 
@@ -26,14 +27,16 @@ public class DemandaController {
 	private FuncionarioService funcionarioService;
 
 	@RequestMapping("/demandas")
-	public String demandasView(Model model, HttpSession session, String chave) {
+	public String demandasView(Model model, HttpSession session, String chave) throws IOException {
 		
 		List<Demanda> lista;
 		
 		if (chave != null && chave.length() > 0) {
 			lista = demandaService.listarDemandas(chave);
 		} else {
-			lista = demandaService.listarDemandas();
+			User u = (User) session.getAttribute("usuario");
+			Funcionario f = funcionarioService.buscarFuncionario(u);
+			lista = demandaService.listarDemandasPorAnalista(f);
 		}
 		
 		session.setAttribute("lista", lista);

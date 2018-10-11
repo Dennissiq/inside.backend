@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.inside.model.dao.DemandaDAO;
 import br.inside.model.entity.Demanda;
+import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.Projeto;
 
 @Service
@@ -41,5 +42,9 @@ public class DemandaService {
 	
 	public List<Demanda> listarDemandas(Projeto projeto){
 		return dao.listarDemandas(projeto);
+	}
+	
+	public List<Demanda> listarDemandasPorAnalista(Funcionario funcionario){
+		return dao.listarDemandasPorAnalista(funcionario);
 	}
 }

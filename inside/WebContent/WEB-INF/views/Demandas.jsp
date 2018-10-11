@@ -31,11 +31,11 @@
 				</li>
 				<div class="menu">
 					<li class="pdd-30-md-t pdd-30-lg-t">
-						<a href="demandas.html" class="text-white"><i class="fas fa-tasks text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
+						<a href="demandas" class="text-white"><i class="fas fa-tasks text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
 							Demandas</a>
 					</li>
 					<li>
-						<a href="desempenho.html" class="text-white"> <i class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
+						<a href="desempenho" class="text-white"> <i class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
 							 style="display:inline"></i>
 							Desempenho</a>
 					</li>
@@ -72,7 +72,6 @@
 					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
 						<h1 class="text-primary text-bold text-bold">Demandas</h1>
 						<div class="mat-card-kit">
-							<h2 class=" text-center text-gray text-bold pdd-15-lg-t pdd-15-md-b">Projeto Lisboa</h2>
 							<div class="line-gray"></div>
 							<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
 								<div class="">
@@ -80,159 +79,32 @@
 										<thead>
 											<tr>
 												<th class="legenda text-gray">Tarefa</th>
-												<th class="legenda text-gray">Responsável</th>
+												<th class="legenda text-gray">Projeto</th>
 												<th class="legenda text-gray">Status</th>
+												<th class="legenda text-gray">Detalhes</th>
 											</tr>
 										</thead>
 										<tbody>
+										<c:if test="${not empty lista}">
+											<c:forEach var="demanda" items="${lista}">
 											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Fernando pessoa</td>
-												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> completado </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
+												<td class="text-bold">${demanda.descricao}</td>
+												<td class="text-bold">${demanda.projeto.descricao}</td>
+												<c:choose>
+													<c:when test="${demanda.status == 'aberto'}">
+														<td class="text-warning text-bold"> <i class="fas fa-time-circle"></i> ${demanda.status} </td>
+													</c:when>
+													<c:when test="${demanda.status == 'concluida'}">
+														<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> ${demanda.status} </td>
+													</c:when>
+													<c:when test="${demanda.status == 'em andamento'}">
+														<td class="text-warning text-bold"> <i class="fas fa-time-circle"></i> ${demanda.status} </td>
+													</c:when>
+												</c:choose>
+												<td><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
 											</tr>
-											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Fernando Sermano</td>
-												<td class="text-danger text-bold"> <i class="fas fa-times-circle"></i> cancelado </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-	
-					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
-						<div class="mat-card-kit">
-							<h2 class=" text-center text-gray text-bold pdd-15-lg-t pdd-15-md-b">Projeto Lisboa</h2>
-							<div class="line-gray"></div>
-							<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
-								<div class="">
-									<table class="table table-hover table-card">
-										<thead>
-											<tr>
-												<th class="legenda text-gray">Tarefa</th>
-												<th class="legenda text-gray">Responsável</th>
-												<th class="legenda text-gray">Status</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Fernando pessoa</td>
-												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> completado </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Jorge Amado</td>
-												<td class="text-warning text-bold"> <i class="fas fa-exclamation-circle"></i> pendente </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-	
-					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
-						<div class="mat-card-kit">
-							<h2 class=" text-center text-gray text-bold pdd-15-lg-t pdd-15-md-b">Projeto Lisboa</h2>
-							<div class="line-gray"></div>
-							<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
-								<div class="">
-									<table class="table table-hover table-card">
-										<thead>
-											<tr>
-												<th class="legenda text-gray">Tarefa</th>
-												<th class="legenda text-gray">Responsável</th>
-												<th class="legenda text-gray">Status</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Fernando Pessoa</td>
-												<td class="text-primary text-bold"> <i class="fas fa-pause-circle"></i> pausado </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-	
-					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
-						<div class="mat-card-kit">
-							<h2 class=" text-center text-gray text-bold pdd-15-lg-t pdd-15-md-b">Projeto Lisboa</h2>
-							<div class="line-gray"></div>
-							<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
-								<div class="">
-									<table class="table table-hover table-card">
-										<thead>
-											<tr>
-												<th class="legenda text-gray">Tarefa</th>
-												<th class="legenda text-gray">Responsável</th>
-												<th class="legenda text-gray">Status</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Fernando Pessoa</td>
-												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> completado </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-	
-					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
-						<div class="mat-card-kit">
-							<h2 class=" text-center text-gray text-bold pdd-15-lg-t pdd-15-md-b">Projeto Lisboa</h2>
-							<div class="line-gray"></div>
-							<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
-								<div class="">
-									<table class="table table-hover table-card">
-										<thead>
-											<tr>
-												<th class="legenda text-gray">Tarefa</th>
-												<th class="legenda text-gray">Responsável</th>
-												<th class="legenda text-gray">Status</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Fernando Pessoa</td>
-												<td class="text-warning text-bold"> <i class="fas fa-exclamation-circle"></i> pendente </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Machado de Assis</td>
-												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> completado </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Machado de Assis</td>
-												<td class="text-primary text-bold"> <i class="fas fa-pause-circle"></i> pausado </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold">Ajustes na integração</td>
-												<td class="text-bold">Jorge Amado</td>
-												<td class="text-danger text-bold"> <i class="fas fa-times-circle"></i> cancelado </td>
-												<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
+											</c:forEach>
+										</c:if>											
 										</tbody>
 									</table>
 								</div>
@@ -276,8 +148,9 @@
 											<thead>
 												<tr>
 													<th class="legenda text-gray">Tarefa</th>
-													<th class="legenda text-gray">Responsável</th>
+													<th class="legenda text-gray">Projeto</th>
 													<th class="legenda text-gray">Status</th>
+													<th class="legenda text-gray"></th>
 												</tr>
 											</thead>
 											<tbody>

@@ -101,6 +101,14 @@
                 </div>
               </div>
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
+                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+                  <h5 class="text-gray">Status</h5>
+                </div>
+                <div class="col-md-7 col-lg-7">
+                  <input type="text" name='status' required class="form-control text-primary">
+                </div>
+              </div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
                <!--  <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
                   <h5 class="text-gray">Anexos</h5>
                 </div> -->

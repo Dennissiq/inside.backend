@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.inside.model.entity.Demanda;
+import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.Projeto;
 
 @Repository
@@ -54,6 +55,19 @@ public class DemandaDAO {
 		query.setParameter("projeto", projeto);
 
 		List<Demanda> result = query.getResultList();
+		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Demanda> listarDemandasPorAnalista(Funcionario f){
+		String jpql = "select d from tb_demanda d where d.funcionario = :funcionario";
+		
+		Query query = manager.createQuery(jpql);
+		query.setParameter("funcionario", f);
+
+		List<Demanda> result = query.getResultList();
+		
+		System.out.println(result.toString());
 		return result;
 	}
 

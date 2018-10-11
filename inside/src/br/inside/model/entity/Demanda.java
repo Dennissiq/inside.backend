@@ -29,6 +29,8 @@ public class Demanda {
 	
 	@NotNull	
 	private String duracao;
+		
+	private String status;
 	
 	@NotNull
 	@ManyToOne
@@ -91,6 +93,14 @@ public class Demanda {
 	@Override
 	public String toString() {
 		return "Demanda [id=" + id + ", descricao=" + descricao + ", detalhes=" + detalhes + ", duracao=" + duracao
-				+ ", funcionario=" + funcionario + ", projeto=" + projeto + "]";
+				+ ", status=" + status + ", funcionario=" + funcionario + ", projeto=" + projeto + "]";
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

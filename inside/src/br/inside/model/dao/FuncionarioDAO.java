@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
 import br.inside.model.entity.Funcionario;
+import br.inside.model.entity.User;
 
 @Repository
 public class FuncionarioDAO {
@@ -23,6 +25,22 @@ public class FuncionarioDAO {
 	
 	public Funcionario buscarFuncionario(int idFuncionario) throws IOException{
 		return manager.find(Funcionario.class, idFuncionario);
+	}
+	
+	public Funcionario buscarFuncionario(User login) throws IOException{
+		String jpql = "select d from tb_funcionario d where d.user = :login";
+		
+		Query query = manager.createQuery(jpql);
+		query.setParameter("login", login);
+
+		
+		@SuppressWarnings("unchecked")
+		List<Funcionario> result = query.getResultList();	
+		
+		if(result.size() > 0)
+			return result.get(0);
+		
+		return null;
 	}
 	
 	public void atualizarFuncionario(Funcionario funcionario) throws IOException{

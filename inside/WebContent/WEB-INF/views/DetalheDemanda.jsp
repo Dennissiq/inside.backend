@@ -38,14 +38,14 @@
             <div class="row row-card">              
               <div class=" col-md-12 col-lg-12">
                 <div class=" row row-card mat-card-kit">
-                  <h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>não iniciado</span></h4>
+                  <h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>${demanda.status}</span></h4>
                   <div class="line-gray"></div>
                   <div class="col-md-12 col-lg-12">
                     <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>00:00</span></label> 
                     <a href="#" class='text-gray'>[editar tempo]</a>
                   </div>
                   <div class="play-task col-md-12 col-lg-12">
-                    <a href="#" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>
+                    <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>
                   </div>
                 </div>
               </div>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.inside.model.dao.FuncionarioDAO;
 import br.inside.model.entity.Funcionario;
+import br.inside.model.entity.User;
 
 @Service
 public class FuncionarioService {
@@ -22,6 +23,10 @@ public class FuncionarioService {
 	
 	public Funcionario buscarFuncionario(int idFuncionario) throws IOException{
 		return dao.buscarFuncionario(idFuncionario);
+	}
+	
+	public Funcionario buscarFuncionario(User login) throws IOException{
+		return dao.buscarFuncionario(login);
 	}
 	
 	@Transactional
