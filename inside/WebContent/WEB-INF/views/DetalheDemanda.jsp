@@ -11,8 +11,15 @@
   <div id="wrapper" class="toggled">
 
       <!-- Sidebar-->
-	<c:import url="importViews/SidebarAdmin.jsp"></c:import>
-
+       <c:choose>
+			<c:when test="${usuario.perfil.nome == 'Administrador'}">
+				<c:import url="importViews/SidebarAdmin.jsp"></c:import>
+			</c:when>
+			<c:when test="${usuario.perfil.nome == 'Analista'}">
+				<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+			</c:when>
+		</c:choose>
+	
     <div class="pdd-15-lg-t pdd-15-md-t">
       <div class="container-fluid">
         <div class="col-lg-11 col-md-11 ">
@@ -28,8 +35,15 @@
           <div class="mat-card-kit ">
             <div class="row">
               <div class="col-md-12 col-lg-12">
-                <div class="container">     
-                  <a href="projetos" class='col-md-2 col-lg-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>             
+                <div class="container">  
+                <c:choose>
+					<c:when test="${usuario.perfil.nome == 'Administrador'}">
+						<a href="projetos" class='col-md-2 col-lg-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
+					</c:when>
+					<c:when test="${usuario.perfil.nome == 'Analista'}">
+						<a href="demandas" class='col-md-2 col-lg-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
+					</c:when>
+				</c:choose>                                  
                   <h2 class="col-md-10 col-lg-10 text-gray text-bold">Tarefa: ${demanda.descricao}</h2>
                 </div>
               </div>
@@ -38,15 +52,31 @@
             <div class="row row-card">              
               <div class=" col-md-12 col-lg-12">
                 <div class=" row row-card mat-card-kit">
-                  <h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>${demanda.status}</span></h4>
+                  
+                  <c:choose>
+					<c:when test="${demanda.status == 'aberto'}">
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>${demanda.status}</span></h4>						
+					</c:when>
+					<c:when test="${demanda.status == 'concluida'}">
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-success'>${demanda.status}</span></h4>
+					</c:when>
+					<c:when test="${demanda.status == 'em andamento'}">
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>${demanda.status}</span></h4>						
+					</c:when>
+				</c:choose>
                   <div class="line-gray"></div>
                   <div class="col-md-12 col-lg-12">
                     <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>00:00</span></label> 
-                    <a href="#" class='text-gray'>[editar tempo]</a>
+                    <c:if test="${usuario.perfil.nome == 'Analista'}">
+                    	<a href="#" class='text-gray'>[editar tempo]</a>
+                    </c:if>
                   </div>
-                  <div class="play-task col-md-12 col-lg-12">
+                  <c:if test="${usuario.perfil.nome == 'Analista'}">
+                    	 <div class="play-task col-md-12 col-lg-12">
                     <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>
                   </div>
+                    </c:if>
+                 
                 </div>
               </div>
             </div>

@@ -25,22 +25,14 @@
 			<h6 class="text-primary">HOME</h6>
 		</li>
 		<div class="menu">
-			<li class="pdd-30-md-t pdd-30-lg-t"><a href="projetos"
-				class="text-white"><i
+			<li class="pdd-30-md-t pdd-30-lg-t">
+			<a href="demandas" class="text-white"><i
 					class="fas fa-tasks text-white pdd-15-lg-r" aria-hidden="true"
-					style="display: inline"></i> Projetos</a></li>
-			<li><a href="novoProjeto" class="text-white"><i
-					class="fas fa-clipboard-check text-white pdd-15-lg-r"
-					aria-hidden="true" style="display: inline"></i> Cadastrar novo
-					projeto</a></li>
-			<li><a href="listar_analistas" class="text-white"> <i
-					class="fas fa-users text-white pdd-15-lg-r" aria-hidden="true"
-					style="display: inline"></i> Analistas
+					style="display: inline"></i> Demandas</a></li>
+			<li><a href="desempenho" class="text-white"> <i
+					class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
+					style="display: inline"></i> Desempenho
 			</a></li>
-			<!-- 					<li>
-						<a href="desempenhoAdmin.html" class="text-white"> <i class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
-							 style="display:inline"></i> Desempenho</a>
-					</li> -->
 		</div>
 	</ul>
 	<div class="pdd-50-lg-t">

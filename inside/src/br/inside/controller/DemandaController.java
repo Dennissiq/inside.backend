@@ -82,6 +82,14 @@ public class DemandaController {
 		return "DetalheDemanda";
 	}
 	
+	@RequestMapping("/iniciarTarefa")
+	public String atualizarProjeto(Model model, HttpSession session, int idDemanda) {
+		Demanda demanda = demandaService.iniciarTarefa(idDemanda);
+		model.addAttribute("demanda", demanda);
+		
+		return "DetalheDemanda";
+	}
+	
 	@RequestMapping("/detalheDemanda")
 	public String detalheDemanda(Model model, HttpSession session, int idDemanda) {
 		Demanda demanda = demandaService.buscarDemanda(idDemanda);

@@ -28,6 +28,11 @@ public class DemandaService {
 		return dao.atualizar(demanda);
 	}
 	
+	@Transactional
+	public Demanda iniciarTarefa(int idDemanda) {
+		return dao.iniciarTarefa(idDemanda);
+	}
+	
 	public Demanda buscarDemanda(int id) {
 		return dao.buscarDemanda(id);
 	}

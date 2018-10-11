@@ -27,6 +27,17 @@ public class DemandaDAO {
 		return manager.merge(demanda);
 	}
 	
+	public Demanda iniciarTarefa(int idDemanda) {		
+		
+		String jpql = "update tb_demanda set status = 'em andamento' WHERE id = :id";
+				
+		Query query = manager.createQuery(jpql);
+		query.setParameter("id", idDemanda);
+		query.executeUpdate();
+		
+		return this.buscarDemanda(idDemanda);
+	}	
+	
 	public Demanda buscarDemanda(int id) {
 		return manager.find(Demanda.class, id);
 	}
