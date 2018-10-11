@@ -1,5 +1,6 @@
 package br.inside.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,15 +11,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.Demanda;
+import br.inside.model.entity.Funcionario;
 import br.inside.model.service.DemandaService;
+import br.inside.model.service.FuncionarioService;
 
 @Controller
 public class DemandaController {
 
 	@Autowired
 	private DemandaService demandaService;
+	
+	@Autowired
+	private FuncionarioService funcionarioService;
 
 	@RequestMapping("/demandas")
 	public String demandasView(Model model, HttpSession session, String chave) {
@@ -37,8 +42,16 @@ public class DemandaController {
 	
 	@RequestMapping("/novaDemanda")
 	public String novoDemandaForm(Model model, HttpSession session, int idProjeto) {			
-		session.setAttribute("idProjeto", idProjeto);
-		return "CadastroDemanda";
+		try {
+			List<Funcionario> analistas = funcionarioService.listarFuncionarios();
+			session.setAttribute("idProjeto", idProjeto);
+			session.setAttribute("analistas", analistas);
+			return "CadastroDemanda";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "CadastroDemanda";
+		}		
 	}
 	
 	@RequestMapping("/addDemanda")
