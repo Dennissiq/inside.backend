@@ -113,6 +113,7 @@
 						<div class="container-fluid pdd-30-xs-b pdd-30-xxs-b">
 												
 							<h2 class="text-primary text-bold text-bold">Projetos</h2>
+							
 							<c:if test="${not empty lista}">
 							<c:forEach var="projeto" items="${lista}">
 							<div class="mat-card-kit">
