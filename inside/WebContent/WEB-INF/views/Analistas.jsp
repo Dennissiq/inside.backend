@@ -227,46 +227,16 @@
 											</tr>
 										</thead>
 										<tbody>
+										<c:forEach var="funcionario" items="${lista}">
 											<tr>
-												<td class="text-bold">Fernando Pessoa</td>
-												<td class="text-bold">Arquiteto de Software</td>
-												<td class="text-bold">São Paulo</td>
+												<td class="text-bold">${funcionario.nome }</td>
+												<td class="text-bold">${funcionario.especialidade }</td>
+												<td class="text-bold">${funcionario.lozalizacao}</td>
 												<td class="text-success text-bold text-center"> <i class="fas fa-check-circle"></i>  </td>
 												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray"
 														 aria-hidden="true"></i></a> </td>
 											</tr>
-											<tr>
-												<td class="text-bold">Machado de Assis</td>
-												<td class="text-bold">Engenheiro de Software</td>
-												<td class="text-bold">Rio de Janeiro</td>
-												<td class="text-warning text-bold text-center"> <i class="fas fa-exclamation-circle"></i></td>
-												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray"
-														 aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold"> Jorge Amando</td>
-												<td class="text-bold">Scrum Master</td>
-												<td class="text-bold">Rio de Janeiro</td>
-												<td class="text-success text-bold text-center"> <i class="fas fa-check-circle"></i>  </td>
-												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray"
-														 aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold">Machado de Assis</td>
-												<td class="text-bold">Engenheiro de Software</td>
-												<td class="text-bold">Rio de Janeiro</td>
-												<td class="text-warning text-bold text-center"> <i class="fas fa-exclamation-circle"></i></td>
-												<td><a href="#" class='text-gray pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray"
-														 aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold"> Jorge Amando</td>
-												<td class="text-bold">Scrum Master</td>
-												<td class="text-bold">Rio de Janeiro</td>
-												<td class="text-success text-bold text-center"> <i class="fas fa-check-circle"></i>  </td>
-												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray"
-														 aria-hidden="true"></i></a> </td>
-											</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

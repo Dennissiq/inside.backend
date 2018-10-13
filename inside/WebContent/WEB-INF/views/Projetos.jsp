@@ -95,12 +95,12 @@
 			<div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
 				<h3 id="menu-toggle">Menu</h3>
 				<ul id="menu">
-					<li><a href="projetos.html" style="color: #848484 !important;"><h4>Projetos</h4> </a>
+					<li><a href="projetos" style="color: #848484 !important;"><h4>Projetos</h4> </a>
 					</li>
-					<li><a href="cadastroProjeto.html" style="color: #848484 !important;"> <h4>Cadastrar novo projeto</h4></a></li>
-					<li><a href="analistas.html" style="color: #848484 !important;"> <h4>Analistas</h4></a></li>
-					<li><a href="desempenhoAdmin.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>
-					<li><a href="index.html" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
+					<li><a href="cadastroProjeto" style="color: #848484 !important;"> <h4>Cadastrar novo projeto</h4></a></li>
+					<li><a href="analistas" style="color: #848484 !important;"> <h4>Analistas</h4></a></li>
+					<!-- <li><a href="desempenhoAdmin.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li> -->
+					<li><a href="index" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
 				</ul>
 			</div>
 		</div>
@@ -113,9 +113,10 @@
 						<div class="container-fluid pdd-30-xs-b pdd-30-xxs-b">
 												
 							<h2 class="text-primary text-bold text-bold">Projetos</h2>
-							
+							<c:if test="${not empty lista}">
+							<c:forEach var="projeto" items="${lista}">
 							<div class="mat-card-kit">
-								<h3 class=" text-center text-gray text-bold pdd-15-xs-t pdd-15-xxs-t ">Projeto Lisboa</h3>
+								<h3 class=" text-center text-gray text-bold pdd-15-xs-t pdd-15-xxs-t ">${projeto.descricao}</h3>
 								<div class="line-gray"></div>	
 								<div class=" row row-card mat-card-kit">
 									<h5 class="mat-card-kit-title text-gray text-bold">Status do Projeto:<span class="text-success">completo</span></h5>
@@ -124,11 +125,12 @@
 										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 58 </span> </h5>
 										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 4 </span> </h5> 
 										<h5 class="mat-card-kit-title text-gray text-bold pdd-15-xs-b pdd-15-xxs-b">Tempo gasto no projeto: <span class="text-gray">
-											175h </span> </h5>
+											${projeto.horas}h</span> </h5>
+										
 									</div>
 									<div class="col-xs-12 col-xxs-12 pdd-30-xs-b pdd-30-xxs-b ">
 										
-										<a href="cadastroDemanda.html">
+										<a href="novaDemanda?a=${projeto.id}">
 										<button type="button" class=" btn btn-lg btn-primary text-white btn-block ">Adicionar nova demanda</button>
 									</a>
 									</div>		
@@ -144,23 +146,24 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td class="text-bold">Ajustes na integração</td>
-													<td class="text-bold">Fernando pessoa</td>
-													<td class="text-success text-bold text-center"> <i class="fas fa-check-circle"></i></td>
-													<td><a href="detalheDemandaAdmin.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-												</tr>
-												<tr>
-													<td class="text-bold">Ajustes na integração</td>
-													<td class="text-bold">Fernando Sermano</td>
-													<td class="text-danger text-bold text-center"> <i class="fas fa-times-circle text-center"></i></td>
-													<td><a href="detalheDemandaAdmin.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-												</tr>
+												<c:if test="${not empty projeto.demandas}">
+													<c:forEach var="demanda" items="${projeto.demandas}">
+														<tr>
+															<td class="text-bold">${demanda.descricao}</td>
+															<td class="text-bold">${demanda.funcionario.nome}</td>
+															<td class="text-success text-bold text-center"> <i class="fas fa-check-circle"></i></td>
+															<td><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
+														</tr>
+													</c:forEach>
+												</c:if>
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
+							
+							</c:forEach>
+							</c:if>
 						</div>
 
 						</div>
