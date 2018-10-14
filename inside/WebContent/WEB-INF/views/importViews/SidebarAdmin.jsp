@@ -1,14 +1,25 @@
 <div id="sidebar-wrapper" class='invisible-xs invisible-xxs'>
 	<ul class="sidebar-nav">
-		<li class="sidebar-brand  pdd-15-md-t pdd-15-lg-t pdd-15-xlg-t pdd-30-md-b pdd-30-lg-b pdd-30-xlg-b">
+		<li class="sidebar section-gray pdd-15-md-t pdd-15-lg-t pdd-15-xlg-t pdd-30-md-b pdd-30-lg-b pdd-30-xlg-b">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-11 col-lg-10 col-lg-offset-1 col-md-offset-1 pdd-15-md-t pdd-15-lg-t">
+					<div class="col-md-11 col-lg-10 col-lg-offset-1 col-md-offset-1 pdd-15-md-t pdd-15-lg-t pdd-15-md-b pdd-15-lg-b">
 						<div class="col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2 pdd-15-md-b pdd-15-lg-b">
 							<img src="./images/analyst_user.png" class="img-responsive img-circle" alt="">
 						</div>
-						<h4 class="text-white text-bold text-left">Gestor de Projetos</h4>						
-						<a href="#"><h6 class="text-white text-left"><i class='fa fa-edit'></i> Editar perfil</h6></a>
+						<div class="row">
+							<div class="col-md-12 col-lg-12">
+								<h4 class="text-white text-bold text-center">Gestor de Projetos</h4>
+							</div>
+						</div>
+						<!-- <a href="#"><h6 class="text-white text-left"><i class='fa fa-edit'></i> Editar perfil</h6></a> -->
+						<div class="row">
+							<div class="col-md-10 col-lg-10">
+								<a href="#">
+									<h5 class="text-white text-center"><i class='fa fa-edit'></i> Editar perfil</h5>
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
