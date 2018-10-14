@@ -11,13 +11,18 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.User;
+import br.inside.model.service.FuncionarioService;
 import br.inside.model.service.UserService;
 
 @Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private FuncionarioService funcionarioService;
 
 	@RequestMapping("/index")
 	public String loginForm(Model model, HttpSession session) {
@@ -36,11 +41,14 @@ public class UserController {
 		
 		if(userLogged != null){
 			session.setAttribute("usuario", userLogged);
-			if(userLogged.getPerfil().getNome().equals("Administrador")) //retornar o proprio perfil que sera o nome da sua 'index'; mudar o nome das jps
-				//return "Projetos";
+			if(userLogged.getPerfil().getNome().equals("Administrador")) { //retornar o proprio perfil que sera o nome da sua 'index'; mudar o nome das jps				
 				return "redirect: projetos";
-			else
+			}
+			else {
+				Funcionario funcionario = funcionarioService.buscarFuncionario(userLogged);
+				session.setAttribute("funcionario", funcionario);
 				return "redirect: demandas";
+			}				
 		}else {			
 			model.addAttribute("error", "Login e/ou Senha inválidos.");
 			return "index";

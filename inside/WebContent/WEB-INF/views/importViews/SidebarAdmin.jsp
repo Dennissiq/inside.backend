@@ -1,28 +1,17 @@
 <div id="sidebar-wrapper" class='invisible-xs invisible-xxs'>
 	<ul class="sidebar-nav">
-		<li
-			class="sidebar-brand  pdd-15-md-t pdd-15-lg-t pdd-15-xlg-t pdd-30-md-b pdd-30-lg-b pdd-30-xlg-b">
+		<li class="sidebar-brand  pdd-15-md-t pdd-15-lg-t pdd-15-xlg-t pdd-30-md-b pdd-30-lg-b pdd-30-xlg-b">
 			<div class="container-fluid">
 				<div class="row">
-					<div
-						class="col-md-11 col-lg-11 col-lg-offset-1 col-md-offset-1 pdd-15-md-t pdd-15-lg-t">
-						<div
-							class="col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2 pdd-15-md-b pdd-15-lg-b">
-							<img src="./images/perfil.jpg" class="img-responsive img-circle"
-								alt="">
+					<div class="col-md-11 col-lg-10 col-lg-offset-1 col-md-offset-1 pdd-15-md-t pdd-15-lg-t">
+						<div class="col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2 pdd-15-md-b pdd-15-lg-b">
+							<img src="./images/analyst_user.png" class="img-responsive img-circle" alt="">
 						</div>
-						<h4 class="text-white text-bold text-left">Fernando Pessoa</h4>
-						<!-- <h5 class="text-white text-left ">Fullstack Developer</h5> -->
-						<a href="#"><h6 class="text-white text-left">
-								<i class='fa fa-edit'></i> Editar perfil
-							</h6></a>
-						<!-- <a href="#"><h6 class="text-white text-left"><i class='fa fa-sign-out-alt'></i> Sair</h6></a> -->
+						<h4 class="text-white text-bold text-left">Gestor de Projetos</h4>						
+						<a href="#"><h6 class="text-white text-left"><i class='fa fa-edit'></i> Editar perfil</h6></a>
 					</div>
 				</div>
 			</div>
-		</li>
-		<li class="pdd-10-md-t pdd-10-lg-t">
-			<h6 class="text-primary">HOME</h6>
 		</li>
 		<div class="menu">
 			<li class="pdd-30-md-t pdd-30-lg-t"><a href="projetos"

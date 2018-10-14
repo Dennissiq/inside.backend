@@ -20,9 +20,9 @@ import br.inside.model.entity.User;
 import br.inside.model.service.FuncionarioService;
 import br.inside.model.service.UserService;
 
-
 @Controller
 public class FuncionarioController {
+	
 	@Autowired
 	private FuncionarioService fService;
 	
@@ -37,8 +37,7 @@ public class FuncionarioController {
 	@RequestMapping("/novo_analista")
 	public String novo(Model model, HttpSession session ) throws IOException{
 		return "CadastroAnalista";
-	}
-	
+	}	
 	
 	@RequestMapping("/cadastrar_analista")
 	public String criarFuncionario(@Valid Funcionario funcionario, BindingResult erros, Model model, HttpSession session) throws IOException{

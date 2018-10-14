@@ -6,7 +6,6 @@
 <c:import url="Header.jsp"/>
 <body>
 
-
 <div class="invisible-xs invisible-xxs">
   <div id="wrapper" class="toggled">
 
@@ -51,17 +50,19 @@
             <div class="line-gray"></div>
             <div class="row row-card">              
               <div class=" col-md-12 col-lg-12">
-                <div class=" row row-card mat-card-kit">
-                  
+                <div class=" row row-card mat-card-kit">                  
                   <c:choose>
 					<c:when test="${demanda.status == 'aberto'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>${demanda.status}</span></h4>						
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>
+						<i class="fas fa-exclamation-circle fa-1x"></i> ${demanda.status}</span></h4>						
 					</c:when>
 					<c:when test="${demanda.status == 'concluida'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-success'>${demanda.status}</span></h4>
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-success'>
+						<i class="fas fas-check-circle fa-1x"></i> ${demanda.status}</span></h4>
 					</c:when>
 					<c:when test="${demanda.status == 'em andamento'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>${demanda.status}</span></h4>						
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
+						<i class="fas fa-clock fa-1x"></i> ${demanda.status}</span></h4>						
 					</c:when>
 				</c:choose>
                   <div class="line-gray"></div>
@@ -72,10 +73,20 @@
                     </c:if>
                   </div>
                   <c:if test="${usuario.perfil.nome == 'Analista'}">
-                    	 <div class="play-task col-md-12 col-lg-12">
-                    <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>
-                  </div>
-                    </c:if>
+                  	<c:if test="${demanda.status != 'em andamento'}">
+                   	 <div class="play-task col-md-12 col-lg-12">
+                  	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>                  	 
+                  	 </div>
+                  	</c:if>
+                  	<c:if test="${demanda.status == 'em andamento'}">
+                   	 <div class="play-task col-md-12 col-lg-12">
+                  	 	<a href="pausarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
+                  	 		<p><i class="fa fa-stop-circle fa-1x"></i> Pausar tarefa</p></a>
+                  	 	<a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
+                  	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>                  	 
+                  	 </div>
+                  	</c:if>
+                  </c:if>
                  
                 </div>
               </div>

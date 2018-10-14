@@ -49,14 +49,14 @@
 												<td class="text-bold">${demanda.descricao}</td>
 												<td class="text-bold">${demanda.projeto.descricao}</td>
 												<c:choose>
-													<c:when test="${demanda.status == 'aberto'}">
-														<td class="text-danger text-bold"> <i class="fas fa-time-circle"></i> ${demanda.status} </td>
+													<c:when test="${demanda.status == 'aberto'}">											
+														<td class="text-danger text-bold"> <i class="fas fa-exclamation-circle fa-1x"></i> ${demanda.status} </td>
 													</c:when>
 													<c:when test="${demanda.status == 'concluida'}">
-														<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> ${demanda.status} </td>
+														<td class="text-success text-bold"> <i class="fas fas-check-circle fa-1x"></i> ${demanda.status} </td>
 													</c:when>
-													<c:when test="${demanda.status == 'em andamento'}">
-														<td class="text-warning text-bold"> <i class="fas fa-time-circle"></i> ${demanda.status} </td>
+													<c:when test="${demanda.status == 'em andamento'}">																											
+														<td class="text-warning text-bold"> <i class="fas fa-clock fa-1x"></i> ${demanda.status} </td>
 													</c:when>
 												</c:choose>
 												<td><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
