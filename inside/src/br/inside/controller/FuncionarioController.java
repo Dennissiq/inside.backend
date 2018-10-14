@@ -96,4 +96,39 @@ public class FuncionarioController {
 		}		
 	}
 	
+	@RequestMapping("/alterar_dados")
+	public String atualizar(Funcionario funcionario,  User usuario, Model model, HttpSession session) {
+		try {
+			session.setAttribute("senha", usuario.getSenha());
+			funcionario = fService.buscarFuncionario(funcionario.getIdFuncionario());
+			model.addAttribute("funcionario", funcionario);
+			return "EditarPerfil";
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+		}
+	}
+	@RequestMapping("/atualizar_dados")
+	public String gravarAtualizacaoFilme(@Valid Funcionario funcionario, @Valid User usuario, BindingResult erros, Model model, HttpSession session) {
+		try {
+			if (!erros.hasErrors()) {
+				funcionario.setEmail(funcionario.getEmail());
+				usuario.setSenha(usuario.getSenha());
+				fService.atualizarFuncionario(funcionario);
+				model.addAttribute("funcionario", funcionario);
+
+				return "EditarPerfil";
+			} else {
+				return "Analistas";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+		}
+	}
+	
+	
+	
 }
