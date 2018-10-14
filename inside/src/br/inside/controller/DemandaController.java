@@ -1,6 +1,7 @@
 package br.inside.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,11 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.inside.model.entity.Comentario;
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.User;
+import br.inside.model.service.ComentarioService;
 import br.inside.model.service.DemandaService;
 import br.inside.model.service.FuncionarioService;
+import br.inside.model.service.RecursoService;
 
 @Controller
 public class DemandaController {
@@ -25,6 +29,12 @@ public class DemandaController {
 	
 	@Autowired
 	private FuncionarioService funcionarioService;
+	
+	@Autowired 
+	private ComentarioService comentarioService;
+	
+	@Autowired 
+	private RecursoService recursoService;
 
 	@RequestMapping("/demandas")
 	public String demandasView(Model model, HttpSession session, String chave) throws IOException {
@@ -92,8 +102,27 @@ public class DemandaController {
 	
 	@RequestMapping("/detalheDemanda")
 	public String detalheDemanda(Model model, HttpSession session, int idDemanda) {
-		Demanda demanda = demandaService.buscarDemanda(idDemanda);
+		Demanda demanda = demandaService.buscarDemanda(idDemanda);		
 		model.addAttribute("demanda", demanda);
+		return "DetalheDemanda";
+	}
+	
+	
+	@RequestMapping("/addComentario")
+	public String addComentario(@Valid Comentario comentario, Model model, HttpSession session) {
+		
+		User usuario = (User) session.getAttribute("usuario");
+		int idDemanda = comentario.getRecurso().getDemanda().getId();
+		Date date = new Date();		
+		comentario.setDtComentario(date);
+		
+		Demanda demanda = demandaService.buscarDemanda(idDemanda);
+
+		comentario = recursoService.criarRecurso(demanda, usuario, comentario);
+		
+		demanda = demandaService.buscarDemanda(idDemanda);
+		model.addAttribute("demanda", demanda);
+		System.out.println(demanda.toString());
 		return "DetalheDemanda";
 	}
 }

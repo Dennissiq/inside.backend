@@ -68,7 +68,7 @@
 														<tr>
 															<td class="text-bold">${demanda.descricao}</td>
 															<td class="text-bold">${demanda.funcionario.nome}</td>
-															<td class="text-warning text-bold"> <i class="fas fa-check-circle"></i> Aberto</td>
+															<td class="text-success text-bold text-center"> <i class="fas fa-check-circle"></i> Aberto</td>
 															<td><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a>  </td>
 														</tr>
 														</c:forEach>

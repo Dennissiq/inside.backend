@@ -14,6 +14,7 @@
 		<class>br.inside.model.entity.Funcionario</class>
 		<class>br.inside.model.entity.Cargo</class>
 		<class>br.inside.model.entity.Demanda</class>
+		<class>br.inside.model.entity.Comentario</class>
 		<properties>
 			<!-- dados da conexao -->
 						
