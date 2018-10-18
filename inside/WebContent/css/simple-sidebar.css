@@ -98,7 +98,7 @@ body {
     height: 240px;
     font-size: 18px;
     line-height: 60px;
-    background: #2d2f30;
+    background: #888888;
 }
 
 .sidebar-nav > .sidebar-brand a {
@@ -121,7 +121,7 @@ body {
         width: 0;
     }
     #wrapper.toggled #sidebar-wrapper {
-        width: 270px;
+        width: 300px;
     }
     #page-content-wrapper {
         padding: 20px;

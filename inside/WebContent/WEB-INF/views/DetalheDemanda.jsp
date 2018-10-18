@@ -116,13 +116,25 @@
                 <div class="row row-card mat-card-kit">
                   <h4 class="mat-card-kit-title text-gray text-bold">Comentários</h4>
                   <div class="line-gray"></div>
-                  <!-- <div class="col-md-12 col-lg-12">
-                   <div class="col-md-12 col-lg-12 comment-box">
-                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> Fernando Pessoa</span></p>
+                   <div class="col-md-12 col-lg-12">
+                  <c:if test="${not empty demanda.recursos}">
+						<c:forEach var="recurso" items="${demanda.recursos}">
+							<c:forEach var="comentario" items="${recurso.comentario}">
+		                   		<div class="col-md-12 col-lg-12 comment-box">
+			                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.recurso.usuario.login}</span></p>
+			                      <div class="line-gray"></div>
+			                     <p class='text-comment text-gray'>${comentario.comentario}</p>
+			                     <p class='time-comment'>${comentario.dtComentario }</p>
+			                   </div>
+		                   </c:forEach>
+	                   	</c:forEach>
+              		</c:if> 
+<%--                    <div class="col-md-12 col-lg-12 comment-box">
+                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.recurso.usuario.login}</span></p>
                       <div class="line-gray"></div>
-                     <p class='text-comment text-gray'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-                     <p class='time-comment'>08:50am  - 24/08</p>
-                   </div>
+                     <p class='text-comment text-gray'>${comentario.comentario}</p>
+                     <p class='time-comment'>${comentario.dtComentario }</p>
+                   </div> --%>
                     <div class="col-md-12 col-lg-12 comment-box">
                      <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> Clarice Lispector</span></p>
                       <div class="line-gray"></div> 
@@ -132,18 +144,23 @@
                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
                      <p class='time-comment'>08:50am  - 24/08</p>
                    </div>
-                  </div> -->
+                  </div> 
                   <div class="col-md-12 col-lg-12">
                     <div class="line-gray"></div>
                   </div>
                   <div class="col-md-12 col-lg-12">
                    <div class="col-md-12 col-lg-12 comment-box">
                      <p>Adicionar novo comentário</p>
-                     <form>
-                      <div class="col-md-11 col-lg-11">
-                        <textarea class='form-control'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</textarea>
+                     <form action="addComentario" method="post">
+                      <input type="hidden" name='recurso.demanda.id' value="${demanda.id}" class="form-control text-primary">
+                      <div class="col-md-10 col-lg-10">
+                        <textarea name="comentario" class='form-control'>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</textarea>
                       </div>
-                      <a href="#" class='send-comment col-md-1 col-lg-1'><i class='fa fa-paper-plane fa-2x'></i></a>
+                      <div class="col-md-2 col-lg-2">
+                      	<button type="submit" class='btn btn-lg btn-primary text-white btn-block'>Enviar</button>
+                      </div>
+                      
+                      <!-- <a href="addComentario?idDemanda=${demanda.id}" class='send-comment col-md-1 col-lg-1'><i class='fa fa-paper-plane fa-2x'></i></a> como eh q comenta mesmo aq?ctrl  -->
                      </form>
                    </div>
                   </div>
