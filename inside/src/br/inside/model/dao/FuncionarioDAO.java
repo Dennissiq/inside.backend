@@ -51,6 +51,7 @@ public class FuncionarioDAO {
 		manager.remove(manager.find(Funcionario.class, funcionario.getIdFuncionario()));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Funcionario> listarFuncionarios() throws IOException{
 		return manager.createQuery("select f from tb_funcionario f").getResultList();
 	}

@@ -17,14 +17,12 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/v4-shims.css">
-		<script src="node_modules/chart.js/dist/Chart.js"></script>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js">
-		</script>
-		<script src="node_modules/moment/locale/pt-br.js"></script>
-		<script src="js/daterangepicker.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
+	<script src="node_modules/chart.js/dist/Chart.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js">
+	</script>
+	<script src="node_modules/moment/locale/pt-br.js"></script>
+	<script src="js/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-
 </head>

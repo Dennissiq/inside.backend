@@ -10,23 +10,15 @@
 	<div id="wrapper" class="toggled">
 	
 		<c:import url="importViews/SidebarAnalista.jsp"></c:import>
-	
+		
 		<div class="pdd-15-lg-t pdd-15-md-t">
-	
 			<div class="container-fluid">
-	
 				<div class="col-lg-11 col-md-11 ">
 					<h6 class="text-gray pull-right text-bold"> <a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
 				</div>
-	
 			</div>
-	
 			<div class="col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1">
-	
 				<div class="container-fluid pdd-30-lg-b pdd-30-md-b">
-	
-	
-	
 					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
 						<h1 class="text-primary text-bold text-bold">Demandas</h1>
 						<div class="mat-card-kit">
@@ -49,17 +41,17 @@
 												<td class="text-bold">${demanda.descricao}</td>
 												<td class="text-bold">${demanda.projeto.descricao}</td>
 												<c:choose>
-													<c:when test="${demanda.status == 'aberto'}">
-														<td class="text-danger text-bold"> <i class="fas fa-time-circle"></i> ${demanda.status} </td>
+													<c:when test="${demanda.status == 'aberto'}">											
+														<td class="text-danger text-bold"> <i class="fas fa-exclamation-circle fa-1x"></i> ${demanda.status} </td>
 													</c:when>
 													<c:when test="${demanda.status == 'concluida'}">
-														<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> ${demanda.status} </td>
+														<td class="text-success text-bold"> <i class="fas fas-check-circle fa-1x"></i> ${demanda.status} </td>
 													</c:when>
-													<c:when test="${demanda.status == 'em andamento'}">
-														<td class="text-warning text-bold"> <i class="fas fa-time-circle"></i> ${demanda.status} </td>
+													<c:when test="${demanda.status == 'em andamento'}">																											
+														<td class="text-warning text-bold"> <i class="fas fa-clock fa-1x"></i> ${demanda.status} </td>
 													</c:when>
 												</c:choose>
-												<td><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
+												<td class="text-center"><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
 											</tr>
 											</c:forEach>
 										</c:if>											
@@ -79,7 +71,7 @@
 	<div class="row">
 		<div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
 				<h3 id="menu-toggle">Menu</h3>
-				<ul id="menu">
+				<ul id="mainMenu">
 					<li><a href="demandas.html" style="color: #848484 !important;"><h4>Demandas</h4> </a>
 					</li>
 					<li><a href="desempenho.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>
@@ -205,7 +197,5 @@
   <script src="js/jquery.min.js"></script>
   <script src="javascripts/bootstrap.min.js"></script>
   <script src="js/menu-mobile.js"></script>
-
-  <!-- Menu Toggle Script -->
 </body>
 </html>

@@ -1,5 +1,7 @@
 package br.inside.model.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.sun.istack.internal.NotNull;
 
@@ -31,16 +34,20 @@ public class Demanda {
 	private String duracao;
 		
 	private String status;
-	
+
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="id_funcionario")
 	private Funcionario funcionario;
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn(name="id_projeto")
 	private Projeto projeto;
+	
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Recurso> recursos; 
 	
 	public int getId() {
 		return id;
@@ -93,7 +100,8 @@ public class Demanda {
 	@Override
 	public String toString() {
 		return "Demanda [id=" + id + ", descricao=" + descricao + ", detalhes=" + detalhes + ", duracao=" + duracao
-				+ ", status=" + status + ", funcionario=" + funcionario + ", projeto=" + projeto + "]";
+				+ ", status=" + status + ", funcionario=" + funcionario + ", projeto=" + projeto + ", recursos="
+				+ recursos + "]";
 	}
 
 	public String getStatus() {
@@ -102,5 +110,13 @@ public class Demanda {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public List<Recurso> getRecursos() {
+		return recursos;
+	}
+
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
 	}
 }

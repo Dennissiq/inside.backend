@@ -64,7 +64,23 @@
                   <h5 class="text-gray">Status</h5>
                 </div>
                 <div class="col-md-7 col-lg-7">
-                  <input type="text" name='status' required class="form-control text-primary">
+                  <select class="form-control text-primary" name='status'>
+                  	<option value="aberto" selected>Aberto</option>
+                  	<option value="em andamento">Em andamento</option>
+                  	<option value="finalizado">Finalizado</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
+                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+                  <h5 class="text-gray">Analista Responsável</h5>
+                </div>
+                <div class="col-md-7 col-lg-7">
+                  <select class="form-control text-primary" name='funcionario.idFuncionario'>
+                  	<c:forEach var="analista" items="${analistas}">
+                  		<option value="${analista.idFuncionario}">${analista.nome}</option>
+                  	</c:forEach>                  	                  
+                  </select>
                 </div>
               </div>
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
@@ -96,7 +112,7 @@
     <div class="row ">
       <div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
         <h3 id="menu-toggle">Menu</h3>
-        <ul id="menu">
+        <ul id="mainMenu">
           <li><a href="projetos.html" style="color: #848484 !important;"><h4>Projetos</h4> </a>
           </li>
           <li><a href="cadastroProjeto.html" style="color: #848484 !important;"> <h4>Cadastrar novo projeto</h4></a></li>

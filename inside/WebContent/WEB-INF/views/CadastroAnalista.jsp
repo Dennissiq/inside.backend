@@ -117,7 +117,7 @@
     <div class="row">
       <div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
         <h3 id="menu-toggle">Menu</h3>
-        <ul id="menu">
+        <ul id="mainMenu">
           <li><a href="projetos.html" style="color: #848484 !important;"><h4>Projetos</h4> </a>
           </li>
           <li><a href="cadastroProjeto.html" style="color: #848484 !important;"> <h4>Cadastrar novo projeto</h4></a></li>

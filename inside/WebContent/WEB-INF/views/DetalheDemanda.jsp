@@ -6,7 +6,6 @@
 <c:import url="Header.jsp"/>
 <body>
 
-
 <div class="invisible-xs invisible-xxs">
   <div id="wrapper" class="toggled">
 
@@ -51,17 +50,23 @@
             <div class="line-gray"></div>
             <div class="row row-card">              
               <div class=" col-md-12 col-lg-12">
-                <div class=" row row-card mat-card-kit">
-                  
+                <div class=" row row-card mat-card-kit">                  
                   <c:choose>
 					<c:when test="${demanda.status == 'aberto'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>${demanda.status}</span></h4>						
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>
+						<i class="fas fa-exclamation-circle fa-1x"></i> ${demanda.status}</span></h4>						
 					</c:when>
 					<c:when test="${demanda.status == 'concluida'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-success'>${demanda.status}</span></h4>
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-success'>
+						<i class="fas fas-check-circle fa-1x"></i> ${demanda.status}</span></h4>
 					</c:when>
 					<c:when test="${demanda.status == 'em andamento'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>${demanda.status}</span></h4>						
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
+						<i class="fas fa-clock fa-1x"></i> ${demanda.status}</span></h4>						
+					</c:when>
+					<c:when test="${demanda.status == 'pausado'}">
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
+						<i class="fas fa-pause fa-1x"></i> ${demanda.status}</span></h4>						
 					</c:when>
 				</c:choose>
                   <div class="line-gray"></div>
@@ -70,12 +75,27 @@
                     <c:if test="${usuario.perfil.nome == 'Analista'}">
                     	<a href="#" class='text-gray'>[editar tempo]</a>
                     </c:if>
-                  </div>
+                  </div>	
+                  <div class="col-md-12 col-lg-12">
+                    <c:if test="${usuario.perfil.nome == 'Administrador'}">
+                  	 	<label  class='text-gray time-pend-task'>Responsável: <span>${demanda.funcionario.nome}</span></label>                   	                   	 
+                  	</c:if>
+                  </div>	
                   <c:if test="${usuario.perfil.nome == 'Analista'}">
-                    	 <div class="play-task col-md-12 col-lg-12">
-                    <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>
-                  </div>
-                    </c:if>
+                  	<c:if test="${demanda.status != 'em andamento'}">
+                   	 <div class="play-task col-md-12 col-lg-12">
+                  	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>                  	 
+                  	 </div>
+                  	</c:if>
+                  	<c:if test="${demanda.status == 'em andamento'}">
+                   	 <div class="play-task col-md-12 col-lg-12">
+                  	 	<a href="pausarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
+                  	 		<p><i class="fa fa-stop-circle fa-1x"></i> Pausar tarefa</p></a>
+                  	 	<a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
+                  	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>                  	 
+                  	 </div>
+                  	</c:if>
+                  </c:if>
                  
                 </div>
               </div>
@@ -88,8 +108,8 @@
                   <div class="line-gray"></div>
                   <div class="col-md-12 col-lg-12">
                    <p class='text-gray description-task'>
-                     ${demanda.detalhes }
-                   </p>                  
+                     ${demanda.detalhes}
+                   </p>
                   </div>
                 </div>
               </div>
@@ -100,13 +120,25 @@
                 <div class="row row-card mat-card-kit">
                   <h4 class="mat-card-kit-title text-gray text-bold">Comentários</h4>
                   <div class="line-gray"></div>
-                  <!-- <div class="col-md-12 col-lg-12">
-                   <div class="col-md-12 col-lg-12 comment-box">
-                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> Fernando Pessoa</span></p>
+                   <div class="col-md-12 col-lg-12">
+                  <c:if test="${not empty demanda.recursos}">
+						<c:forEach var="recurso" items="${demanda.recursos}">
+							<c:forEach var="comentario" items="${recurso.comentario}">
+		                   		<div class="col-md-12 col-lg-12 comment-box">
+			                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.recurso.usuario.login}</span></p>
+			                      <div class="line-gray"></div>
+			                     <p class='text-comment text-gray'>${comentario.comentario}</p>
+			                     <p class='time-comment'>${comentario.dtComentario }</p>
+			                   </div>
+		                   </c:forEach>
+	                   	</c:forEach>
+              		</c:if> 
+<%--                    <div class="col-md-12 col-lg-12 comment-box">
+                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.recurso.usuario.login}</span></p>
                       <div class="line-gray"></div>
-                     <p class='text-comment text-gray'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-                     <p class='time-comment'>08:50am  - 24/08</p>
-                   </div>
+                     <p class='text-comment text-gray'>${comentario.comentario}</p>
+                     <p class='time-comment'>${comentario.dtComentario }</p>
+                   </div> --%>
                     <div class="col-md-12 col-lg-12 comment-box">
                      <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> Clarice Lispector</span></p>
                       <div class="line-gray"></div> 
@@ -116,18 +148,23 @@
                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
                      <p class='time-comment'>08:50am  - 24/08</p>
                    </div>
-                  </div> -->
+                  </div> 
                   <div class="col-md-12 col-lg-12">
                     <div class="line-gray"></div>
                   </div>
                   <div class="col-md-12 col-lg-12">
                    <div class="col-md-12 col-lg-12 comment-box">
                      <p>Adicionar novo comentário</p>
-                     <form>
-                      <div class="col-md-11 col-lg-11">
-                        <textarea class='form-control'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</textarea>
+                     <form action="addComentario" method="post">
+                      <input type="hidden" name='recurso.demanda.id' value="${demanda.id}" class="form-control text-primary">
+                      <div class="col-md-10 col-lg-10">
+                        <textarea name="comentario" class='form-control'>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</textarea>
                       </div>
-                      <a href="#" class='send-comment col-md-1 col-lg-1'><i class='fa fa-paper-plane fa-2x'></i></a>
+                      <div class="col-md-2 col-lg-2">
+                      	<button type="submit" class='btn btn-lg btn-primary text-white btn-block'>Enviar</button>
+                      </div>
+                      
+                      <!-- <a href="addComentario?idDemanda=${demanda.id}" class='send-comment col-md-1 col-lg-1'><i class='fa fa-paper-plane fa-2x'></i></a> como eh q comenta mesmo aq?ctrl  -->
                      </form>
                    </div>
                   </div>
@@ -195,7 +232,7 @@
   <div class="row ">
     <div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
       <h3 id="menu-toggle">Menu</h3>
-      <ul id="menu">
+      <ul id="mainMenu">
         <li><a href="demandas.html" style="color: #848484 !important;"><h4>Demandas</h4> </a>
         </li>
         <li><a href="desempenho.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>
