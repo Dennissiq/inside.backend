@@ -56,9 +56,9 @@
 						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>
 						<i class="fas fa-exclamation-circle fa-1x"></i> ${demanda.status}</span></h4>						
 					</c:when>
-					<c:when test="${demanda.status == 'concluida'}">
+					<c:when test="${demanda.status == 'finalizado'}">
 						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-success'>
-						<i class="fas fas-check-circle fa-1x"></i> ${demanda.status}</span></h4>
+						<i class="fas fa-check fa-1x"></i> ${demanda.status}</span></h4>
 					</c:when>
 					<c:when test="${demanda.status == 'em andamento'}">
 						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
@@ -82,16 +82,19 @@
                   	</c:if>
                   </div>	
                   <c:if test="${usuario.perfil.nome == 'Analista'}">
-                  	<c:if test="${demanda.status != 'em andamento'}">
+                  	<c:if test="${demanda.status != 'em andamento' && demanda.status != 'finalizado'}">
                    	 <div class="play-task col-md-12 col-lg-12">
                   	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>                  	 
+                  	 <a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
+                  	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>  
                   	 </div>
+                  	 
                   	</c:if>
-                  	<c:if test="${demanda.status == 'em andamento'}">
+                  	<c:if test="${demanda.status == 'em andamento' && demanda.status != 'finalizado'}">
                    	 <div class="play-task col-md-12 col-lg-12">
                   	 	<a href="pausarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
                   	 		<p><i class="fa fa-stop-circle fa-1x"></i> Pausar tarefa</p></a>
-                  	 	<a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
+                  	 		<a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
                   	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>                  	 
                   	 </div>
                   	</c:if>

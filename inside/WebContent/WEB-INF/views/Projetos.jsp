@@ -72,8 +72,8 @@
 																<c:when test="${demanda.status == 'aberto'}">											
 																	<td class="text-danger text-bold text-center"> <i class="fas fa-exclamation-circle fa-1x"></i> ${demanda.status} </td>
 																</c:when>
-																<c:when test="${demanda.status == 'concluida'}">
-																	<td class="text-success text-bold text-center"> <i class="fas fas-check-circle fa-1x"></i> ${demanda.status} </td>
+																<c:when test="${demanda.status == 'finalizado'}">
+																	<td class="text-success text-bold text-center"> <i class="fas fa-check fa-1x"></i> ${demanda.status} </td>
 																</c:when>
 																<c:when test="${demanda.status == 'em andamento'}">																											
 																	<td class="text-warning text-bold text-center"> <i class="fas fa-clock fa-1x"></i> ${demanda.status} </td>

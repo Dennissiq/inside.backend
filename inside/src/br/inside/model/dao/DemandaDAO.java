@@ -49,6 +49,17 @@ public class DemandaDAO {
 		return this.buscarDemanda(idDemanda);
 	}	
 	
+public Demanda finalizarTarefa(int idDemanda) {		
+		
+		String jpql = "update tb_demanda set status = 'finalizado' WHERE id = :id";
+				
+		Query query = manager.createQuery(jpql);
+		query.setParameter("id", idDemanda);
+		query.executeUpdate();
+		
+		return this.buscarDemanda(idDemanda);
+	}	
+	
 	public Demanda buscarDemanda(int id) {
 		return manager.find(Demanda.class, id);
 	}

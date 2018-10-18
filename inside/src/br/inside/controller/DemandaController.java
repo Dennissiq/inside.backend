@@ -118,6 +118,15 @@ public class DemandaController {
 		//return "DetalheDemanda";
 	}
 	
+	@RequestMapping("/finalizarTarefa")
+	public String finalizarTarefa(Model model, HttpSession session, int idDemanda) {
+		Demanda demanda = demandaService.finalizarTarefa(idDemanda, producaoService);
+		model.addAttribute("demanda", demanda);
+		
+		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
+		//return "DetalheDemanda";
+	}
+	
 	@RequestMapping("/detalheDemanda")
 	public String detalheDemanda(Model model, HttpSession session, int idDemanda) {
 		Demanda demanda = demandaService.buscarDemanda(idDemanda);		
