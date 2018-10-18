@@ -19,6 +19,7 @@ import br.inside.model.entity.User;
 import br.inside.model.service.ComentarioService;
 import br.inside.model.service.DemandaService;
 import br.inside.model.service.FuncionarioService;
+import br.inside.model.service.ProducaoService;
 import br.inside.model.service.RecursoService;
 
 @Controller
@@ -36,6 +37,9 @@ public class DemandaController {
 	@Autowired 
 	private RecursoService recursoService;
 
+	@Autowired
+	private ProducaoService producaoService;
+	
 	@RequestMapping("/demandas")
 	public String demandasView(Model model, HttpSession session, String chave) throws IOException {
 		
@@ -98,10 +102,20 @@ public class DemandaController {
 	
 	@RequestMapping("/iniciarTarefa")
 	public String atualizarProjeto(Model model, HttpSession session, int idDemanda) {
-		Demanda demanda = demandaService.iniciarTarefa(idDemanda);
+		Demanda demanda = demandaService.iniciarTarefa(idDemanda,producaoService);
 		model.addAttribute("demanda", demanda);
 		
-		return "DetalheDemanda";
+		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
+		//return "DetalheDemanda";
+	}
+	
+	@RequestMapping("/pausarTarefa")
+	public String pausarTarefa(Model model, HttpSession session, int idDemanda) {
+		Demanda demanda = demandaService.pausarTarefa(idDemanda, producaoService);
+		model.addAttribute("demanda", demanda);
+		
+		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
+		//return "DetalheDemanda";
 	}
 	
 	@RequestMapping("/detalheDemanda")

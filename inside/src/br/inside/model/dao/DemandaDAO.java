@@ -38,6 +38,17 @@ public class DemandaDAO {
 		return this.buscarDemanda(idDemanda);
 	}	
 	
+	public Demanda pausarTarefa(int idDemanda) {		
+		
+		String jpql = "update tb_demanda set status = 'pausado' WHERE id = :id";
+				
+		Query query = manager.createQuery(jpql);
+		query.setParameter("id", idDemanda);
+		query.executeUpdate();
+		
+		return this.buscarDemanda(idDemanda);
+	}	
+	
 	public Demanda buscarDemanda(int id) {
 		return manager.find(Demanda.class, id);
 	}

@@ -21,9 +21,6 @@ public class DemandaService {
 	@Autowired
 	private DemandaDAO dao;
 	
-	@Autowired
-	private ProducaoService producaoService;
-	
 	@Transactional
 	public Demanda criar(Demanda demanda) {		
 		return dao.criar(demanda);
@@ -35,18 +32,26 @@ public class DemandaService {
 	}
 	
 	@Transactional
-	public Demanda iniciarTarefa(int idDemanda) {
+	public Demanda iniciarTarefa(int idDemanda, ProducaoService ps) {
 		Producao producao = new Producao();		
 		if(dao.buscarDemanda(idDemanda).getStatus().equals("aberto")) {
 			producao.setData(new Date());
 			producao.setDemanda(dao.buscarDemanda(idDemanda));
-			producao.setHoraInicio(new Timestamp(new Date().getTime()));
-			producaoService.criar(producao);
-		}else {
-			//busca ultima producao e atualiza a hora final dela
+			producao.setHoraInicio(new Timestamp(new Date().getTime()));			
+			ps.criar(producao);
 		}
 		
 		return dao.iniciarTarefa(idDemanda);
+	}
+	
+	@Transactional
+	public Demanda pausarTarefa(int idDemanda, ProducaoService ps) {
+		Demanda demanda = dao.buscarDemanda(idDemanda);
+		Producao producao = ps.buscarProducao(demanda);
+		producao.setHoraFim(new Timestamp(new Date().getTime()));			
+		ps.atualizar(producao);
+		
+		return dao.pausarTarefa(idDemanda);
 	}
 	
 	public Demanda buscarDemanda(int id) {

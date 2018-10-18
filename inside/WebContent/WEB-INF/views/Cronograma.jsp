@@ -42,7 +42,7 @@
 				<h6 class="text-gray pull-right text-bold"> <a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
 			</div>
 		</div>
-		<div class="" style="margin-left:20px;">
+		<div class="" style="margin-left:52px;">
 	    <div id="lnb">
 	    	<h4 class="text-primary text-center text-bold text-bold">Demandas</h4>
 	        <div class="lnb-new-schedule">

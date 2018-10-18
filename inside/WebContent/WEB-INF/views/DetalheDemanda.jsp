@@ -64,6 +64,10 @@
 						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
 						<i class="fas fa-clock fa-1x"></i> ${demanda.status}</span></h4>						
 					</c:when>
+					<c:when test="${demanda.status == 'pausado'}">
+						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
+						<i class="fas fa-pause fa-1x"></i> ${demanda.status}</span></h4>						
+					</c:when>
 				</c:choose>
                   <div class="line-gray"></div>
                   <div class="col-md-12 col-lg-12">
@@ -104,8 +108,8 @@
                   <div class="line-gray"></div>
                   <div class="col-md-12 col-lg-12">
                    <p class='text-gray description-task'>
-                     ${demanda.detalhes }
-                   </p>                  
+                     ${demanda.detalhes}
+                   </p>
                   </div>
                 </div>
               </div>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.inside.model.dao.ProducaoDAO;
+import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Producao;
 import br.inside.model.entity.Projeto;
 
@@ -28,6 +29,10 @@ public class ProducaoService {
 	
 	public Producao buscarProducao(int id) {
 		return dao.buscarProducao(id);
+	}
+	
+	public Producao buscarProducao(Demanda demanda) {
+		return dao.buscarProducao(demanda);
 	}
 	
 	public List<Producao> listarProducoes(){

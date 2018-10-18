@@ -6,10 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import br.inside.model.entity.Producao;
+import org.springframework.stereotype.Repository;
+
+import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
+import br.inside.model.entity.Producao;
 import br.inside.model.entity.Projeto;
 
+@Repository
 public class ProducaoDAO {
 
 	@PersistenceContext
@@ -26,6 +30,16 @@ public class ProducaoDAO {
 	
 	public Producao buscarProducao(int id) {
 		return manager.find(Producao.class, id);
+	}
+	
+	public Producao buscarProducao(Demanda demanda) {
+		String jpql = "select p from tb_producao p where p.demanda = :demanda";
+		
+		Query query = manager.createQuery(jpql);
+		query.setParameter("demanda", demanda);
+
+		List<Producao> result = query.getResultList();
+		return result.get(result.size()-1);
 	}
 	
 	@SuppressWarnings("unchecked")
