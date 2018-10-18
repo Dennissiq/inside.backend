@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+//import javax.validation.constraints.NotNull;
 
 import com.sun.istack.internal.NotNull;
 
@@ -21,9 +22,13 @@ public class Cliente {
 	@Column(name="nome_cliente")
 	private String nome;
 	
+	private String cnpj;
+	
 	private String representante;
 	
 	private String telefone;
+	
+	private String endereco;
 	
 	@Column(name="email_rep")
 	private String email;
@@ -43,6 +48,10 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
 
 	public String getRepresentante() {
 		return representante;
@@ -52,26 +61,38 @@ public class Cliente {
 		this.representante = representante;
 	}
 
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public String getCnpj() {
+		return cnpj;
 	}
-
+	
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getEndereco() {
+		return endereco;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [Id=" + Id + ", nome=" + nome + ", representante=" + representante + ", telefone=" + telefone
-				+ ", email=" + email + "]";
+		return "Cliente [Id=" + Id + ", nome=" + nome + ", CNPJ= " + cnpj + ", representante=" + representante + ", telefone=" + telefone
+				+ ", email=" + email + ",Endereco=" + endereco + "]";
 	}
 	
 }
