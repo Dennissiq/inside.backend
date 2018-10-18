@@ -71,7 +71,12 @@
                     <c:if test="${usuario.perfil.nome == 'Analista'}">
                     	<a href="#" class='text-gray'>[editar tempo]</a>
                     </c:if>
-                  </div>
+                  </div>	
+                  <div class="col-md-12 col-lg-12">
+                    <c:if test="${usuario.perfil.nome == 'Administrador'}">
+                  	 	<label  class='text-gray time-pend-task'>Responsável: <span>${demanda.funcionario.nome}</span></label>                   	                   	 
+                  	</c:if>
+                  </div>	
                   <c:if test="${usuario.perfil.nome == 'Analista'}">
                   	<c:if test="${demanda.status != 'em andamento'}">
                    	 <div class="play-task col-md-12 col-lg-12">
@@ -206,7 +211,7 @@
   <div class="row ">
     <div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
       <h3 id="menu-toggle">Menu</h3>
-      <ul id="menu">
+      <ul id="mainMenu">
         <li><a href="demandas.html" style="color: #848484 !important;"><h4>Demandas</h4> </a>
         </li>
         <li><a href="desempenho.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>

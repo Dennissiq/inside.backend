@@ -1,5 +1,7 @@
 package br.inside.model.service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import br.inside.model.dao.DemandaDAO;
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
+import br.inside.model.entity.Producao;
 import br.inside.model.entity.Projeto;
 
 @Service
@@ -17,6 +20,9 @@ public class DemandaService {
 
 	@Autowired
 	private DemandaDAO dao;
+	
+	@Autowired
+	private ProducaoService producaoService;
 	
 	@Transactional
 	public Demanda criar(Demanda demanda) {		
@@ -30,6 +36,16 @@ public class DemandaService {
 	
 	@Transactional
 	public Demanda iniciarTarefa(int idDemanda) {
+		Producao producao = new Producao();		
+		if(dao.buscarDemanda(idDemanda).getStatus().equals("aberto")) {
+			producao.setData(new Date());
+			producao.setDemanda(dao.buscarDemanda(idDemanda));
+			producao.setHoraInicio(new Timestamp(new Date().getTime()));
+			producaoService.criar(producao);
+		}else {
+			//busca ultima producao e atualiza a hora final dela
+		}
+		
 		return dao.iniciarTarefa(idDemanda);
 	}
 	

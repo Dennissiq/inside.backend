@@ -140,7 +140,7 @@ body {
 }
 
 
-#menu, .sub-menu {
+#mainMenu, .sub-menu {
   display: none;
   list-style: none;
 }

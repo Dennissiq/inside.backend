@@ -48,7 +48,8 @@ public class DemandaController {
 		try {
 			List<Funcionario> analistas = funcionarioService.listarFuncionarios();
 			session.setAttribute("idProjeto", idProjeto);
-			session.setAttribute("analistas", analistas);
+			System.out.println(analistas.toString());
+			model.addAttribute("analistas", analistas);
 			return "CadastroDemanda";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -59,19 +60,22 @@ public class DemandaController {
 	
 	@RequestMapping("/addDemanda")
 	public String addDemanda(@Valid Demanda demanda, Model model, HttpSession session) {		
-		try {
-			Funcionario func = new Funcionario();
-			func.setIdFuncionario(1);
-			demanda.setFuncionario(func);
+		System.out.println(demanda.toString());
+		try {			
+			
+			Funcionario funcionario = new Funcionario();
+			funcionario.setIdFuncionario(demanda.getFuncionario().getIdFuncionario());
+			funcionario = funcionarioService.buscarFuncionario(funcionario.getIdFuncionario());
+			demanda.setFuncionario(funcionario);
+			
 			demanda = demandaService.criar(demanda);
 			model.addAttribute("projeto", demanda);
 			
 			return "redirect: projetos";
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "CadastroDemanda";
 		}	
-		
-		return "CadastroDemanda";
 	}
 	
 	@RequestMapping("/atualizarDemanda")
@@ -95,5 +99,11 @@ public class DemandaController {
 		Demanda demanda = demandaService.buscarDemanda(idDemanda);
 		model.addAttribute("demanda", demanda);
 		return "DetalheDemanda";
+	}
+	
+	@RequestMapping("/cronograma")
+	public String Cronograma() {
+		
+		return "Cronograma";
 	}
 }
