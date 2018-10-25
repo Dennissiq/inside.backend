@@ -27,12 +27,7 @@ public class ClienteController {
 	public String cliente(Model model, HttpSession session) throws IOException {
 		return "CadastroCliente";
 	}
-	
-	@RequestMapping("/cadastroCliente")
-	public String novo(Model model, HttpSession session ) throws IOException{
-		return "CadastroCliente";
-	}
-	
+		
 	/*
 	@RequestMapping("/cadastroCliente")
 	public String criarCliente(@Valid Cliente cliente, BindingResult erros, Model model, HttpSession session) throws IOException{

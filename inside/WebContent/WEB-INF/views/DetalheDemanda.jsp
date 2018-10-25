@@ -215,6 +215,14 @@
                     </a>
                    </div>
                   </div> -->
+                  
+                  
+                <form action="upload" method="post" enctype="multipart/form-data">
+				 <label for="file">Arquivo</label>
+				 <input type="file" name="file" />
+				 <input type="submit" name="submit" value="upload" />
+				 <input type="hidden" name='idDemanda' value="${String.valueOf(demanda.id)}" class="form-control text-primary">
+				</form>
                   <div class="col-md-12 col-lg-12 upload-file-link">
                       <a href="#" class='util-link'>
                        <i class='fa fa-upload fa-1x'></i>  Carregar novo arquivo
