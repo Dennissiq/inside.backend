@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.inside.model.entity.Cliente;
 import br.inside.model.service.ClienteService;
 
-
 @Controller
 public class ClienteController {
 	@Autowired
