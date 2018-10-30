@@ -16,7 +16,7 @@ public class Cliente {
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_cliente")
-	private int Id;
+	private int id;
 	
 	@NotNull
 	@Column(name="nome_cliente")
@@ -34,11 +34,11 @@ public class Cliente {
 	private String email;
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -91,7 +91,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [Id=" + Id + ", nome=" + nome + ", CNPJ= " + cnpj + ", representante=" + representante + ", telefone=" + telefone
+		return "Cliente [Id=" + id + ", nome=" + nome + ", CNPJ= " + cnpj + ", representante=" + representante + ", telefone=" + telefone
 				+ ", email=" + email + ",Endereco=" + endereco + "]";
 	}
 	

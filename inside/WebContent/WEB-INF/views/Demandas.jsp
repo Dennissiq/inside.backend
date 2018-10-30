@@ -35,6 +35,7 @@
 											</tr>
 										</thead>
 										<tbody>
+
 										<c:if test="${not empty lista}">
 											<c:forEach var="demanda" items="${lista}">
 											<tr>

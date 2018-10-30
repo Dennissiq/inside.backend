@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.inside.model.entity.Cliente;
-import br.inside.model.entity.User;
 
 @Repository
 public class ClienteDAO {
@@ -27,11 +26,11 @@ public class ClienteDAO {
 		return manager.find(Cliente.class, id);
 	}
 	
-	public Cliente buscarCliente(User login) throws IOException{
-		String jpql = "select d from tb_cliente d where d.user = :login";
+	public Cliente buscarCliente(Cliente nome) throws IOException{
+		String jpql = "select d from tb_cliente d where d.nome_cliente = :nome";
 		
 		Query query = manager.createQuery(jpql);
-		query.setParameter("login", login);
+		query.setParameter("nome", nome);
 
 		
 		@SuppressWarnings("unchecked")
