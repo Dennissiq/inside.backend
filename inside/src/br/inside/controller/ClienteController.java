@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.inside.model.entity.Cliente;
-import br.inside.model.entity.Demanda;
 import br.inside.model.service.ClienteService;
 
 
@@ -21,18 +20,12 @@ import br.inside.model.service.ClienteService;
 public class ClienteController {
 	@Autowired
 	private ClienteService cService;
-	/*	
-	@RequestMapping("/clientes")
-	public String cliente(Model model, HttpSession session) throws IOException {
-		return "Clientes";
-	}*/
 	
 	
 	@RequestMapping("/novo_cliente")
 	public String novo(Model model, HttpSession session ) throws IOException{
 		return "CadastroCliente";
-	}
-	
+	}	
 	
 	@RequestMapping("/cadastrar_cliente")
 	public String criarCliente(@Valid Cliente cliente, BindingResult erros, Model model, HttpSession session) throws IOException{
@@ -93,5 +86,33 @@ public class ClienteController {
 		}	
 	}
 	
+	@RequestMapping("/atualizar_cliente")
+	public String attCliente(@Valid Cliente cliente, BindingResult erros, Model model, HttpSession session) throws IOException{
+		try {
+			if(!erros.hasErrors()) {
+				Cliente clie = new Cliente();
+				clie.setNome(cliente.getNome());
+				clie.setCnpj(cliente.getCnpj());
+				clie.setRepresentante(cliente.getRepresentante());
+				clie.setEmail(cliente.getEmail());
+				clie.setTelefone(cliente.getTelefone());
+				clie.setEndereco(cliente.getEndereco());
+				
+				cliente = cService.atualizarCliente(cliente);
+
+				model.addAttribute("cliente", cliente);
+				
+				return "redirect: clientes";
+				
+			}else {
+				return "Clientes";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+			
+		}
+	}
 	
 }

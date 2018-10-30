@@ -1,9 +1,12 @@
 package br.inside.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,7 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.sun.jmx.snmp.Timestamp;
+
+import br.inside.model.entity.Arquivo;
 import br.inside.model.entity.Comentario;
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
@@ -131,6 +139,8 @@ public class DemandaController {
 	public String detalheDemanda(Model model, HttpSession session, int idDemanda) {
 		Demanda demanda = demandaService.buscarDemanda(idDemanda);		
 		model.addAttribute("demanda", demanda);
+
+		System.out.println(demanda.toString());
 		return "DetalheDemanda";
 	}
 	
@@ -150,6 +160,62 @@ public class DemandaController {
 		demanda = demandaService.buscarDemanda(idDemanda);
 		model.addAttribute("demanda", demanda);
 		System.out.println(demanda.toString());
+		return "DetalheDemanda";
+	}
+	
+	@RequestMapping("/upload")
+	public String upload(HttpServletRequest request, Model model, HttpSession session, String idDemanda) {
+		try {
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			MultipartFile multipartFile = multipartRequest.getFile("file");
+			
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			
+			System.out.println(Arrays.toString(multipartFile.getOriginalFilename().split(".")));
+			System.out.println( multipartFile.getOriginalFilename());
+			//String fileName = timestamp.hashCode() + "." + multipartFile.getOriginalFilename();
+			String fileName = multipartFile.getOriginalFilename();
+			Arquivo arquivo = new Arquivo();
+			
+			String filePath = "C:/inside";
+			File fileToSave = new File(filePath+"/"+fileName);
+			
+			File file = new File("C:\\inside");
+
+	        if (!file.exists()) {
+	            if (file.mkdir()) {
+	            	System.out.println("Directory created!");
+	            } else {
+	                System.out.println("Failed to create directory!");
+	            }
+	        }
+	        
+	        arquivo.setDiretorio("C:\\inside\\" + fileName);
+			multipartFile.transferTo(fileToSave);
+			
+			User usuario = (User) session.getAttribute("usuario");
+			
+			Demanda demanda = demandaService.buscarDemanda(Integer.parseInt(idDemanda));
+			
+			arquivo = recursoService.criarRecurso(demanda, usuario, arquivo);
+			
+			demanda = demandaService.buscarDemanda(Integer.parseInt(idDemanda));
+			model.addAttribute("demanda", demanda);
+			
+			
+			System.out.println(multipartFile.getContentType());
+			System.out.println(multipartFile.getName());
+			System.out.println(demanda.toString());
+			
+			System.out.println(multipartFile.getContentType());
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return "DetalheDemanda";
 	}
 	

@@ -43,8 +43,9 @@ public class ClienteService {
 	}
 	
 	@Transactional
-	public void atualizarCliente(Cliente cliente) throws IOException{
+	public Cliente atualizarCliente(Cliente cliente) throws IOException{
 		dao.atualizarCliente(cliente);
+		return cliente;
 	}
 	
 	public List<Cliente> listarClientes() throws IOException{

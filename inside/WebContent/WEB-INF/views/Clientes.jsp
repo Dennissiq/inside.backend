@@ -4,42 +4,7 @@
 <html lang="pt-br">
 <c:import url="Header.jsp"/>
 <body>
-	<!-- MODAL -->
-		<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTitle" aria-hidden="true" style="overflow-x: hidden;">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title text-gray text-bold" id="editarTitle">Detalhes do Cliente</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="line-gray"></div>
-					<div class="row">
-						<div id="detalhe" class="col-md-7 col-lg-7 pdd-15-lg-b pdd-30-lg-t pdd-30-md-t pdd-15-md-b pdd-15-xxs-b pdd-30-xxs-t pdd-30-xs-t pdd-15-xs-b">
-							<div class="col-md-12 col-lg-12 ">
-								<h4 class="text-gray ">Cliente: ${cliente.nome} </h4>								
-							</div>
-							<div class="col-md-12 col-lg-12">
-								<h5>CNPJ: ${cliente.cnpj}</h5>
-								<h5>Representante: ${cliente.representante}</h5>
-								<h5>E-mail: ${cliente.email} </h5>
-								<h5>Telefone: ${cliente.telefone} </h5>
-								<h5>Endereço: ${cliente.endereco} </h5>			
-							</div>
-						</div>
-					</div>
-		
-					<div class="modal-body ">
-						<div class="container-fluid table-card">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- DESKTOP -->
+			<!-- DESKTOP -->
 		<!-- Sidebar-->
 
   <div class="invisible-xs invisible-xxs">
@@ -94,7 +59,7 @@
 													<td class="text-bold">${cliente.representante}</td>
 													<td class="text-bold">${cliente.email}</td>
 													<td class="text-bold">${cliente.telefone}</td>
-													<td><a href="detalheCliente?id=${cliente.id}" class="text-primary pdd-15-md-b"> <!--data-toggle="modal" data-target="#editar"-->
+													<td><a href="detalheCliente?id=${cliente.id}" class="text-primary pdd-15-md-b"> 
 													<i class="fas fa-edit text-gray" aria-hidden="true"></i></a> </td>
 												</tr>
 												</c:forEach>
@@ -155,6 +120,7 @@
 											<tr>
 												<th class="legenda text-gray">Cliente</th>
 												<th class="legenda text-gray">Representante</th>
+												<th class="legenda text-gray">E-mail</th>
 												<th class="legenda text-gray">Telefone</th>
 												<th class="legenda text-gray"></th>
 											</tr>
@@ -165,9 +131,10 @@
 												<tr>
 													<td class="text-bold">${cliente.nome}</td>
 													<td class="text-bold">${cliente.representante}</td>
+													<td class="text-bold">${cliente.email}</td>
 													<td class="text-bold">${cliente.telefone}</td>
-													<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray"
-															 aria-hidden="true"></i></a> </td>
+													<td><a href="detalheCliente?id=${cliente.id}" class="text-primary pdd-15-md-b">
+													<i class="fas fa-edit text-gray" aria-hidden="true"></i></a> </td>
 												</tr>
 												</c:forEach>
 											</c:if>	

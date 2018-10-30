@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.inside.model.dao.RecursoDAO;
+import br.inside.model.entity.Arquivo;
 import br.inside.model.entity.Comentario;
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Recurso;
@@ -20,6 +21,9 @@ public class RecursoService {
 	@Autowired
 	private ComentarioService comentarioService;
 	
+	@Autowired
+	private ArquivoService arquivoService;
+	
 	@Transactional
 	public Comentario criarRecurso(Demanda demanda, User usuario, Comentario comentario) {
 		
@@ -28,6 +32,16 @@ public class RecursoService {
 		comentario.setRecurso(recurso);
 		
 		return comentarioService.criar(comentario); 
+	}
+	
+	@Transactional
+	public Arquivo criarRecurso(Demanda demanda, User usuario, Arquivo arquivo) {
+		
+		Recurso recurso = dao.criarRecurso(demanda, usuario);
+		
+		arquivo.setRecurso(recurso);
+		
+		return arquivoService.persistir(arquivo); 
 	}
 	
 	@Transactional
