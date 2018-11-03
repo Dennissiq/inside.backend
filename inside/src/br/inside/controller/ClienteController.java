@@ -13,38 +13,39 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.inside.model.entity.Cliente;
-import br.inside.model.entity.User;
 import br.inside.model.service.ClienteService;
-import br.inside.model.service.UserService;
-
 
 @Controller
 public class ClienteController {
 	@Autowired
 	private ClienteService cService;
-		
-	@RequestMapping("/cadastroCliente")
-	public String cliente(Model model, HttpSession session) throws IOException {
+	
+	
+	@RequestMapping("/novo_cliente")
+	public String novo(Model model, HttpSession session ) throws IOException{
 		return "CadastroCliente";
-	}
-		
-	/*
-	@RequestMapping("/cadastroCliente")
+	}	
+	
+	@RequestMapping("/cadastrar_cliente")
 	public String criarCliente(@Valid Cliente cliente, BindingResult erros, Model model, HttpSession session) throws IOException{
 		try {
 			if(!erros.hasErrors()) {
 				Cliente clie = new Cliente();
-				clie.setId(1);
-				clie.setNome("");
-				clie.setCnpj("");
-				clie.setRepresentante("");
-				clie.setEmail("");
-				clie.setTelefone("");
-				clie.setEndereco("");
-				return listarClientes(session, model);
+				clie.setNome(cliente.getNome());
+				clie.setCnpj(cliente.getCnpj());
+				clie.setRepresentante(cliente.getRepresentante());
+				clie.setEmail(cliente.getEmail());
+				clie.setTelefone(cliente.getTelefone());
+				clie.setEndereco(cliente.getEndereco());
+				
+				cliente = cService.inserirCliente(cliente);
+
+				model.addAttribute("cliente", cliente);
+				
+				return "redirect: clientes";
 				
 			}else {
-				return "cadastroCliente";
+				return "Clientes";
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -52,9 +53,9 @@ public class ClienteController {
 			return "Erro";
 			
 		}
-	}*/
+	}
 	
-	@RequestMapping("/listar_cliente")
+	@RequestMapping("/clientes")
 	public String listarClientes(HttpSession session, Model model) {
 		try {
 			
@@ -62,7 +63,7 @@ public class ClienteController {
 			lista = cService.listarClientes();
 			
 			session.setAttribute("lista", lista);
-			return "Cliente";
+			return "Clientes";
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -71,6 +72,46 @@ public class ClienteController {
 		}		
 	}
 	
+	@RequestMapping("/detalheCliente")
+	public String detalheCliente(Model model, HttpSession session, int id) {
+		try {
+			Cliente cliente = cService.buscarCliente(id);		
+			model.addAttribute("cliente", cliente);
+			return "EditarCliente";
+		}catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+		}	
+	}
 	
+	@RequestMapping("/atualizar_cliente")
+	public String attCliente(@Valid Cliente cliente, BindingResult erros, Model model, HttpSession session) throws IOException{
+		try {
+			if(!erros.hasErrors()) {
+				Cliente clie = new Cliente();
+				clie.setNome(cliente.getNome());
+				clie.setCnpj(cliente.getCnpj());
+				clie.setRepresentante(cliente.getRepresentante());
+				clie.setEmail(cliente.getEmail());
+				clie.setTelefone(cliente.getTelefone());
+				clie.setEndereco(cliente.getEndereco());
+				
+				cliente = cService.atualizarCliente(cliente);
+
+				model.addAttribute("cliente", cliente);
+				
+				return "redirect: clientes";
+				
+			}else {
+				return "Clientes";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+			
+		}
+	}
 	
 }

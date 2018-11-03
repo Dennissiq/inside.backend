@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.inside.model.dao.ClienteDAO;
 import br.inside.model.entity.Cliente;
-import br.inside.model.entity.User;
+
 
 @Service
 public class ClienteService {
@@ -25,9 +25,10 @@ public class ClienteService {
 		return dao.buscarCliente(id);
 	}
 	
-	public Cliente buscarCliente(User login) throws IOException{
-		return dao.buscarCliente(login);
-	}
+	/*
+	public Cliente buscarCliente(Cliente nome) throws IOException{
+		return dao.buscarCliente(nome);
+	}*/
 	
 	@Transactional
 	public Cliente inserirCliente(Cliente cliente) throws IOException{
@@ -42,8 +43,9 @@ public class ClienteService {
 	}
 	
 	@Transactional
-	public void atualizarCliente(Cliente cliente) throws IOException{
+	public Cliente atualizarCliente(Cliente cliente) throws IOException{
 		dao.atualizarCliente(cliente);
+		return cliente;
 	}
 	
 	public List<Cliente> listarClientes() throws IOException{
