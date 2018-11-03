@@ -9513,7 +9513,7 @@ function createMonthView(baseController, layoutContainer, dragHandler, options) 
     var monthViewContainer, monthView, moreView, createView;
     var clickHandler, creationHandler, resizeHandler, moveHandler, clearSchedulesHandler, onUpdateSchedule;
     var onShowCreationPopup, onSaveNewSchedule, onShowEditPopup;
-    var detailView, onShowDetailPopup, onDeleteSchedule, onEditSchedule;
+    var detailView, onShowDetailPopup, onDeleteSchedule, onEditSchedule, onDetailSchedule; 
 
     monthViewContainer = domutil.appendHTMLElement(
         'div', layoutContainer, config.classname('month'));
@@ -9603,7 +9603,11 @@ function createMonthView(baseController, layoutContainer, dragHandler, options) 
         onEditSchedule = function(eventData) {
             moveHandler.fire('beforeUpdateSchedule', eventData);
         };
-
+        
+        onDetailSchedule = function(eventData) {
+            moveHandler.fire('beforeUpdateSchedule', eventData);
+        };
+        
         clickHandler.on('clickSchedule', onShowDetailPopup);
 
         detailView.on('beforeDeleteSchedule', onDeleteSchedule);
@@ -19236,6 +19240,8 @@ ScheduleDetailPopup.prototype._onClick = function(clickEvent) {
     var target = (clickEvent.target || clickEvent.srcElement);
 
     this._onClickEditSchedule(target);
+    
+    this._onClickDetailSchedule(target);
 
     this._onClickDeleteSchedule(target);
 };
@@ -19254,6 +19260,25 @@ ScheduleDetailPopup.prototype._onClickEditSchedule = function(target) {
             target: this._scheduleEl
         });
 
+        this.hide();
+    }
+};
+
+/**
+ * @fires ScheduleDetailPopup#clickEditSchedule
+ * @param {HTMLElement} target - event target
+ */
+ScheduleDetailPopup.prototype._onClickDetailSchedule = function(target) {
+    var className = config.classname('popup-detail');
+
+    if (domutil.hasClass(target, className) || domutil.closest(target, '.' + className)) {    	 
+    	//window.location.href = "http://localhost:8080/inside/detalheDemanda?idDemanda=5"
+    	/*this.fire('beforeUpdateSchedule', {
+            schedule: this._schedule,
+            triggerEventName: 'click',
+            target: this._scheduleEl
+        });*/
+        	
         this.hide();
     }
 };
@@ -19869,6 +19894,9 @@ Handlebars.registerHelper({
     },
     'popupEdit-tmpl': function() {
         return 'Edit';
+    },
+    'popupDetail-tmpl': function() {
+        return 'Detail';
     },
     'popupDelete-tmpl': function() {
         return 'Delete';
@@ -20920,6 +20948,18 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + "content\">"
     + alias4(((helper = (helper = helpers["popupEdit-tmpl"] || (depth0 != null ? depth0["popupEdit-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"popupEdit-tmpl","hash":{},"data":data}) : helper)))
     + "</span></button>\n      <div class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "popup-vertical-line\"></div>\n      <a href='http://localhost:8080/inside/detalheDemanda?idDemanda=5' class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "popup-detail\"><span class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "icon "
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "ic-edit\"></span><span class=\""
+    + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
+    + "content\">"
+    + alias4(((helper = (helper = helpers["popupDetail-tmpl"] || (depth0 != null ? depth0["popupDetail-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"popupDetail-tmpl","hash":{},"data":data}) : helper)))
+    + "</span></a>\n      <div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "popup-vertical-line\"></div>\n      <button class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))

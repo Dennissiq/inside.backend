@@ -43,8 +43,8 @@ public class FuncionarioController {
 	public String criarFuncionario(@Valid Funcionario funcionario, BindingResult erros, Model model, HttpSession session) throws IOException{
 		try {
 			if(!erros.hasErrors()) {
-				Perfil p = new Perfil();
-				p.setId(2);
+				Perfil p = new Perfil();				
+				p.setId(4);
 				p.setNome("Analista");
 				
 				User user = new User();
@@ -53,7 +53,7 @@ public class FuncionarioController {
 				user.setPerfil(p);
 				
 				Cargo c = new Cargo();
-				c.setId(1);
+				c.setId(2);
 				c.setDescricao(funcionario.getEspecialidade());
 				
 				funcionario.setCargo(c);

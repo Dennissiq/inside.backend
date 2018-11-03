@@ -118,6 +118,7 @@ function generateRandomSchedule(calendar, renderStart, renderEnd) {
     ScheduleList.push(schedule);
 }
 
+//Buscar dados de demanda do analista aqui, montar os schedules
 function generateSchedule(viewName, renderStart, renderEnd) {
     ScheduleList = [];
     CalendarList.forEach(function(calendar) {
@@ -131,4 +132,8 @@ function generateSchedule(viewName, renderStart, renderEnd) {
             generateRandomSchedule(calendar, renderStart, renderEnd);
         }
     });
+}
+
+function getScheduleOfAnalist(){
+	
 }

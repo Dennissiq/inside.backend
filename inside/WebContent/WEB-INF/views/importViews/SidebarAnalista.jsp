@@ -32,10 +32,15 @@
 			<li class="pdd-30-md-t pdd-30-lg-t">
 			<a href="demandas" class="text-white"><i
 					class="fas fa-tasks text-white pdd-15-lg-r" aria-hidden="true"
-					style="display: inline"></i> Demandas</a></li>
+					style="display: inline"></i> Demandas
+			</a></li>
 			<li><a href="desempenho" class="text-white"> <i
 					class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
 					style="display: inline"></i> Desempenho
+			</a></li>
+			<li><a href="cronograma" class="text-white"> <i
+					class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
+					style="display: inline"></i> Cronograma
 			</a></li>
 		</div>
 	</ul>

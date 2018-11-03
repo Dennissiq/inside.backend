@@ -8,6 +8,13 @@ body {
     overflow-x: hidden;
 }
 
+#login-page{
+	background-image: url(/inside/images/bg.png);
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover; /* Resize the background image to cover the entire container */
+}
+
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;

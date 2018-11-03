@@ -26,7 +26,8 @@
             <div class="mat-card-kit ">
               <form action="addDemanda" method="post">
               <input type="hidden" name='projeto.id' value="${idProjeto}" class="form-control text-primary">
-              <div class="row">
+              <div class="row">             	
+              
                 <div class="col-md-12 col-lg-12">
                   <div class="container">     
                     <a href="projetos" class='col-md-2 col-lg-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>             
@@ -35,6 +36,11 @@
                 </div>
               </div>
               <div class="line-gray"></div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
+                <div class="col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1">
+                  <h5 class="text-danger text-bold text-center">${error}</h5>
+                </div>
+              </div>
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
                 <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
                   <h5 class="text-gray">Descrição</h5>
@@ -51,12 +57,23 @@
                   <textarea type="text" name='detalhes' required class="form-control text-primary"></textarea>
                 </div>
               </div>
+                          
+              <input type="hidden" name='duracao' value='0' class="form-control text-primary">
+                          
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
                 <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
-                  <h5 class="text-gray">Duração</h5>
+                  <h5 class="text-gray">Inicio</h5>
                 </div>
                 <div class="col-md-7 col-lg-7">
-                  <input type="text" name='duracao' required class="form-control text-primary">
+                	<input data-date-format="dd/mm/yyyy" name='dtInicio' id="datepicker1" class="form-control text-primary">                  
+                </div>
+              </div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
+                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+                  <h5 class="text-gray">Fim</h5>
+                </div>
+                <div class="col-md-7 col-lg-7">
+                	<input data-date-format="dd/mm/yyyy" name='dtFim' id="datepicker2" class="form-control text-primary">                  
                 </div>
               </div>
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
@@ -66,8 +83,6 @@
                 <div class="col-md-7 col-lg-7">
                   <select class="form-control text-primary" name='status'>
                   	<option value="aberto" selected>Aberto</option>
-                  	<option value="em andamento">Em andamento</option>
-                  	<option value="finalizado">Finalizado</option>
                   </select>
                 </div>
               </div>
@@ -186,10 +201,38 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery.min.js"></script>
-  <script src="javascripts/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>	
+  <script src="js/daterangepicker.js"></script>
+  <script>
+  $(function() {
+	  $('input[name="dtInicio"]').daterangepicker({
+	    singleDatePicker: true,
+	    showDropdowns: true
+	  });
+	  
+	  $('input[name="dtFim"]').daterangepicker({
+	    singleDatePicker: true,
+	    showDropdowns: true
+	  });
+	  
+	 /* $('#datepicker1').datepicker({
+	      weekStart: 1,
+	      daysOfWeekHighlighted: "6,0",
+	      autoclose: true,
+	      todayHighlight: true,
+	  });
+	  $('#datepicker1').datepicker("setDate", new Date());
+	  
+	  $('#datepicker2').datepicker({
+	      weekStart: 1,
+	      daysOfWeekHighlighted: "6,0",
+	      autoclose: true,
+	      todayHighlight: true,
+	  });
+	  $('#datepicker2').datepicker("setDate", new Date());*/
+    });
+  </script>
   <script src="js/menu-mobile.js"></script>
-
-
   <!-- Menu Toggle Script -->
 </body>
 </html>

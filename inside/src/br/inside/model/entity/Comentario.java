@@ -27,10 +27,28 @@ public class Comentario {
 	@Column(name="dt_comentario")
 	private Date dtComentario;
 	
-	@NotNull
+	/*@NotNull
 	@ManyToOne
 	@JoinColumn(name="id_recurso")
-	private Recurso recurso;
+	private Recurso recurso;*/
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="id_demanda")
+	private Demanda demanda;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="login")
+	private User usuario;
+
+	public User getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(User usuario) {
+		this.usuario = usuario;
+	}
 
 	public int getId() {
 		return id;
@@ -56,18 +74,25 @@ public class Comentario {
 		this.dtComentario = dtComentario;
 	}
 
-	public Recurso getRecurso() {
+	/*public Recurso getRecurso() {
 		return recurso;
 	}
 
 	public void setRecurso(Recurso recurso) {
 		this.recurso = recurso;
+	}*/
+	
+	public Demanda getDemanda() {
+		return demanda;
+	}
+
+	public void setDemanda(Demanda demanda) {
+		this.demanda = demanda;
 	}
 
 	@Override
 	public String toString() {
-		return "Comentarios [id=" + id + ", comentario=" + comentario + ", dtComentario=" + dtComentario
-				+ ", recurso=" + recurso + "]";
+		return "Comentario [id=" + id + ", comentario=" + comentario + ", dtComentario=" + dtComentario + ", usuario=" + usuario + "]";
 	}
 
 }

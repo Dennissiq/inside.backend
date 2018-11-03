@@ -1,5 +1,6 @@
 package br.inside.model.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,11 +26,35 @@ public class Demanda {
 	
 	@NotNull
 	@Column(name="desc_demanda")
-	private String descricao;	
+	private String descricao;
+	
+	@NotNull
+	@Column(name="dt_inicio")
+	private Date dtInicio;
+	
+	@NotNull
+	@Column(name="dt_fim")
+	private Date dtFim;
 	
 	@NotNull
 	private String detalhes;
 	
+	public Date getDtInicio() {
+		return dtInicio;
+	}
+
+	public void setDtInicio(Date dtInicio) {
+		this.dtInicio = dtInicio;
+	}
+
+	public Date getDtFim() {
+		return dtFim;
+	}
+
+	public void setDtFim(Date dtFim) {
+		this.dtFim = dtFim;
+	}
+
 	@NotNull	
 	private String duracao;
 		
@@ -44,10 +69,15 @@ public class Demanda {
 	@ManyToOne 
 	@JoinColumn(name="id_projeto")
 	private Projeto projeto;
+		
+	/*@OneToMany(fetch = FetchType.EAGER)
+	private List<Recurso> recursos;*/ 
 	
+	@OneToMany(mappedBy = "demanda", fetch = FetchType.EAGER)
+	private List<Comentario> comentarios;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	private List<Recurso> recursos; 
+	@OneToMany(mappedBy = "demanda", fetch = FetchType.EAGER)
+	private List<Arquivo> arquivos;
 	
 	public int getId() {
 		return id;
@@ -99,9 +129,10 @@ public class Demanda {
 
 	@Override
 	public String toString() {
-		return "Demanda [id=" + id + ", descricao=" + descricao + ", detalhes=" + detalhes + ", duracao=" + duracao
-				+ ", status=" + status + ", funcionario=" + funcionario + ", projeto=" + projeto + ", recursos="
-				+ recursos + "]";
+		return "Demanda [id=" + id + ", descricao=" + descricao + ", dtInicio=" + dtInicio + ", dtFim=" + dtFim
+				+ ", detalhes=" + detalhes + ", duracao=" + duracao + ", status=" + status + ", funcionario="
+				+ funcionario + ", projeto=" + projeto + ", comentarios=" + comentarios + ", arquivos=" + arquivos
+				+ "]";
 	}
 
 	public String getStatus() {
@@ -112,11 +143,27 @@ public class Demanda {
 		this.status = status;
 	}
 
-	public List<Recurso> getRecursos() {
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+
+	public List<Arquivo> getArquivos() {
+		return arquivos;
+	}
+
+	public void setArquivos(List<Arquivo> arquivos) {
+		this.arquivos = arquivos;
+	}
+
+	/*public List<Recurso> getRecursos() {
 		return recursos;
 	}
 
 	public void setRecursos(List<Recurso> recursos) {
 		this.recursos = recursos;
-	}
+	}*/
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.inside.model.dao.DemandaDAO;
+import br.inside.model.entity.Arquivo;
+import br.inside.model.entity.Comentario;
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.Producao;
@@ -78,5 +80,32 @@ public class DemandaService {
 	
 	public List<Demanda> listarDemandasPorAnalista(Funcionario funcionario){
 		return dao.listarDemandasPorAnalista(funcionario);
+	}
+	
+	public boolean validPeriod(Demanda demanda) {
+		List<Demanda> demandas = dao.listarDemandasNoPeriodoSolicitado(demanda); 
+		
+		System.out.println("Resultados encontrados:" + demandas.size());
+		
+		if(demandas.size() > 0)			
+			return false;		
+		
+		return true;		
+	}
+	
+	@Autowired
+	private ComentarioService comentarioService;
+	
+	@Autowired
+	private ArquivoService arquivoService;
+	
+	@Transactional
+	public Comentario addComentario(Comentario comentario) {
+		return comentarioService.criar(comentario); 
+	}
+	
+	@Transactional
+	public Arquivo addArquivo(Arquivo arquivo) {	
+		return arquivoService.persistir(arquivo); 
 	}
 }

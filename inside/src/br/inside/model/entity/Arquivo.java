@@ -23,9 +23,15 @@ public class Arquivo {
 	private String diretorio;
 	
 	@NotNull
+	private String nome;
+	
+	@NotNull
+	private String type;
+
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name="id_recurso")
-	private Recurso recurso;
+	@JoinColumn(name="id_demanda")
+	private Demanda demanda;
 
 	public int getId() {
 		return id;
@@ -42,19 +48,35 @@ public class Arquivo {
 	public void setDiretorio(String diretorio) {
 		this.diretorio = diretorio;
 	}
-
-	public Recurso getRecurso() {
-		return recurso;
+	
+	public String getNome() {
+		return nome;
 	}
 
-	public void setRecurso(Recurso recurso) {
-		this.recurso = recurso;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public Demanda getDemanda() {
+		return demanda;
+	}
+
+	public void setDemanda(Demanda demanda) {
+		this.demanda = demanda;
 	}
 
 	@Override
 	public String toString() {
-		return "Arquivo [id=" + id + ", diretorio=" + diretorio + ", recurso=" + recurso + ", getId()=" + getId()
-				+ ", getDiretorio()=" + getDiretorio() + ", getRecurso()=" + getRecurso() + "]";
+		return "Arquivo [id=" + id + ", diretorio=" + diretorio + ", nome=" + nome + ", type=" + type + ", demanda="
+				+ demanda + "]";
 	}
 	
 }

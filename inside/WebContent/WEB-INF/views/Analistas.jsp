@@ -231,7 +231,7 @@
 											<tr>
 												<td class="text-bold">${funcionario.nome }</td>
 												<td class="text-bold">${funcionario.especialidade }</td>
-												<td class="text-bold">${funcionario.lozalizacao}</td>
+												<td class="text-bold">${funcionario.localizacao}</td>
 												<td class="text-success text-bold text-center"> <i class="fas fa-check-circle"></i>  </td>
 												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray"
 														 aria-hidden="true"></i></a> </td>

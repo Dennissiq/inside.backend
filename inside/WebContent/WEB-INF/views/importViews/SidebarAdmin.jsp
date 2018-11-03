@@ -37,6 +37,10 @@
 					class="fas fa-users text-white pdd-15-lg-r" aria-hidden="true"
 					style="display: inline"></i> Analistas
 			</a></li>
+			<li><a href="cronograma" class="text-white"> <i
+					class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
+					style="display: inline"></i> Cronograma
+			</a></li>
 			<li>
               <a href="cadastroCliente.html" class="text-white"> <i class="far fa-address-card  text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
                Cadastrar novo Cliente</a>

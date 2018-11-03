@@ -24,11 +24,11 @@ import br.inside.model.entity.Comentario;
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.User;
+import br.inside.model.service.ArquivoService;
 import br.inside.model.service.ComentarioService;
 import br.inside.model.service.DemandaService;
 import br.inside.model.service.FuncionarioService;
 import br.inside.model.service.ProducaoService;
-import br.inside.model.service.RecursoService;
 
 @Controller
 public class DemandaController {
@@ -38,15 +38,15 @@ public class DemandaController {
 	
 	@Autowired
 	private FuncionarioService funcionarioService;
-	
-	@Autowired 
-	private ComentarioService comentarioService;
-	
-	@Autowired 
-	private RecursoService recursoService;
 
 	@Autowired
 	private ProducaoService producaoService;
+	
+	@Autowired
+	private ComentarioService comentarioService;
+	
+	@Autowired
+	private ArquivoService arquivoService;
 	
 	@RequestMapping("/demandas")
 	public String demandasView(Model model, HttpSession session, String chave) throws IOException {
@@ -70,7 +70,6 @@ public class DemandaController {
 		try {
 			List<Funcionario> analistas = funcionarioService.listarFuncionarios();
 			session.setAttribute("idProjeto", idProjeto);
-			System.out.println(analistas.toString());
 			model.addAttribute("analistas", analistas);
 			return "CadastroDemanda";
 		} catch (IOException e) {
@@ -81,8 +80,7 @@ public class DemandaController {
 	}
 	
 	@RequestMapping("/addDemanda")
-	public String addDemanda(@Valid Demanda demanda, Model model, HttpSession session) {		
-		System.out.println(demanda.toString());
+	public String addDemanda(@Valid Demanda demanda, Model model, HttpSession session) {
 		try {			
 			
 			Funcionario funcionario = new Funcionario();
@@ -90,10 +88,16 @@ public class DemandaController {
 			funcionario = funcionarioService.buscarFuncionario(funcionario.getIdFuncionario());
 			demanda.setFuncionario(funcionario);
 			
-			demanda = demandaService.criar(demanda);
-			model.addAttribute("projeto", demanda);
+			if(demandaService.validPeriod(demanda)) {
+				demanda = demandaService.criar(demanda);
+				model.addAttribute("projeto", demanda);
+				return "redirect: projetos";
+			} else {
+				String error = "O analista já possui tarefas agendadas para este período.";
+				session.setAttribute("error", error);
+				return "redirect: novaDemanda?idProjeto=4";
+			}			
 			
-			return "redirect: projetos";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "CadastroDemanda";
@@ -137,10 +141,10 @@ public class DemandaController {
 	
 	@RequestMapping("/detalheDemanda")
 	public String detalheDemanda(Model model, HttpSession session, int idDemanda) {
-		Demanda demanda = demandaService.buscarDemanda(idDemanda);		
+		Demanda demanda = demandaService.buscarDemanda(idDemanda);
+		demanda.setComentarios(comentarioService.listarComentarios(demanda));
+		demanda.setArquivos(arquivoService.listarArquivos(demanda));
 		model.addAttribute("demanda", demanda);
-
-		System.out.println(demanda.toString());
 		return "DetalheDemanda";
 	}
 	
@@ -149,18 +153,18 @@ public class DemandaController {
 	public String addComentario(@Valid Comentario comentario, Model model, HttpSession session) {
 		
 		User usuario = (User) session.getAttribute("usuario");
-		int idDemanda = comentario.getRecurso().getDemanda().getId();
+		int idDemanda = comentario.getDemanda().getId();
 		Date date = new Date();		
 		comentario.setDtComentario(date);
 		
 		Demanda demanda = demandaService.buscarDemanda(idDemanda);
-
-		comentario = recursoService.criarRecurso(demanda, usuario, comentario);
+		comentario.setDemanda(demanda);
+		comentario.setUsuario(usuario);
+		comentario = demandaService.addComentario(comentario);
 		
 		demanda = demandaService.buscarDemanda(idDemanda);
 		model.addAttribute("demanda", demanda);
-		System.out.println(demanda.toString());
-		return "DetalheDemanda";
+		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
 	}
 	
 	@RequestMapping("/upload")
@@ -193,11 +197,10 @@ public class DemandaController {
 	        arquivo.setDiretorio("C:\\inside\\" + fileName);
 			multipartFile.transferTo(fileToSave);
 			
-			User usuario = (User) session.getAttribute("usuario");
-			
 			Demanda demanda = demandaService.buscarDemanda(Integer.parseInt(idDemanda));
+			arquivo.setDemanda(demanda);
 			
-			arquivo = recursoService.criarRecurso(demanda, usuario, arquivo);
+			arquivo = demandaService.addArquivo(arquivo);
 			
 			demanda = demandaService.buscarDemanda(Integer.parseInt(idDemanda));
 			model.addAttribute("demanda", demanda);
@@ -205,7 +208,6 @@ public class DemandaController {
 			
 			System.out.println(multipartFile.getContentType());
 			System.out.println(multipartFile.getName());
-			System.out.println(demanda.toString());
 			
 			System.out.println(multipartFile.getContentType());
 		} catch (IllegalStateException e) {
@@ -216,7 +218,7 @@ public class DemandaController {
 			e.printStackTrace();
 		}
 		
-		return "DetalheDemanda";
+		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
 	}
 	
 	@RequestMapping("/cronograma")

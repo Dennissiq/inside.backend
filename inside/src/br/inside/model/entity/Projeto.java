@@ -62,7 +62,7 @@ public class Projeto {
 	@NotNull
 	private String status;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "projeto", fetch = FetchType.EAGER)
 	private List<Demanda> demandas;
 	
 	public List<Demanda> getDemandas() {
