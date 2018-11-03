@@ -22,7 +22,6 @@
 					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
 						<h1 class="text-primary text-bold text-bold">Demandas</h1>
 						<div class="mat-card-kit">
-							<div class="line-gray"></div>
 							<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
 								<div class="">
 									<table class="table table-hover table-card">

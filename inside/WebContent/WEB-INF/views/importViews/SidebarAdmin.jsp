@@ -1,11 +1,13 @@
-<div id="sidebar-wrapper" class='invisible-xs invisible-xxs'>
+<!-- <div id="sidebar-wrapper" class='invisible-xs invisible-xxs'> -->
+<div id="sidebar-wrapper" class='invisible-xs invisible-xxs' style="background: #000 !important">
 	<ul class="sidebar-nav">
-		<li class="sidebar section-gray pdd-15-md-t pdd-15-lg-t pdd-15-xlg-t pdd-30-md-b pdd-30-lg-b pdd-30-xlg-b">
+		<li class="sidebar pdd-15-md-t pdd-15-lg-t pdd-15-xlg-t pdd-30-md-b pdd-30-lg-b pdd-30-xlg-b">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-11 col-lg-10 col-lg-offset-1 col-md-offset-1 pdd-15-md-t pdd-15-lg-t pdd-15-md-b pdd-15-lg-b">
-						<div class="col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2 pdd-15-md-b pdd-15-lg-b">
-							<img src="./images/analyst_user.png" class="img-responsive img-circle" alt="">
+						<div class="col-md-9 col-lg-9 col-lg-offset-1 col-md-offset-1 pdd-15-md-b pdd-15-lg-b">
+							<!-- <img src="./images/analyst_user.png" class="img-responsive img-circle" alt=""> -->
+							<i class='text-white fas fa-users-cog fa-5x'></i>
 						</div>
 						<div class="row">
 							<div class="col-md-12 col-lg-12">
@@ -14,17 +16,18 @@
 						</div>
 						<!-- <a href="#"><h6 class="text-white text-left"><i class='fa fa-edit'></i> Editar perfil</h6></a> -->
 						<div class="row">
-							<div class="col-md-10 col-lg-10">
+	<!-- 						<div class="col-md-10 col-lg-10">
 								<a href="#">
-									<h5 class="text-white text-center"><i class='fa fa-edit'></i> Editar perfil</h5>
+									<h5 class="text-white text-center"><i class='fa fa-edit text-primary'></i> Editar perfil</h5>
 								</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</li>
-		<div class="menu">
+		<div class="line-white "></div>
+		<div class="menu pdd-30-md-t pdd-30-lg-t">
 			<li class="pdd-30-md-t pdd-30-lg-t"><a href="projetos"
 				class="text-white"><i
 					class="fas fa-tasks text-white pdd-15-lg-r" aria-hidden="true"
