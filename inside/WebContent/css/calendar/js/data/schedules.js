@@ -48,12 +48,21 @@ function ScheduleInfo() {
 }
 
 function generateTime(schedule, renderStart, renderEnd) {
+	
+	console.log(renderStart);
+	console.log(renderEnd);
+	
     var baseDate = new Date(renderStart);
     var singleday = chance.bool({likelihood: 70});
-    var startDate = moment(renderStart.getTime())
-    var endDate = moment(renderEnd.getTime());
+    var startDate = moment(renderStart)
+    var endDate = moment(renderEnd);
     var diffDate = endDate.diff(startDate, 'days');
-
+    
+    console.log("startDate", startDate);
+	console.log("endDate", endDate);
+	
+    var baseDate = new Date(renderStart);
+    
     schedule.isAllday = chance.bool({likelihood: 30});
     if (schedule.isAllday) {
         schedule.category = 'allday';
@@ -89,7 +98,8 @@ function generateRandomSchedule(calendar, renderStart, renderEnd) {
 
     schedule.title = chance.sentence({words: 3});
     schedule.isReadOnly = chance.bool({likelihood: 20});
-    generateTime(schedule, renderStart, renderEnd);
+        
+    generateTime(schedule, renderStart, renderEnd); 
 
     schedule.isPrivate = chance.bool({likelihood: 10});
     schedule.location = chance.address();
@@ -118,22 +128,77 @@ function generateRandomSchedule(calendar, renderStart, renderEnd) {
     ScheduleList.push(schedule);
 }
 
+
+function publichSchedules(calendar, renderStart, renderEnd, demanda){	
+	 var schedule = new ScheduleInfo();
+
+	    schedule.id = demanda.id;
+	    schedule.calendarId = demanda.funcionario.id;
+
+	    schedule.title = demanda.descricao;
+	    schedule.isReadOnly = false;
+	    
+	    var dtInicio = new Date(demanda.dtInicio);
+	    var dtFim = new Date(demanda.dtFim);
+	    
+	    generateTime(schedule, dtInicio, dtFim);
+
+	    schedule.isPrivate = false;
+	    schedule.location = "";
+	    schedule.attendees = chance.bool({likelihood: 70}) ? ['anyone']: [];
+	    schedule.recurrenceRule = chance.bool({likelihood: 20});
+
+	    schedule.color = calendar.color;
+	    schedule.bgColor = calendar.bgColor;
+	    schedule.dragBgColor = calendar.dragBgColor;
+	    schedule.borderColor = calendar.borderColor;
+
+	    /*if (schedule.category === 'milestone') {
+	        schedule.color = schedule.bgColor;
+	        schedule.bgColor = 'transparent';
+	        schedule.dragBgColor = 'transparent';
+	        schedule.borderColor = 'transparent';
+	    }*/
+
+	    schedule.raw.memo = chance.sentence();
+	    schedule.raw.creator.name = demanda.funcionario.nome;
+	    schedule.raw.creator.avatar = "";
+	    schedule.raw.creator.company = "";
+	    schedule.raw.creator.email = demanda.funcionario.user.login;
+	    schedule.raw.creator.phone = demanda.funcionario.telefone;
+
+	    ScheduleList.push(schedule);
+}
+
 //Buscar dados de demanda do analista aqui, montar os schedules
-function generateSchedule(viewName, renderStart, renderEnd) {
-    ScheduleList = [];
-    CalendarList.forEach(function(calendar) {
-        var i = 0, length = 10;
-        if (viewName === 'month') {
-            length = 3;
-        } else if (viewName === 'day') {
-            length = 4;
-        }
-        for (; i < length; i += 1) {
-            generateRandomSchedule(calendar, renderStart, renderEnd);
-        }
-    });
+function generateSchedule(viewName, renderStart, renderEnd, list) {
+    ScheduleList = [];    
+    
+    var i = 0, length = 10;
+    
+    if (viewName === 'month') {
+        length = 3;
+    } else if (viewName === 'day') {
+        length = 4;
+    }
+    for (; i < list.length; i += 1) {
+    	publichSchedules(CalendarList[0], renderStart, renderEnd, list[i]);
+    }    	           
 }
 
 function getScheduleOfAnalist(){
-	
+	var idFuncionario = $("#idFuncionario").val();
+	console.log("idFuncionario", idFuncionario);
+	$.ajax({
+         type: "GET",
+         dataType:"json",
+         url:  "rest/demandas",
+         data: { id: idFuncionario },
+         success : function(response) {
+        	 console.log(response);
+         },
+         error: function(){                      
+        	 console.log('Error while request..');
+         }
+     });
 }

@@ -9,10 +9,10 @@ body {
 }
 
 #login-page{
-	background-image: url(/inside/images/bg.png);
-	background-position: center; /* Center the image */
-	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: cover; /* Resize the background image to cover the entire container */
+    background-image: url(/inside/images/bg.png);
+    background-position: center 175px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #wrapper {
@@ -35,8 +35,8 @@ body {
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    /* background:#29a4b5; */
-    background: #03D8E4;
+    background:#007a88;
+    /**background: #03D8E4;**/
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;

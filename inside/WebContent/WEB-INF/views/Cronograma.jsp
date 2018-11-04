@@ -34,8 +34,15 @@
   <!-- Sidebar-->
   <div class="invisible-xs invisible-xxs">
 	<div id="wrapper" class="toggled">
-	
-		<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+		
+		<c:choose>
+			<c:when test="${usuario.perfil.nome == 'Analista'}">											
+				<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+			</c:when>
+			<c:when test="${usuario.perfil.nome == 'Administrador'}">
+				<c:import url="importViews/SidebarAdmin.jsp"></c:import>
+			</c:when>
+		</c:choose>
 		
 		<div class="container-fluid">
 			<div class="col-lg-11 col-md-11 ">				
@@ -43,7 +50,7 @@
 			</div>
 		</div>
 		<div id="right">
-			<input type="hidden" value="${funcionario.id}">
+			<input type="hidden" name="idFuncionario" id="idFuncionario" value="${funcionario.idFuncionario}">
 			<div id="menu">
 	            <span class="dropdown">	
 	                <button id="dropdownMenu-calendarType" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
@@ -121,6 +128,8 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
+        
+    <script src="js/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  
     <script type="text/javascript" src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>
     <script type="text/javascript" src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>

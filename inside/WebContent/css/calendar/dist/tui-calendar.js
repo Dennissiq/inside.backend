@@ -9618,9 +9618,11 @@ function createMonthView(baseController, layoutContainer, dragHandler, options) 
                 createView.render(eventData);
             };
             createView.on('beforeUpdateSchedule', onEditSchedule);
+            createView.on('beforeUpdateSchedule', onDetailSchedule);
             detailView.on('beforeUpdateSchedule', onShowEditPopup);
         } else {
             detailView.on('beforeUpdateSchedule', onEditSchedule);
+            createView.on('beforeUpdateSchedule', onDetailSchedule);
         }
     }
 
@@ -19270,9 +19272,18 @@ ScheduleDetailPopup.prototype._onClickEditSchedule = function(target) {
  */
 ScheduleDetailPopup.prototype._onClickDetailSchedule = function(target) {
     var className = config.classname('popup-detail');
-
-    if (domutil.hasClass(target, className) || domutil.closest(target, '.' + className)) {    	 
-    	//window.location.href = "http://localhost:8080/inside/detalheDemanda?idDemanda=5"
+    var url = "http://localhost:8080/inside/detalheDemanda?idDemanda=" + this._schedule.id;
+   
+    console.log(target);
+    console.log(className);
+    console.log(this._schedule);
+        
+    if (domutil.hasClass(target, className) || domutil.closest(target, '.' + className)) {    	     	
+    	
+    	if(className === "tui-full-calendar-popup-detail"){
+        	window.location.href = url;
+        }
+            	    	
     	/*this.fire('beforeUpdateSchedule', {
             schedule: this._schedule,
             triggerEventName: 'click',
@@ -20934,7 +20945,7 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     return "";
 },"9":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
+        
   return "    <div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "section-button\">\n      <button class=\""
@@ -20949,7 +20960,7 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + alias4(((helper = (helper = helpers["popupEdit-tmpl"] || (depth0 != null ? depth0["popupEdit-tmpl"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"popupEdit-tmpl","hash":{},"data":data}) : helper)))
     + "</span></button>\n      <div class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
-    + "popup-vertical-line\"></div>\n      <a href='http://localhost:8080/inside/detalheDemanda?idDemanda=5' class=\""
+    + "popup-vertical-line\"></div>\n      <button class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))
     + "popup-detail\"><span class=\""
     + alias4(((helper = (helper = helpers.CSS_PREFIX || (depth0 != null ? depth0.CSS_PREFIX : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data}) : helper)))

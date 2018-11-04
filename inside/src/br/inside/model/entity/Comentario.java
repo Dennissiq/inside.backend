@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.internal.NotNull;
 
 @Entity(name="tb_comentario")
@@ -35,6 +36,7 @@ public class Comentario {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="id_demanda")
+	@JsonIgnore
 	private Demanda demanda;
 	
 	@NotNull

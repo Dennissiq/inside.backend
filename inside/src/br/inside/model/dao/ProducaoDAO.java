@@ -1,5 +1,6 @@
 package br.inside.model.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -81,5 +82,22 @@ public class ProducaoDAO {
 		System.out.println(result.toString());
 		return result;
 	}
-
+	
+	public Timestamp calcularDuracao(Demanda demanda) {
+		String jpql = "select p from tb_producao p where p.demanda = :demanda";
+		
+		Query query = manager.createQuery(jpql);
+		query.setParameter("demanda", demanda);
+		
+		@SuppressWarnings("unchecked")
+		List<Producao> producoes = query.getResultList();
+		
+		Timestamp duracao = new Timestamp(0);
+		
+		for (Producao producao : producoes) {
+			duracao.setTime(duracao.getTime() + (producao.getHoraFim().getTime() - producao.getHoraInicio().getTime()));
+		}
+		
+		return duracao;
+	}
 }

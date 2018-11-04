@@ -71,14 +71,14 @@
 				</c:choose>
                   <div class="line-gray"></div>
                   <div class="col-md-12 col-lg-12">
-                    <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>00:00</span></label> 
+                    <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>${demanda.duracao}</span></label> 
                     <c:if test="${usuario.perfil.nome == 'Analista'}">
                     	<a href="#" class='text-gray'>[editar tempo]</a>
                     </c:if>
                   </div>	
                    <div class="col-md-12 col-lg-12">
                     <label  class='text-gray time-pend-task'>Período para desenvolvimento:</label> 
-                    <label  class='text-gray time-pend-task'>${demanda.dtInicio} - ${demanda.dtFim}</label>
+                    <label  class='text-gray time-pend-task'>${demanda.dtInicio.toString().split(" ")[0]} - ${demanda.dtFim.toString().split(" ")[0]}</label>
                   </div>	
                   <div class="col-md-12 col-lg-12">
                     <c:if test="${usuario.perfil.nome == 'Administrador'}">
@@ -187,7 +187,7 @@
 		                   
 		                   <div class="util pdd-15-lg-t pdd-10-lg-b col-md-12 col-lg-12">
 		                    <p class='text-gray col-md-7 col-lg-8'>
-		                      <i class='fa fa-file fa-1x'></i> file
+		                      <i class='fa fa-file fa-1x'></i> ${arquivo.nome}.${arquivo.type}
 		                    </p>
 		                    <a href="./${arquivo.diretorio}" target="_blank" class='util-link col-md-2 col-lg-2'>
 		                     <i class='fa fa-download fa-1x'></i>  Download
@@ -238,7 +238,7 @@
                 	<input type="hidden" name='idDemanda' value="${String.valueOf(demanda.id)}" class="form-control text-primary"> 	
 				 	
 				 	<div class="col-md-10 col-lg-10">
-						<label class='text-gray time-pend-task'>Escolha um arquivo</label> 
+						<label for="file" class='text-gray time-pend-task'>Escolha um arquivo</label> 
                 	</div>
                 	
 				 	<div class="col-md-10 col-lg-10">
@@ -246,22 +246,23 @@
 					</div>
 					
 					<div class="col-md-10 col-lg-10">
-						<label for="file" class='text-gray time-pend-task'>Nome para o arquivo</label> 
+						<label for="nome" class='text-gray time-pend-task'>Nome para o arquivo</label> 
                 	</div>
                 	
-					<div class="col-md-10 col-lg-10">
-						<input class="form-control" type="nome" name="nome" value="upload"/>
+					<div class="col-md-12 col-lg-12 pdd-15-lg-b">
+						<div class="col-md-10 col-lg-10">						
+							<input type="text" name="nome" value="upload" class="form-control" />
+						</div>
+						<div class="col-md-2 col-lg-2">
+							<input type="submit" name="submit" class="btn btn-primary text-white" value="upload" />
+						</div>
 					</div>
-				 	
-				 	<div class="col-md-10 col-lg-10">
-				 		<input type="submit" name="submit" class='btn btn-lg btn-primary text-white btn-block' value="upload" />
-				 	</div>
 				</form>
-                  <div class="col-md-12 col-lg-12 upload-file-link">
+                  <!-- <div class="col-md-12 col-lg-12 upload-file-link">
                       <a href="#" class='util-link'>
                        <i class='fa fa-upload fa-1x'></i> Carregar novo arquivo
                       </a>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

@@ -114,25 +114,30 @@ public class DemandaController {
 	
 	@RequestMapping("/iniciarTarefa")
 	public String atualizarProjeto(Model model, HttpSession session, int idDemanda) {
-		Demanda demanda = demandaService.iniciarTarefa(idDemanda,producaoService);
-		model.addAttribute("demanda", demanda);
-		
+		demandaService.iniciarTarefa(idDemanda,producaoService);
 		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
-		//return "DetalheDemanda";
 	}
 	
 	@RequestMapping("/pausarTarefa")
 	public String pausarTarefa(Model model, HttpSession session, int idDemanda) {
-		Demanda demanda = demandaService.pausarTarefa(idDemanda, producaoService);
-		model.addAttribute("demanda", demanda);
+		demandaService.pausarTarefa(idDemanda, producaoService);	
+		
+		Demanda demanda = demandaService.buscarDemanda(idDemanda);
+		demanda.setDuracao(producaoService.calcularTotalProducao(demanda));
+		demandaService.atualizar(demanda);
 		
 		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
-		//return "DetalheDemanda";
 	}
 	
 	@RequestMapping("/finalizarTarefa")
 	public String finalizarTarefa(Model model, HttpSession session, int idDemanda) {
-		Demanda demanda = demandaService.finalizarTarefa(idDemanda, producaoService);
+		Demanda d = demandaService.buscarDemanda(idDemanda);
+		
+		if(d.getStatus().equals("pausado")) {
+			demandaService.pausarTarefa(idDemanda, producaoService);
+		}
+		
+		Demanda demanda = demandaService.finalizarTarefa(idDemanda, producaoService);		
 		model.addAttribute("demanda", demanda);
 		
 		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
@@ -168,17 +173,18 @@ public class DemandaController {
 	}
 	
 	@RequestMapping("/upload")
-	public String upload(HttpServletRequest request, Model model, HttpSession session, String idDemanda) {
+	public String upload(HttpServletRequest request, Model model, HttpSession session, String idDemanda, String nome) {
 		try {
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 			MultipartFile multipartFile = multipartRequest.getFile("file");
+						
+			String _fileName = multipartFile.getOriginalFilename();			
+			System.out.println(_fileName.split("\\."));
+			String _nome = nome;
+			String type = _fileName.split("\\.")[1];
 			
-			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			String fileName = _nome + type;
 			
-			System.out.println(Arrays.toString(multipartFile.getOriginalFilename().split(".")));
-			System.out.println( multipartFile.getOriginalFilename());
-			//String fileName = timestamp.hashCode() + "." + multipartFile.getOriginalFilename();
-			String fileName = multipartFile.getOriginalFilename();
 			Arquivo arquivo = new Arquivo();
 			
 			String filePath = "C:/inside";
@@ -195,6 +201,8 @@ public class DemandaController {
 	        }
 	        
 	        arquivo.setDiretorio("C:\\inside\\" + fileName);
+	        arquivo.setNome(_nome);
+	        arquivo.setType(type);
 			multipartFile.transferTo(fileToSave);
 			
 			Demanda demanda = demandaService.buscarDemanda(Integer.parseInt(idDemanda));
@@ -206,10 +214,7 @@ public class DemandaController {
 			model.addAttribute("demanda", demanda);
 			
 			
-			System.out.println(multipartFile.getContentType());
-			System.out.println(multipartFile.getName());
-			
-			System.out.println(multipartFile.getContentType());
+			System.out.println(arquivo.toString());
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

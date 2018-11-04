@@ -1,5 +1,6 @@
 package br.inside.model.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.internal.NotNull;
 
 @Entity(name="tb_demanda")
@@ -30,14 +33,38 @@ public class Demanda {
 	
 	@NotNull
 	@Column(name="dt_inicio")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm a z")
 	private Date dtInicio;
 	
 	@NotNull
 	@Column(name="dt_fim")
+	 @JsonFormat(pattern="yyyy-MM-dd HH:mm a z")
 	private Date dtFim;
 	
 	@NotNull
 	private String detalhes;
+	
+	@NotNull	
+	private Timestamp duracao;
+		
+	private String status;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="id_funcionario")
+	private Funcionario funcionario;
+	
+	@NotNull
+	@ManyToOne 
+	@JoinColumn(name="id_projeto")
+	@JsonIgnore
+	private Projeto projeto;
+	
+	@OneToMany(mappedBy = "demanda", fetch = FetchType.EAGER)
+	private List<Comentario> comentarios;
+	
+	@OneToMany(mappedBy = "demanda", fetch = FetchType.EAGER)
+	private List<Arquivo> arquivos;
 	
 	public Date getDtInicio() {
 		return dtInicio;
@@ -54,30 +81,6 @@ public class Demanda {
 	public void setDtFim(Date dtFim) {
 		this.dtFim = dtFim;
 	}
-
-	@NotNull	
-	private String duracao;
-		
-	private String status;
-
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name="id_funcionario")
-	private Funcionario funcionario;
-	
-	@NotNull
-	@ManyToOne 
-	@JoinColumn(name="id_projeto")
-	private Projeto projeto;
-		
-	/*@OneToMany(fetch = FetchType.EAGER)
-	private List<Recurso> recursos;*/ 
-	
-	@OneToMany(mappedBy = "demanda", fetch = FetchType.EAGER)
-	private List<Comentario> comentarios;
-	
-	@OneToMany(mappedBy = "demanda", fetch = FetchType.EAGER)
-	private List<Arquivo> arquivos;
 	
 	public int getId() {
 		return id;
@@ -103,11 +106,11 @@ public class Demanda {
 		this.detalhes = detalhes;
 	}
 
-	public String getDuracao() {
+	public Timestamp getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(String duracao) {
+	public void setDuracao(Timestamp duracao) {
 		this.duracao = duracao;
 	}
 
@@ -131,7 +134,7 @@ public class Demanda {
 	public String toString() {
 		return "Demanda [id=" + id + ", descricao=" + descricao + ", dtInicio=" + dtInicio + ", dtFim=" + dtFim
 				+ ", detalhes=" + detalhes + ", duracao=" + duracao + ", status=" + status + ", funcionario="
-				+ funcionario + ", projeto=" + projeto + ", comentarios=" + comentarios + ", arquivos=" + arquivos
+				+ funcionario + ", comentarios=" + comentarios + ", arquivos=" + arquivos
 				+ "]";
 	}
 

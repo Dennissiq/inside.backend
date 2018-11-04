@@ -42,8 +42,8 @@ public class FuncionarioService {
 	}
 	
 	@Transactional
-	public void atualizarFuncionario(Funcionario funcionario) throws IOException{
-		dao.atualizarFuncionario(funcionario);
+	public Funcionario atualizarFuncionario(Funcionario funcionario) throws IOException{
+		return dao.atualizarFuncionario(funcionario);
 	}
 	
 	public List<Funcionario> listarFuncionarios() throws IOException{

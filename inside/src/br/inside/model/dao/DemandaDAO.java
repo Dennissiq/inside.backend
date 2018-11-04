@@ -27,26 +27,21 @@ public class DemandaDAO {
 		return manager.merge(demanda);
 	}
 	
-	public Demanda iniciarTarefa(int idDemanda) {		
+	public void iniciarTarefa(int idDemanda) {		
 		
 		String jpql = "update tb_demanda set status = 'em andamento' WHERE id = :id";
 				
 		Query query = manager.createQuery(jpql);
 		query.setParameter("id", idDemanda);
 		query.executeUpdate();
-		
-		return this.buscarDemanda(idDemanda);
 	}	
 	
-	public Demanda pausarTarefa(int idDemanda) {		
-		
+	public void pausarTarefa(int idDemanda) {				
 		String jpql = "update tb_demanda set status = 'pausado' WHERE id = :id";
 				
 		Query query = manager.createQuery(jpql);
 		query.setParameter("id", idDemanda);
 		query.executeUpdate();
-		
-		return this.buscarDemanda(idDemanda);
 	}	
 	
 	public Demanda finalizarTarefa(int idDemanda) {		

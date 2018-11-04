@@ -34,7 +34,7 @@ public class DemandaService {
 	}
 	
 	@Transactional
-	public Demanda iniciarTarefa(int idDemanda, ProducaoService ps) {
+	public void iniciarTarefa(int idDemanda, ProducaoService ps) {
 		Producao producao = new Producao();		
 		Demanda d = dao.buscarDemanda(idDemanda);
 		if(d.getStatus().equals("aberto") || d.getStatus().equals("pausado") ) {
@@ -44,24 +44,24 @@ public class DemandaService {
 			ps.criar(producao);
 		}
 		
-		return dao.iniciarTarefa(idDemanda);
+		dao.iniciarTarefa(idDemanda);
 	}
 	
 	@Transactional
-	public Demanda pausarTarefa(int idDemanda, ProducaoService ps) {
+	public void pausarTarefa(int idDemanda, ProducaoService ps) {
 		Demanda demanda = dao.buscarDemanda(idDemanda);
 		Producao producao = ps.buscarProducao(demanda);
 		producao.setHoraFim(new Timestamp(new Date().getTime()));			
 		ps.atualizar(producao);
-		
-		return dao.pausarTarefa(idDemanda);
+				
+		dao.pausarTarefa(idDemanda);
 	}
 	
 	@Transactional
 	public Demanda finalizarTarefa(int idDemanda, ProducaoService ps) {
 		return dao.finalizarTarefa(idDemanda);
 	}
-	
+
 	public Demanda buscarDemanda(int id) {
 		return dao.buscarDemanda(id);
 	}
