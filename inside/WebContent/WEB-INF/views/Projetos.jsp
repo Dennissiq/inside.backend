@@ -104,19 +104,7 @@
 
   <!-- MOBILE -->
    <div class="invisible-md invisible-lg invisible-xlg" style="overflow-x: hidden;">
-		<div class="row">
-			<div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
-				<h3 id="menu-toggle">Menu</h3>
-				<ul id="mainMenu">
-					<li><a href="projetos" style="color: #848484 !important;"><h4>Projetos</h4> </a>
-					</li>
-					<li><a href="cadastroProjeto" style="color: #848484 !important;"> <h4>Cadastrar novo projeto</h4></a></li>
-					<li><a href="analistas" style="color: #848484 !important;"> <h4>Analistas</h4></a></li>
-					<!-- <li><a href="desempenhoAdmin.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li> -->
-					<li><a href="index" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
-				</ul>
-			</div>
-		</div>
+		<c:import url="importViews/MenuAdminMobile.jsp"></c:import>
 		<div class="container-fluid">
 
 			
@@ -144,7 +132,7 @@
 									</div>
 									<div class="col-xs-12 col-xxs-12 pdd-30-xs-b pdd-30-xxs-b ">
 										
-										<a href="novaDemanda?a=${projeto.id}">
+										<a href="novaDemanda?idProjeto=${projeto.id}">
 										<button type="button" class=" btn btn-lg btn-primary text-white btn-block ">Adicionar nova demanda</button>
 									</a>
 									</div>		
@@ -165,7 +153,20 @@
 														<tr>
 															<td class="text-bold">${demanda.descricao}</td>
 															<td class="text-bold">${demanda.funcionario.nome}</td>
-															<td class="text-success text-bold text-center"> <i class="fas fa-check-circle"></i></td>
+															<c:choose>
+																<c:when test="${demanda.status == 'aberto'}">											
+																	<td class="text-danger text-bold text-center"> <i class="fas fa-exclamation-circle fa-1x"></i></td>
+																</c:when>
+																<c:when test="${demanda.status == 'finalizado'}">
+																	<td class="text-success text-bold text-center"> <i class="fas fa-check fa-1x"></i></td>
+																</c:when>
+																<c:when test="${demanda.status == 'em andamento'}">																											
+																	<td class="text-warning text-bold text-center"> <i class="fas fa-clock fa-1x"></i></td>
+																</c:when>
+																<c:when test="${demanda.status == 'pausado'}">																											
+																	<td class="text-warning text-bold text-center"> <i class="fas fa-pause fa-1x"></i></td>
+																</c:when>
+															</c:choose>
 															<td><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
 														</tr>
 													</c:forEach>

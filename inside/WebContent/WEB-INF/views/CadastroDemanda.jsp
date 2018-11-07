@@ -14,7 +14,7 @@
       <div class="pdd-15-lg-t pdd-15-md-t">
         <div class="container-fluid">
           <div class="col-lg-11 col-md-11 ">
-            <h6 class="text-gray pull-right text-bold"> <a href="index.html"> <i class="fa fa-sign-out"></i> sair</a></h6>
+            <h6 class="text-gray pull-right text-bold"> <a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
           </div>
         </div>
 
@@ -27,28 +27,28 @@
               <form action="addDemanda" method="post">
               <input type="hidden" name='projeto.id' value="${idProjeto}" class="form-control text-primary">
               <div class="row">
-                <div class="col-md-12 col-lg-12">
+                <div class="col-md-12 col-lg-12 col-xs-12 col-xxs-12">
                   <div class="container">     
-                    <a href="projetos" class='col-md-2 col-lg-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>             
+                    <a href="projetos" class='col-md-2 col-lg-2 col-xs-2 col-xxs-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>             
                     <h2 class="col-md-10 col-lg-10 text-gray text-bold">Cadastrar nova demanda</h2>
                   </div>
                 </div>
               </div>
               <div class="line-gray"></div>
-              <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t ">              
                 <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
                   <h5 class="text-gray">Descrição</h5>
                 </div>
                 <div class="col-md-7 col-lg-7">
-                  <input type="text" name='descricao' required class="form-control text-primary">
+                  <input type="text" name='descricao' required class="form-control text-dark">
                 </div>
               </div>
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
-                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1 ">
                   <h5 class="text-gray">Detalhes</h5>
                 </div>
                 <div class="col-md-7 col-lg-7">
-                  <textarea type="text" name='detalhes' required class="form-control text-primary"></textarea>
+                  <textarea type="text" name='detalhes' required class="form-control text-dark"></textarea>
                 </div>
               </div>
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
@@ -56,7 +56,7 @@
                   <h5 class="text-gray">Duração</h5>
                 </div>
                 <div class="col-md-7 col-lg-7">
-                  <input type="text" name='duracao' required class="form-control text-primary">
+                  <input type="text" name='duracao' required class="form-control text-dark">
                 </div>
               </div>
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
@@ -64,7 +64,7 @@
                   <h5 class="text-gray">Status</h5>
                 </div>
                 <div class="col-md-7 col-lg-7">
-                  <select class="form-control text-primary" name='status'>
+                  <select class="form-control text-dark" name='status'>
                   	<option value="aberto" selected>Aberto</option>
                   	<option value="em andamento">Em andamento</option>
                   	<option value="finalizado">Finalizado</option>
@@ -76,7 +76,7 @@
                   <h5 class="text-gray">Analista Responsável</h5>
                 </div>
                 <div class="col-md-7 col-lg-7">
-                  <select class="form-control text-primary" name='funcionario.idFuncionario'>
+                  <select class="form-control text-dark" name='funcionario.idFuncionario'>
                   	<c:forEach var="analista" items="${analistas}">
                   		<option value="${analista.idFuncionario}">${analista.nome}</option>
                   	</c:forEach>                  	                  
@@ -109,7 +109,7 @@
 
 <!-- MOBILE -->
 <div class="invisible-md invisible-xlg invisible-lg" style="overflow-x: hidden;">
-    <div class="row ">
+<!--     <div class="row ">
       <div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
         <h3 id="menu-toggle">Menu</h3>
         <ul id="mainMenu">
@@ -121,7 +121,7 @@
           <li><a href="index.html" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
         </ul>
       </div>
-    </div>
+    </div> -->
 
     <div class="container pdd-30-xs-b pdd-30-xxs-b">
     
@@ -133,49 +133,83 @@
             <div class="container pdd-30-xxs-b pdd-30-xs-b">
     
               <h3 class="text-primary text-bold">Nova demanda</h3>
-              <div class="mat-card-kit ">
-                <div class="row">
-                  <div class="col-md-12 col-lg-12">
-                    <div class="container pdd-20-xs-t pdd-20-xxs-t pdd-15-xs-b pdd-15-xxs-b">
-                      <a href="projetos.html" class='col-xs-2 col-xxs-2 '><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
-                      <h4 class="col-xs-9 col-xxs-9 col-xs-offset-1 col-xxs-offset-1 text-gray text-bold pdd-10-xs-t pdd-10-xxs-t">Cadastrar Nova Demanda</h4>
-                    </div>
+            <div class="mat-card-kit ">
+              <form action="addDemanda" method="post">
+              <input type="hidden" name='projeto.id' value="${idProjeto}" class="form-control text-primary">
+              <div class="row">
+                <div class="col-md-12 col-lg-12 col-xs-12 col-xxs-12 pdd-15-xs-t pdd-15-xxs-t pdd-15-xs-b pdd-15-xxs-b">
+                  <div class="container">     
+                    <a href="projetos" class='col-md-2 col-lg-2 col-xs-2 col-xxs-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>             
+                    <h4 class="col-md-10 col-lg-10 col-xs-10 col-xxs-10 pdd-15-xs-t pdd-15-xxs-t text-gray text-bold">Cadastrar nova demanda</h4>
                   </div>
                 </div>
-                <div class="line-gray"></div>
-                  <div class="row row-card pdd-30-md-t pdd-30-lg-t">
-                    <div class="col-xs-12 col-xxs-12">
-                      <h5 class="text-gray">Nome</h5>
-                    </div>
-                    <div class="col-xs-12 col-xxs-12">
-                      <input type="integer" class="form-control text-primary">
-                    </div>
-                  </div>
-                  <div class="row row-card pdd-30-xs-t pdd-30-xxs-t">
-                    <div class="col-xs-12 col-xxs-12">
-                      <h5 class="text-gray">Descrição</h5>
-                    </div>
-                    <div class="col-xs-12 col-xxs-12">
-                      <textarea type="integer" class="form-control text-primary"></textarea>
-                    </div>
-                  </div>
-                  <div class="row row-card pdd-30-xs-t pdd-30-xxs-t">
-                    <div class="col-xs-4 col-xxs-4">
-                      <h5 class="text-gray">Anexos</h5>
-                    </div>
-                    <div class="col-xs-8 col-xxs-8 text-primary pdd-10-xs-t pdd-10-xxs-t">
-                      <a href="#" class='util-link'>
-                        <i class='fa fa-upload fa-1x'></i> Carregar anexo
-                      </a>
-                    </div>
-                  </div>
-                  <div class="row row-card pdd-30-xs-t pdd-30-xxs-t pdd-30-xs-b pdd-30-xxs-b">
-                  
-                    <div class="col-xxs-12 col-xs-12 text-primary">
-                      <button type="button" class=" btn btn-lg btn-primary text-white btn-block">Cadastrar demanda</button>
-                    </div>
-                  </div>
               </div>
+              <div class="line-gray"></div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t ">              
+                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+                  <h5 class="text-gray">Descrição</h5>
+                </div>
+                <div class="col-md-7 col-lg-7">
+                  <input type="text" name='descricao' required class="form-control text-dark">
+                </div>
+              </div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
+                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1 ">
+                  <h5 class="text-gray">Detalhes</h5>
+                </div>
+                <div class="col-md-7 col-lg-7">
+                  <textarea type="text" name='detalhes' required class="form-control text-dark"></textarea>
+                </div>
+              </div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
+                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+                  <h5 class="text-gray">Duração</h5>
+                </div>
+                <div class="col-md-7 col-lg-7">
+                  <input type="text" name='duracao' required class="form-control text-dark">
+                </div>
+              </div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
+                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+                  <h5 class="text-gray">Status</h5>
+                </div>
+                <div class="col-md-7 col-lg-7">
+                  <select class="form-control text-dark" name='status'>
+                  	<option value="aberto" selected>Aberto</option>
+                  	<option value="em andamento">Em andamento</option>
+                  	<option value="finalizado">Finalizado</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t pdd-30-xs-t pdd-30-xxs-t">              
+                <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+                  <h5 class="text-gray">Analista Responsável</h5>
+                </div>
+                <div class="col-md-7 col-lg-7">
+                  <select class="form-control text-dark" name='funcionario.idFuncionario'>
+                  	<c:forEach var="analista" items="${analistas}">
+                  		<option value="${analista.idFuncionario}">${analista.nome}</option>
+                  	</c:forEach>                  	                  
+                  </select>
+                </div>
+              </div>
+              <div class="row row-card pdd-30-md-t pdd-30-lg-t pdd-30-xs-t pdd-30-xxs-t">              
+               <!--  <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
+                  <h5 class="text-gray">Anexos</h5>
+                </div> -->
+             <!--    <div class="col-md-7 col-lg-7 text-primary">
+                  <a href="#" class='util-link'>
+                    <i class='fa fa-upload fa-1x'></i> Carregar anexo
+                  </a>
+                </div> -->
+              </div>
+              <div class="row row-card pdd-100-md-t pdd-100-lg-t pdd-30-md-b pdd-30-lg-b pdd-15-xs-t pdd-15-xxs-t pdd-15-xs-b pdd-15-xxs-b">              
+                <div class="col-lg-offset-4 col-md-offset-4 col-md-4 col-lg-4 text-primary">
+                	<button type="submit" class=" btn btn-lg btn-primary text-white btn-block">Cadastrar demanda</button>
+                </div>
+              </div>
+              </form>
+            </div>
             </div>
           </div>
         </div>

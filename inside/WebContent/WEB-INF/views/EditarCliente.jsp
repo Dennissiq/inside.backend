@@ -20,7 +20,7 @@
 
             <div class="col-lg-11 col-md-11 ">
               
-              <h6 class="text-gray pull-right text-bold"><a href="index.html"> <i class="fa fa-sign-out"></i> sair</a></h6>
+              <h6 class="text-gray pull-right text-bold"><a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
             </div>
           </div>
           <div class="col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1">
@@ -115,20 +115,7 @@
 
 <!-- MOBILE -->
 <div class="invisible-md invisible-lg invisible-xlg" style="overflow-x: hidden;">
-    <div class="row">
-      <div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
-        <h3 id="menu-toggle">Menu</h3>
-        <ul id="menu">
-          <li><a href="projetos.html" style="color: #848484 !important;"><h4>Projetos</h4> </a>
-          </li>
-          <li><a href="cadastroProjeto.html" style="color: #848484 !important;"> <h4>Cadastrar novo projeto</h4></a></li>
-          <li><a href="analistas.html" style="color: #848484 !important;"> <h4>Analistas</h4></a></li>
-           <li><a href="cadastroCliente.html" style="color: #848484 !important;"> <h4>Cadastrar novo cliente</h4></a></li>
-          <li><a href="desempenhoAdmin.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>
-          <li><a href="index.html" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
-        </ul>
-      </div>
-    </div>
+	<c:import url="importViews/MenuAdminMobile.jsp"></c:import>
 
     <div class="pdd-15-lg-t pdd-15-md-t">
 
@@ -143,7 +130,7 @@
               <div class="col-xs-12 col-xxs-12">
                 <div class="">
 
-                  <a href="clientes.html" class='col-md-2 col-lg-2 col-xxs-2 col-xs-2 pdd-15-xs-t pdd-15-xxs-t'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
+                  <a href="clientes" class='col-md-2 col-lg-2 col-xxs-2 col-xs-2 pdd-15-xs-t pdd-15-xxs-t'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
                 </div>
                 <div class="col-xxs-7 col-xs-7 col-lg-offset-1 col-md-offset-1 col-xxs-offset-1 col-xs-offset-1">
                   <h3 class="text-gray text-bold">Editar Cliente</h3>
@@ -153,14 +140,15 @@
             <div class="line-gray"></div>
             <div class="row row-card">
               <div class="col-xs-12 col-xxs-12">
-                <form action="#" class="form-inline">
+                <form action="atualizar_cliente" method="POST" class="form-inline">
+                <input type="hidden" name="id" id="nome" class="form-control" value="${cliente.id}">
                   <div class="row">
                     <div class="col-xs-12 col-xxs-12 pdd-15-xs-t pdd-15-xxs-t pdd-15-xs-b pdd-15-xxs-b">
                       <div class="col-xs-12 col-xxs-12">
                         <h5 class="text-gray">Cliente</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                        <input type="text" name="cliente" class="form-control"  value="${cliente.nome}" required>
+                         <input type="text" name="nome" id="nome" class="form-control" value="${cliente.nome}" required> 
                       </div>
                     </div>
                     <div class="col-xs-12 col-xxs-12">
@@ -186,7 +174,7 @@
                         <h5 class="text-gray">E-mail</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                        <input type="text" name="E-mail" class="form-control"  value="${cliente.email}"required>
+                        <input type="text" name="email" id="email" class="form-control" value="${cliente.email}"required> 
                       </div>
                     </div>
                   </div>
@@ -210,7 +198,7 @@
                   </div>
                   <div class="row row-card">
                     <div class="col-xs-12 col-xxs-12  pdd-30-xs-t pdd-30-xxs-t pdd-30-xxs-b pdd-30-xs-b">
-                      <button type="button" class=" btn btn-lg btn-primary text-white btn-block botao-cadastrar">Atualizar</button>
+                     	<button id="success-create" type="submit" name="acao" class=" btn btn-lg btn-primary text-white btn-block botao-cadastrar">Atualizar</button>
                     </div>
                   </div>
                 </form>

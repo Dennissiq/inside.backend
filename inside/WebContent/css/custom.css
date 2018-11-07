@@ -36,6 +36,42 @@ body {
 	padding-bottom:500px;
 }
 
+	 .topnav {
+	  overflow: hidden;
+	  background-color: #03D8E4;
+	  position: relative;
+	}
+	
+	.topnav #menuMobile {
+	  display: none;
+	}
+	
+	.topnav a {
+	  color: white;
+	  padding: 14px 16px;
+	  text-decoration: none;
+	  font-size: 17px;
+	  display: block;
+	}
+	
+	.topnav a.icon {
+	  background: #03D8E4;
+	  display: block;
+	  position: absolute;
+	  right: 0;
+	  top: 0;
+	}
+	
+	.topnav a:hover {
+	  background-color: #fff;
+	  color: black;
+	}
+	
+	.active {
+	  background-color: #03D8E4;
+	  color: white;
+	}
+
 
 
 

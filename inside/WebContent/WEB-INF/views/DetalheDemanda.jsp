@@ -22,7 +22,7 @@
     <div class="pdd-15-lg-t pdd-15-md-t">
       <div class="container-fluid">
         <div class="col-lg-11 col-md-11 ">
-          <h6 class="text-gray pull-right text-bold"> <a href="index.html"> <i class="fa fa-sign-out"></i> sair</a></h6>
+          <h6 class="text-gray pull-right text-bold"> <a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
         </div>
       </div>
 
@@ -240,17 +240,15 @@
 
 
 <div class="invisible-md invisible-xlg invisible-lg" style="overflow-x: hidden;">
-  <div class="row ">
-    <div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
-      <h3 id="menu-toggle">Menu</h3>
-      <ul id="mainMenu">
-        <li><a href="demandas.html" style="color: #848484 !important;"><h4>Demandas</h4> </a>
-        </li>
-        <li><a href="desempenho.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>
-        <li><a href="index.html" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
-      </ul>
-    </div>
-  </div>
+
+    	<c:choose>
+			<c:when test="${usuario.perfil.nome == 'Administrador'}">
+				<c:import url="importViews/MenuAdminMobile.jsp"></c:import>
+			</c:when>
+			<c:when test="${usuario.perfil.nome == 'Analista'}">
+				<c:import url="importViews/MenuAnalistaMobile.jsp"></c:import>
+			</c:when>
+		</c:choose>
   <div class="container pdd-30-xs-b pdd-30-xxs-b">
 
     <div class="row">
@@ -265,8 +263,15 @@
               <div class="row">
                 <div class="col-md-12 col-lg-12">
                   <div class="container pdd-20-xs-t pdd-20-xxs-t pdd-15-xs-b pdd-15-xxs-b">
-                    <a href="demandas.html" class='col-xs-2 col-xxs-2 '><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
-                    <h4 class="col-xs-9 col-xxs-9 col-xs-offset-1 col-xxs-offset-1 text-gray text-bold">Tarefa: Ajuste na integração</h4>
+	                 <c:choose>
+						<c:when test="${usuario.perfil.nome == 'Administrador'}">
+							<a href="projetos" class='col-xs-2 col-xxs-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
+						</c:when>
+						<c:when test="${usuario.perfil.nome == 'Analista'}">
+							<a href="demandas" class='col-xs-2 col-xxs-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
+						</c:when>
+					</c:choose> 
+                    <h4 class="col-xs-9 col-xxs-9 col-xs-offset-1 col-xxs-offset-1 text-gray text-bold">Tarefa: ${demanda.descricao}</h4>
                   </div>
                 </div>
               </div>
@@ -274,17 +279,56 @@
               <div class="row ">
                 <div class=" col-xs-12 col-xxs-12">
                   <div class=" row row-card mat-card-kit">
-                    <h5 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>não iniciado</span></h5>
+                                      <c:choose>
+					<c:when test="${demanda.status == 'aberto'}">
+						<h5 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>
+						<i class="fas fa-exclamation-circle fa-1x"></i> ${demanda.status}</span></h5>						
+					</c:when>
+					<c:when test="${demanda.status == 'finalizado'}">
+						<h5 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-success'>
+						<i class="fas fa-check fa-1x"></i> ${demanda.status}</span></h5>
+					</c:when>
+					<c:when test="${demanda.status == 'em andamento'}">
+						<h5 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
+						<i class="fas fa-clock fa-1x"></i> ${demanda.status}</span></h5>						
+					</c:when>
+					<c:when test="${demanda.status == 'pausado'}">
+						<h5 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
+						<i class="fas fa-pause fa-1x"></i> ${demanda.status}</span></h5>						
+					</c:when>
+				</c:choose>
                     <div class="line-gray"></div>
                     <div class="col-xs-12 col-xxs-12">
                       <label class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>00:00</span></label>
                     </div>
                     <div class="col-xs-12 col-xxs-12 pdd-10-xs-t pdd-10-xxs-t pdd-15-xs-b pdd-15-xxs-b">
-                      <a href="#" class='text-gray'>[editar tempo]</a>
+                     <c:if test="${usuario.perfil.nome == 'Analista'}">
+                    	<a href="#" class='text-gray'>[editar tempo]</a>
+                    </c:if>
                     </div>
-                    <div class="play-task col-xs-12 col-xxs-12">
-                      <a href="#" class='play pdd-15-xs-b pdd-15-xxs-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>
-                    </div>
+                   <div class="col-md-12 col-lg-12">
+                    <c:if test="${usuario.perfil.nome == 'Administrador'}">
+                  	 	<label  class='text-gray time-pend-task'>Responsável: <span>${demanda.funcionario.nome}</span></label>                   	                   	 
+                  	</c:if>
+                  </div>	
+                  <c:if test="${usuario.perfil.nome == 'Analista'}">
+                  	<c:if test="${demanda.status != 'em andamento' && demanda.status != 'finalizado'}">
+                   	 <div class="play-task col-xs-12 col-xxs-12">
+                  	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>                  	 
+                  	 <a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
+                  	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>  
+                  	 </div>
+                  	 
+                  	</c:if>
+                  	<c:if test="${demanda.status == 'em andamento' && demanda.status != 'finalizado'}">
+                   	 <div class="play-task col-md-12 col-lg-12">
+                  	 	<a href="pausarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
+                  	 		<p><i class="fa fa-stop-circle fa-1x"></i> Pausar tarefa</p></a>
+                  	 		<a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
+                  	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>                  	 
+                  	 </div>
+                  	</c:if>
+                  </c:if>
                   </div>
                 </div>
               </div>
@@ -296,10 +340,7 @@
                     <div class="line-gray"></div>
                     <div class="col-xs-12 col-xxs-12">
                       <p class='text-gray description-task'>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        ${demanda.detalhes}
                       </p>
                     </div>
                   </div>
@@ -312,7 +353,7 @@
                     <h5 class="mat-card-kit-title text-gray text-bold">Comentários</h5>
                     <div class="line-gray"></div>
                     <div class="col-xs-12 col-xxs-12">
-                      <div class="col-xs-12 col-xxs-12 comment-box">
+<!--                       <div class="col-xs-12 col-xxs-12 comment-box">
                         <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> Fernando Pessoa</span></p>
                         <div class="line-gray"></div>
                         <p class='text-comment text-gray'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
@@ -325,7 +366,19 @@
                           laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
                           velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
                         <p class='time-comment'>08:50am - 24/08</p>
-                      </div>
+                      </div> -->
+                      <c:if test="${not empty demanda.recursos}">
+						<c:forEach var="recurso" items="${demanda.recursos}">
+							<c:forEach var="comentario" items="${recurso.comentario}">
+		                   		<div class="col-md-12 col-lg-12 comment-box">
+			                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.recurso.usuario.login}</span></p>
+			                      <div class="line-gray"></div>
+			                     <p class='text-comment text-gray'>${comentario.comentario}</p>
+			                     <p class='time-comment'>${comentario.dtComentario }</p>
+			                   </div>
+		                   </c:forEach>
+	                   	</c:forEach>
+              		</c:if> 
                     </div>
                     <div class="col-xs-12 col-xxs-12">
                       <div class="line-gray"></div>
@@ -333,11 +386,14 @@
                     <div class="col-xs-12 col-xxs-12">
                       <div class="col-xs-12 col-xxs-12 comment-box">
                         <p>Adicionar novo comentário</p>
-                        <form>
-                          <div class="col-xs-11 col-xxs-11">
-                            <textarea class='form-control'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</textarea>
-                          </div>
-                          <a href="#" class='send-comment col-xs-1 col-xxs-1'><i class='fa fa-paper-plane fa-2x'></i></a>
+                        <form action="addComentario" method="post">
+                      <input type="hidden" name='recurso.demanda.id' value="${demanda.id}" class="form-control text-primary">
+                      <div class="col-xs-12 col-xxs-12 ">
+                        <textarea name="comentario" class='form-control' placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit."></textarea>
+                      </div>
+                      <div class="col-xxs-12 col-xs-12 pdd-30-xs-t pdd-30-xxs-t">
+                      	<button type="submit" class='btn btn-lg btn-primary text-white btn-block'>Enviar</button>
+                      </div>
                         </form>
                       </div>
                     </div>
@@ -351,7 +407,7 @@
                     <h5 class="mat-card-kit-title text-gray text-bold">Anexos</h5>
                     <div class="line-gray"></div>
                     <div class="col-xs-12 col-xxs-12 pdd-10-xs-t pdd-10-xxs-t">
-                      <div class="util pdd-15-xxs-t pdd-15-xxs-b pdd-15-xs-t pdd-15-xs-b col-xs-12 col-xxs-12">
+<!--                       <div class="util pdd-15-xxs-t pdd-15-xxs-b pdd-15-xs-t pdd-15-xs-b col-xs-12 col-xxs-12">
                         <p class='text-gray col-xs-12 col-xxs-12 text-center'>
                           <i class='fa fa-file fa-1x'></i> print-bug-sm.jpg
                         </p>
@@ -372,7 +428,17 @@
                         <a href="#" class='util-link col-xs-6 col-xxs-6 text-center'>
                           <i class='fa fa-eye fa-1x'></i> Visualizar
                         </a>
-                      </div>
+                      </div> -->
+		                <form action="upload" method="post" enctype="multipart/form-data">
+			                <label for="file">Arquivo</label>
+			                <div class="row">
+								 <input type="file" name="file"/>
+			                </div>
+	   		                <div class="row pdd-10-xs-t pdd-10-xxs-t">
+								 <input type="submit" name="submit" value="upload" />
+								 <input type="hidden" name='idDemanda' value="${String.valueOf(demanda.id)}" class="form-control text-primary">
+			                </div>
+						</form>
 
 
                       <!-- <div class="col-xs-6 col xxs-6">
@@ -385,11 +451,11 @@
                       </div> -->
 
                     </div>
-                    <div class="col-xs-12 col-xxs-12 upload-file-link">
+<!--                     <div class="col-xs-12 col-xxs-12 upload-file-link">
                       <a href="#" class='util-link'>
                         <i class='fa fa-upload fa-1x'></i> Carregar novo arquivo
                       </a>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
