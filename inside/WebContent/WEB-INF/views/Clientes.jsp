@@ -14,7 +14,7 @@
 
 			<div class="container-fluid">	
 				<div class="col-lg-11 col-md-11 ">
-					<h6 class="text-gray pull-right text-bold"> <a href="index.html"> <i class="fa fa-sign-out"></i> sair</a></h6>
+					<h6 class="text-gray pull-right text-bold"> <a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
 				</div>
 			</div>
 	
@@ -77,20 +77,7 @@
 	
 <!-- MOBILE -->
 <div class="invisible-md invisible-lg invisible-xlg">
-	<div class="row">
-		<div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
-			<h3 id="menu-toggle">Menu</h3>
-			<ul id="mainMenu">
-				<li><a href="projetos.html" style="color: #848484 !important;"><h4>Projetos</h4> </a>
-				</li>
-				<li><a href="cadastroProjeto.html" style="color: #848484 !important;"> <h4>Cadastrar novo projeto</h4></a></li>
-				<li><a href="analistas.html" style="color: #848484 !important;"> <h4>Analistas</h4></a></li>
-				<li><a href="clientes.html" style="color: #848484 !important;"> <h4>Clientes</h4></a></li>
-				<li><a href="desempenhoAdmin.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>
-				<li><a href="index.html" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
-			</ul>
-		</div>
-	</div>
+	<c:import url="importViews/MenuAdminMobile.jsp"></c:import>
 	<div class="row">
 			<div class="col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1">
 			
@@ -102,11 +89,11 @@
 						<div class="mat-card-kit">
 							<div class="row">
 								<div class="col-xs-9 col-xxs-9">
-									<h3 class=" text-center text-gray text-bold  pdd-15-md-b pdd-10-xxs-t pdd-10-xs-t">Lista de CLientes</h3>
+									<h3 class=" text-center text-gray text-bold  pdd-15-md-b pdd-10-xxs-t pdd-10-xs-t">Lista de Clientes</h3>
 			
 								</div>
 								<div class="col-xs-2 col-xxs-2  pdd-15-xxs-t pdd-15-xxs-b  pdd-30-xs-t pdd-15-xs-b">
-									<a href="cadastroCliente.html" class='text-primary pdd-15-xs-b '>
+									<a href="novo_cliente" class='text-primary pdd-15-xs-b'>
 										<i class="fas fa-user-plus fa-2x text-primary text-center"></i>
 									</a>
 								</div>
@@ -120,7 +107,7 @@
 											<tr>
 												<th class="legenda text-gray">Cliente</th>
 												<th class="legenda text-gray">Representante</th>
-												<th class="legenda text-gray">E-mail</th>
+												<!-- <th class="legenda text-gray">E-mail</th> -->
 												<th class="legenda text-gray">Telefone</th>
 												<th class="legenda text-gray"></th>
 											</tr>
@@ -131,7 +118,7 @@
 												<tr>
 													<td class="text-bold">${cliente.nome}</td>
 													<td class="text-bold">${cliente.representante}</td>
-													<td class="text-bold">${cliente.email}</td>
+													<%-- <td class="text-bold">${cliente.email}</td> --%>
 													<td class="text-bold">${cliente.telefone}</td>
 													<td><a href="detalheCliente?id=${cliente.id}" class="text-primary pdd-15-md-b">
 													<i class="fas fa-edit text-gray" aria-hidden="true"></i></a> </td>

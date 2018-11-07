@@ -20,7 +20,7 @@
 
             <div class="col-lg-11 col-md-11 ">
               
-              <h6 class="text-gray pull-right text-bold"><a href="index.html"> <i class="fa fa-sign-out"></i> sair</a></h6>
+              <h6 class="text-gray pull-right text-bold"><a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
             </div>
           </div>
           <div class="col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1">
@@ -114,7 +114,7 @@
 
 <!-- MOBILE -->
 <div class="invisible-md invisible-lg invisible-xlg" style="overflow-x: hidden;">
-    <div class="row">
+<!--     <div class="row">
       <div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
         <h3 id="menu-toggle">Menu</h3>
         <ul id="mainMenu">
@@ -126,7 +126,7 @@
           <li><a href="index.html" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
         </ul>
       </div>
-    </div>
+    </div> -->
 
     <div class="pdd-15-lg-t pdd-15-md-t">
 
@@ -141,7 +141,7 @@
               <div class="col-xs-12 col-xxs-12">
                 <div class="">
 
-                  <a href="analistas.html" class='col-md-2 col-lg-2 col-xxs-2 col-xs-2 pdd-15-xs-t pdd-15-xxs-t'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
+                  <a href="analistas" class='col-md-2 col-lg-2 col-xxs-2 col-xs-2 pdd-15-xs-t pdd-15-xxs-t'><i class="back fa fa-chevron-circle-left fa-3x"></i></a>
                 </div>
                 <div class="col-xxs-7 col-xs-7 col-lg-offset-1 col-md-offset-1 col-xxs-offset-1 col-xs-offset-1">
                   <h3 class="text-gray text-bold">Cadastrar Novo Analista</h3>
@@ -151,14 +151,14 @@
             <div class="line-gray"></div>
             <div class="row row-card">
               <div class="col-xs-12 col-xxs-12">
-                <form action="#" class="form-inline">
+                <form form action="cadastrar_analista" method="POST" class="form-inline">
                   <div class="row">
                     <div class="col-xs-12 col-xxs-12 pdd-15-xs-t pdd-15-xxs-t pdd-15-xs-b pdd-15-xxs-b">
                       <div class="col-xs-12 col-xxs-12">
                         <h5 class="text-gray">Nome</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                        <input type="text" name="Nome_Analista" class="form-control" required>
+                        <input type="text" name="nome" id="nome" class="form-control" required>
                       </div>
                     </div>
                     <div class="col-xs-12 col-xxs-12">
@@ -166,7 +166,7 @@
                         <h5 class="text-gray">Local</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                        <input type="text" name="Endereco" class="form-control" required>
+                         <input type="text" name="localizacao" id="localizacao" class="form-control" required>
                       </div>
                     </div>
                   </div>
@@ -176,7 +176,7 @@
                         <h5 class="text-gray">CPF</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                        <input type="text" name="CPF" class="form-control" required>
+                        <input type="text" name="cpf" id="cpf" class="form-control" required>
                       </div> 
                     </div>
                     <div class="col-xs-12 col-xxs-12">
@@ -184,7 +184,7 @@
                         <h5 class="text-gray">E-mail</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                        <input type="text" name="E-mail" class="form-control" required>
+                         <input type="text" name="email" id="email" class="form-control" required>
                       </div>
                     </div>
                   </div>
@@ -194,13 +194,23 @@
                         <h5 class="text-gray">Especialidade</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                        <input type="text" name="Especialidade" class="form-control" required>
+                        <input type="text" name="especialidade" id="especialidade" class="form-control" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-xxs-12">
+                      <div class="col-xs-12 col-xxs-12">
+                        <h5 class="text-gray">Celular</h5>
+                      </div>
+                      <div class="col-xs-12 col-xxs-12">
+                        <input type="text" name="celular" id="celular" class="form-control" required>
                       </div>
                     </div>
                   </div>
                   <div class="row row-card">
                     <div class="col-xs-12 col-xxs-12  pdd-30-xs-t pdd-30-xxs-t pdd-30-xxs-b pdd-30-xs-b">
-                      <button type="button" class=" btn btn-lg btn-primary text-white btn-block botao-cadastrar">Cadastrar</button>
+                      <button id="success-create" type="submit" name="acao" class=" btn btn-lg btn-primary text-white btn-block botao-cadastrar">Cadastrar</button>
                     </div>
                   </div>
                 </form>

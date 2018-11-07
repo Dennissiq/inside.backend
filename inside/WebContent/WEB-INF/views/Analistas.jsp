@@ -5,7 +5,7 @@
 <c:import url="Header.jsp"/>
 <body>
 	<!-- MODAL -->
-		<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTitle" aria-hidden="true" style="overflow-x: hidden;">
+<!-- 		<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTitle" aria-hidden="true" style="overflow-x: hidden;">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -78,7 +78,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- DESKTOP -->
 		<!-- Sidebar-->
@@ -124,7 +124,7 @@
 												<th class="legenda text-gray">Especialista</th>
 												<th class="legenda text-gray">Local</th>
 												<th class="legenda text-gray">Status</th>
-												<th class="legenda text-gray"></th>
+											<!-- 	<th class="legenda text-gray"></th> -->
 											</tr>
 										</thead>
 										<tbody>
@@ -134,7 +134,7 @@
 												<td class="text-bold">${funcionario.especialidade }</td>
 												<td class="text-bold">${funcionario.localizacao}</td>
 												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Disponível </td>
-												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
+												<!-- <td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td> -->
 											</tr>
 										</c:forEach>
 									
@@ -179,19 +179,7 @@
 	
 <!-- MOBILE -->
 <div class="invisible-md invisible-lg invisible-xlg">
-	<div class="row">
-		<div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
-			<h3 id="menu-toggle">Menu</h3>
-			<ul id="mainMenu">
-				<li><a href="projetos.html" style="color: #848484 !important;"><h4>Projetos</h4> </a>
-				</li>
-				<li><a href="cadastroProjeto.html" style="color: #848484 !important;"> <h4>Cadastrar novo projeto</h4></a></li>
-				<li><a href="analistas.html" style="color: #848484 !important;"> <h4>Analistas</h4></a></li>
-				<li><a href="desempenhoAdmin.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>
-				<li><a href="index.html" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
-			</ul>
-		</div>
-	</div>
+	<c:import url="importViews/MenuAdminMobile.jsp"></c:import>
 	<div class="row">
 			<div class="col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1">
 			
@@ -207,7 +195,7 @@
 			
 								</div>
 								<div class="col-xs-2 col-xxs-2  pdd-15-xxs-t pdd-15-xxs-b  pdd-30-xs-t pdd-15-xs-b">
-									<a href="cadastroAnalista.html" class='text-primary pdd-15-xs-b '>
+									<a href="novo_analista" class='text-primary pdd-15-xs-b '>
 										<i class="fas fa-user-plus fa-2x text-primary text-center"></i>
 									</a>
 								</div>
@@ -233,8 +221,8 @@
 												<td class="text-bold">${funcionario.especialidade }</td>
 												<td class="text-bold">${funcionario.localizacao}</td>
 												<td class="text-success text-bold text-center"> <i class="fas fa-check-circle"></i>  </td>
-												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray"
-														 aria-hidden="true"></i></a> </td>
+<!-- 												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray"
+														 aria-hidden="true"></i></a> </td> -->
 											</tr>
 											</c:forEach>
 										</tbody>

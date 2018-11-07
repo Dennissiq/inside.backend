@@ -20,7 +20,7 @@
 
             <div class="col-lg-11 col-md-11 ">
               
-              <h6 class="text-gray pull-right text-bold"><a href="index.html"> <i class="fa fa-sign-out"></i> sair</a></h6>
+              <h6 class="text-gray pull-right text-bold"><a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
             </div>
           </div>
           <div class="col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1">
