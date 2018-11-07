@@ -12,7 +12,7 @@
 <div class="invisible-xs invisible-xxs">
   <div id="wrapper" class="toggled">
  	<!-- Sidebar-->
-	<c:import url="importViews/SidebarAdmin.jsp"></c:import>
+	<c:import url="importViews/SidebarAnalista.jsp"></c:import>
 
 
         <div class="pdd-15-lg-t pdd-15-md-t">
@@ -27,7 +27,7 @@
             
             <div class="container-fluid pdd-30-lg-b pdd-30-md-b">
      
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-lg-12 col-md-12">
                   <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4">
                     <img src="images/perfil.jpg" class="img-responsive img-circle" alt="">
@@ -36,12 +36,12 @@
                     <div class="pdd-50-lg-b pdd-50-md-b"></div>
                   </div>                  
                 </div>
-              </div> 
+              </div> --> 
               <div class="mat-card-kit ">
   
                 <div class="row">
                   <div class="col-md-12 col-lg-12">
-                  <a href="listar_analistas" class='col-md-2 col-lg-2 col-sm-2 col-xs-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a> 
+                  <a href="demandas" class='col-md-2 col-lg-2 col-sm-2 col-xs-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a> 
                     <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
                       <h2 class="text-gray text-bold">Editar Perfil</h2>
                     </div>
@@ -50,7 +50,10 @@
                 <div class="line-gray"></div>
                 <div class="row row-card">
                   <div class="col-lg-12 col-md-12">                    
-                      <form action="cadastrar_analista" method="POST" class="form-inline">
+                      <form action="alterarDados" method="POST" class="form-inline">
+                      	<input type='hidden' name='id' value="${funcionario.idFuncionario}">
+                      	<input type='hidden' name='=cargo.id' value="${funcionario.cargo.id}">
+                      	<input type='hidden' name='=user.login' value="${funcionario.user.login}">
                         <div class="row">
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
                             <div class="col-lg-3 col-md-3">
@@ -65,7 +68,7 @@
                               <h5 for="localizacao" class="text-gray">Local</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="text" name="localizacao" id="localizacao" class="form-control"  readonly="readonly " value="${funcionario.localizacao }">
+                              <input type="text" name="localizacao" id="localizacao" class="form-control"  readonly="readonly" value="${funcionario.localizacao}">
                             </div>
                           </div>                                               
                         </div>
@@ -75,7 +78,7 @@
                               <h5 for="cpf" class="text-gray">CPF</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="text" name="cpf" id="cpf" class="form-control"  readonly="readonly" value="${funcionario.cpf }">
+                              <input type="text" name="cpf" id="cpf" class="form-control"  readonly="readonly" value="${funcionario.cpf}">
                             </div>
                           </div>
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t">
@@ -83,7 +86,7 @@
                               <h5 for="email" class="text-gray">E-mail</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="text" name="email" id="email" class="form-control"  value="${funcionario.email }">
+                              <input type="text" name="email" id="email" class="form-control"  value="${funcionario.email}">
                             </div>
                           </div>                                               
                         </div>
@@ -93,7 +96,7 @@
                               <h5 for="especialidade" class="text-gray">Especialidade</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="text" name="especialidade" id="especialidade" class="form-control"  readonly="readonly" value="${funcionario.especialidade }">
+                              <input type="text" name="especialidade" id="especialidade" class="form-control"  readonly="readonly" value="${funcionario.especialidade}">
                             </div>
                           </div>  
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-b">
@@ -101,7 +104,7 @@
                               <h5 class="text-gray">Senha</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="text" name="senha"  id="senha" class="form-control">
+                              <input type="password" name="funcionario.user.senha" value="${funcionario.user.senha} id="senha" class="form-control">
                             </div>
                           </div>                                             
                         </div>

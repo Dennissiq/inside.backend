@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.inside.model.dao.DemandaDAO;
+import br.inside.model.entity.Arquivo;
+import br.inside.model.entity.Comentario;
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.Producao;
@@ -32,7 +34,7 @@ public class DemandaService {
 	}
 	
 	@Transactional
-	public Demanda iniciarTarefa(int idDemanda, ProducaoService ps) {
+	public void iniciarTarefa(int idDemanda, ProducaoService ps) {
 		Producao producao = new Producao();		
 		Demanda d = dao.buscarDemanda(idDemanda);
 		if(d.getStatus().equals("aberto") || d.getStatus().equals("pausado") ) {
@@ -42,24 +44,24 @@ public class DemandaService {
 			ps.criar(producao);
 		}
 		
-		return dao.iniciarTarefa(idDemanda);
+		dao.iniciarTarefa(idDemanda);
 	}
 	
 	@Transactional
-	public Demanda pausarTarefa(int idDemanda, ProducaoService ps) {
+	public void pausarTarefa(int idDemanda, ProducaoService ps) {
 		Demanda demanda = dao.buscarDemanda(idDemanda);
 		Producao producao = ps.buscarProducao(demanda);
 		producao.setHoraFim(new Timestamp(new Date().getTime()));			
 		ps.atualizar(producao);
-		
-		return dao.pausarTarefa(idDemanda);
+				
+		dao.pausarTarefa(idDemanda);
 	}
 	
 	@Transactional
 	public Demanda finalizarTarefa(int idDemanda, ProducaoService ps) {
 		return dao.finalizarTarefa(idDemanda);
 	}
-	
+
 	public Demanda buscarDemanda(int id) {
 		return dao.buscarDemanda(id);
 	}
@@ -78,5 +80,32 @@ public class DemandaService {
 	
 	public List<Demanda> listarDemandasPorAnalista(Funcionario funcionario){
 		return dao.listarDemandasPorAnalista(funcionario);
+	}
+	
+	public boolean validPeriod(Demanda demanda) {
+		List<Demanda> demandas = dao.listarDemandasNoPeriodoSolicitado(demanda); 
+		
+		System.out.println("Resultados encontrados:" + demandas.size());
+		
+		if(demandas.size() > 0)			
+			return false;		
+		
+		return true;		
+	}
+	
+	@Autowired
+	private ComentarioService comentarioService;
+	
+	@Autowired
+	private ArquivoService arquivoService;
+	
+	@Transactional
+	public Comentario addComentario(Comentario comentario) {
+		return comentarioService.criar(comentario); 
+	}
+	
+	@Transactional
+	public Arquivo addArquivo(Arquivo arquivo) {	
+		return arquivoService.persistir(arquivo); 
 	}
 }

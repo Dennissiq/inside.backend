@@ -1,5 +1,5 @@
 <!-- <div id="sidebar-wrapper" class='invisible-xs invisible-xxs'> -->
-<div id="sidebar-wrapper" class='invisible-xs invisible-xxs' style="background: #000 !important">
+<div id="sidebar-wrapper" class='invisible-xs invisible-xxs' style="background: #264c54 !important">
 	<ul class="sidebar-nav">
 		<li class="sidebar pdd-15-md-t pdd-15-lg-t pdd-15-xlg-t pdd-30-md-b pdd-30-lg-b pdd-30-xlg-b">
 			<div class="container-fluid">
@@ -7,7 +7,7 @@
 					<div class="col-md-11 col-lg-10 col-lg-offset-1 col-md-offset-1 pdd-15-md-t pdd-15-lg-t pdd-15-md-b pdd-15-lg-b">
 						<div class="col-md-9 col-lg-9 col-lg-offset-1 col-md-offset-1 pdd-15-md-b pdd-15-lg-b">
 							<!-- <img src="./images/analyst_user.png" class="img-responsive img-circle" alt=""> -->
-							<i class='text-white fas fa-users-cog fa-5x'></i>
+							<i class='text-white fas fa-users-cog fa-4x icon-admin-sidebar'></i>
 						</div>
 						<div class="row">
 							<div class="col-md-12 col-lg-12">
@@ -43,6 +43,15 @@
 					class="fas fa-users text-white pdd-15-lg-r" aria-hidden="true"
 					style="display: inline"></i> Analistas
 			</a></li>
+			<li><a href="cronograma" class="text-white"> <i
+					class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
+					style="display: inline"></i> Cronograma
+			</a></li>
+			<!--<li>
+              <a href="cadastroCliente.html" class="text-white"> <i class="far fa-address-card  text-white pdd-15-lg-r" aria-hidden="true" style="display:inline"></i>
+               Cadastrar novo Cliente</a>
+            </li> -->
+            
 			<!-- 					<li>
 						<a href="desempenhoAdmin.html" class="text-white"> <i class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
 							 style="display:inline"></i> Desempenho</a>

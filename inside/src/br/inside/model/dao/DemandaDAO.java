@@ -27,29 +27,24 @@ public class DemandaDAO {
 		return manager.merge(demanda);
 	}
 	
-	public Demanda iniciarTarefa(int idDemanda) {		
+	public void iniciarTarefa(int idDemanda) {		
 		
 		String jpql = "update tb_demanda set status = 'em andamento' WHERE id = :id";
 				
 		Query query = manager.createQuery(jpql);
 		query.setParameter("id", idDemanda);
 		query.executeUpdate();
-		
-		return this.buscarDemanda(idDemanda);
 	}	
 	
-	public Demanda pausarTarefa(int idDemanda) {		
-		
+	public void pausarTarefa(int idDemanda) {				
 		String jpql = "update tb_demanda set status = 'pausado' WHERE id = :id";
 				
 		Query query = manager.createQuery(jpql);
 		query.setParameter("id", idDemanda);
 		query.executeUpdate();
-		
-		return this.buscarDemanda(idDemanda);
 	}	
 	
-public Demanda finalizarTarefa(int idDemanda) {		
+	public Demanda finalizarTarefa(int idDemanda) {		
 		
 		String jpql = "update tb_demanda set status = 'finalizado' WHERE id = :id";
 				
@@ -99,9 +94,19 @@ public Demanda finalizarTarefa(int idDemanda) {
 		query.setParameter("funcionario", f);
 
 		List<Demanda> result = query.getResultList();
-		
-		System.out.println(result.toString());
 		return result;
 	}
+	
+	public List<Demanda> listarDemandasNoPeriodoSolicitado(Demanda demanda){
+		String jpql = "select d from tb_demanda d where d.funcionario = :funcionario AND :startDate BETWEEN d.dtInicio AND d.dtFim";
+		
+		Query query = manager.createQuery(jpql);
+		query.setParameter("funcionario", demanda.getFuncionario());
+		query.setParameter("startDate", demanda.getDtInicio());
 
+		@SuppressWarnings("unchecked")
+		List<Demanda> result = query.getResultList();
+			
+		return result;
+	}
 }

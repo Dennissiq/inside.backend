@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.User;
+import br.inside.model.service.CargoService;
 import br.inside.model.service.FuncionarioService;
 import br.inside.model.service.UserService;
 
@@ -45,7 +46,7 @@ public class UserController {
 				return "redirect: projetos";
 			}
 			else {
-				Funcionario funcionario = funcionarioService.buscarFuncionario(userLogged);
+				Funcionario funcionario = funcionarioService.buscarFuncionario(userLogged);				
 				session.setAttribute("funcionario", funcionario);
 				return "redirect: demandas";
 			}				
@@ -53,5 +54,10 @@ public class UserController {
 			model.addAttribute("error", "Login e/ou Senha inválidos.");
 			return "index";
 		}
+	}
+	
+	@RequestMapping("/perfil")
+	public String perfilForm(Model model, HttpSession session) {
+		return "EditarPerfil";
 	}
 }

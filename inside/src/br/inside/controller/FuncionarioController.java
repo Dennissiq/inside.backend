@@ -17,6 +17,7 @@ import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.Perfil;
 import br.inside.model.entity.SendMail;
 import br.inside.model.entity.User;
+import br.inside.model.service.CargoService;
 import br.inside.model.service.FuncionarioService;
 import br.inside.model.service.UserService;
 
@@ -24,7 +25,10 @@ import br.inside.model.service.UserService;
 public class FuncionarioController {
 	
 	@Autowired
-	private FuncionarioService fService;
+	private FuncionarioService funcionarioService;
+	
+	@Autowired
+	private CargoService cargoService;
 	
 	@Autowired
 	private UserService userService;
@@ -43,8 +47,8 @@ public class FuncionarioController {
 	public String criarFuncionario(@Valid Funcionario funcionario, BindingResult erros, Model model, HttpSession session) throws IOException{
 		try {
 			if(!erros.hasErrors()) {
-				Perfil p = new Perfil();
-				p.setId(2);
+				Perfil p = new Perfil();				
+				p.setId(4);
 				p.setNome("Analista");
 				
 				User user = new User();
@@ -53,13 +57,13 @@ public class FuncionarioController {
 				user.setPerfil(p);
 				
 				Cargo c = new Cargo();
-				c.setId(1);
+				c.setId(2);
 				c.setDescricao(funcionario.getEspecialidade());
 				
 				funcionario.setCargo(c);
 				funcionario.setUser(userService.inserir(user));
 				
-				funcionario = fService.inserirFuncionario(funcionario);
+				funcionario = funcionarioService.inserirFuncionario(funcionario);
 				model.addAttribute("funcionario", funcionario);
 				
 				SendMail sm = new SendMail("smtp.gmail.com","465");
@@ -83,7 +87,7 @@ public class FuncionarioController {
 		try {
 			
 			List<Funcionario> lista;
-			lista = fService.listarFuncionarios();
+			lista = funcionarioService.listarFuncionarios();
 			
 			session.setAttribute("lista", lista);
 			return "Analistas";
@@ -95,11 +99,11 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@RequestMapping("/alterar_dados")
-	public String atualizar(Funcionario funcionario,  User usuario, Model model, HttpSession session) {
+	@RequestMapping("/alterarDados")
+	public String atualizar(Funcionario funcionario, Model model, HttpSession session) {
 		try {
-			session.setAttribute("senha", usuario.getSenha());
-			funcionario = fService.buscarFuncionario(funcionario.getIdFuncionario());
+			funcionario.setCargo(cargoService.buscarCargo(funcionario.getCargo().getId()));
+			funcionario = funcionarioService.atualizarFuncionario(funcionario);
 			model.addAttribute("funcionario", funcionario);
 			return "EditarPerfil";
 		} catch (IOException e) {
@@ -108,26 +112,4 @@ public class FuncionarioController {
 			return "Erro";
 		}
 	}
-	@RequestMapping("/atualizar_dados")
-	public String gravarAtualizacaoFilme(@Valid Funcionario funcionario, @Valid User usuario, BindingResult erros, Model model, HttpSession session) {
-		try {
-			if (!erros.hasErrors()) {
-				funcionario.setEmail(funcionario.getEmail());
-				usuario.setSenha(usuario.getSenha());
-				fService.atualizarFuncionario(funcionario);
-				model.addAttribute("funcionario", funcionario);
-
-				return "EditarPerfil";
-			} else {
-				return "Analistas";
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			model.addAttribute("erro", e);
-			return "Erro";
-		}
-	}
-	
-	
-	
 }

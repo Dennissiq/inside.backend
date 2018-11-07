@@ -93,6 +93,22 @@ body {
 	list-style: none;
 }*/
 
+.icon-admin-sidebar {
+	border: 3px solid white;
+    border-radius: 100px;
+    padding: 20px 10px;
+}
+
+.icon-admin-sidebar:before {
+    content: "\f509";
+    margin-left: -15px;
+}
+
+.icon-user-sidebar {
+	border: 3px solid white;
+    border-radius: 70px;
+    padding: 15px 19px 15px 0px;
+}
 .back {
     color: #03d8e4;
     margin-top: 10px;

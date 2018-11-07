@@ -62,7 +62,7 @@ public class Projeto {
 	@NotNull
 	private String status;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "projeto", fetch = FetchType.EAGER)
 	private List<Demanda> demandas;
 	
 	public List<Demanda> getDemandas() {
@@ -153,14 +153,11 @@ public class Projeto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
 
 	@Override
 	public String toString() {
 		return "Projeto [id=" + id + ", descricao=" + descricao + ", cliente=" + cliente + ", detalhe=" + detalhe
 				+ ", atividade=" + atividade + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", horas="
-				+ horas + ", user=" + user + ", status=" + status + ", demandas=" + demandas + "]";
+				+ horas + ", user=" + user + ", status=" + status + "]";
 	}
-	
 }

@@ -32,7 +32,6 @@ public class FuncionarioDAO {
 		
 		Query query = manager.createQuery(jpql);
 		query.setParameter("login", login);
-
 		
 		@SuppressWarnings("unchecked")
 		List<Funcionario> result = query.getResultList();	
@@ -43,8 +42,8 @@ public class FuncionarioDAO {
 		return null;
 	}
 	
-	public void atualizarFuncionario(Funcionario funcionario) throws IOException{
-		manager.merge(funcionario);
+	public Funcionario atualizarFuncionario(Funcionario funcionario) throws IOException{
+		return manager.merge(funcionario);
 	}
 	
 	public void removerFuncionario(Funcionario funcionario) throws IOException{

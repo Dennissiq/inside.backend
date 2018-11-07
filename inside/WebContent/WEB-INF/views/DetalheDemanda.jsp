@@ -71,10 +71,14 @@
 				</c:choose>
                   <div class="line-gray"></div>
                   <div class="col-md-12 col-lg-12">
-                    <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>00:00</span></label> 
+                    <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>${demanda.duracao}</span></label> 
                     <c:if test="${usuario.perfil.nome == 'Analista'}">
                     	<a href="#" class='text-gray'>[editar tempo]</a>
                     </c:if>
+                  </div>	
+                   <div class="col-md-12 col-lg-12">
+                    <label  class='text-gray time-pend-task'>Período para desenvolvimento:</label> 
+                    <label  class='text-gray time-pend-task'>${demanda.dtInicio.toString().split(" ")[0]} - ${demanda.dtFim.toString().split(" ")[0]}</label>
                   </div>	
                   <div class="col-md-12 col-lg-12">
                     <c:if test="${usuario.perfil.nome == 'Administrador'}">
@@ -104,7 +108,6 @@
               </div>
             </div>
             <div class="row row-card">
-
              <div class="col-md-12 col-lg-12">
                 <div class="row row-card mat-card-kit">
                   <h4 class="mat-card-kit-title text-gray text-bold">Descrição</h4>
@@ -124,17 +127,15 @@
                   <h4 class="mat-card-kit-title text-gray text-bold">Comentários</h4>
                   <div class="line-gray"></div>
                    <div class="col-md-12 col-lg-12">
-                  <c:if test="${not empty demanda.recursos}">
-						<c:forEach var="recurso" items="${demanda.recursos}">
-							<c:forEach var="comentario" items="${recurso.comentario}">
-		                   		<div class="col-md-12 col-lg-12 comment-box">
-			                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.recurso.usuario.login}</span></p>
-			                      <div class="line-gray"></div>
-			                     <p class='text-comment text-gray'>${comentario.comentario}</p>
-			                     <p class='time-comment'>${comentario.dtComentario }</p>
-			                   </div>
-		                   </c:forEach>
-	                   	</c:forEach>
+                  <c:if test="${not empty demanda.comentarios}">						
+						<c:forEach var="comentario" items="${demanda.comentarios}">
+	                   		<div class="col-md-12 col-lg-12 comment-box">
+		                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.usuario.login.split("@")[0]}</span></p>
+		                      <div class="line-gray"></div>
+		                     <p class='text-comment text-gray'>${comentario.comentario}</p>
+		                     <p class='time-comment'>${comentario.dtComentario }</p>
+		                   </div>
+	                   </c:forEach>
               		</c:if> 
 <%--                    <div class="col-md-12 col-lg-12 comment-box">
                      <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.recurso.usuario.login}</span></p>
@@ -142,7 +143,7 @@
                      <p class='text-comment text-gray'>${comentario.comentario}</p>
                      <p class='time-comment'>${comentario.dtComentario }</p>
                    </div> --%>
-                    <div class="col-md-12 col-lg-12 comment-box">
+                    <%--<div class="col-md-12 col-lg-12 comment-box">
                      <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> Clarice Lispector</span></p>
                       <div class="line-gray"></div> 
                      <p class='text-comment text-gray'>Lorem ipsum dolor sit amet, consectetur
@@ -150,7 +151,7 @@
                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
                      <p class='time-comment'>08:50am  - 24/08</p>
-                   </div>
+                   </div>--%>
                   </div> 
                   <div class="col-md-12 col-lg-12">
                     <div class="line-gray"></div>
@@ -159,14 +160,13 @@
                    <div class="col-md-12 col-lg-12 comment-box">
                      <p>Adicionar novo comentário</p>
                      <form action="addComentario" method="post">
-                      <input type="hidden" name='recurso.demanda.id' value="${demanda.id}" class="form-control text-primary">
+                      <input type="hidden" name='demanda.id' value="${demanda.id}" class="form-control text-primary">
                       <div class="col-md-10 col-lg-10">
                         <textarea name="comentario" class='form-control'>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</textarea>
                       </div>
                       <div class="col-md-2 col-lg-2">
                       	<button type="submit" class='btn btn-lg btn-primary text-white btn-block'>Enviar</button>
-                      </div>
-                      
+                      </div>                      
                       <!-- <a href="addComentario?idDemanda=${demanda.id}" class='send-comment col-md-1 col-lg-1'><i class='fa fa-paper-plane fa-2x'></i></a> como eh q comenta mesmo aq?ctrl  -->
                      </form>
                    </div>
@@ -180,6 +180,22 @@
                 <div class="row row-card mat-card-kit">
                   <h4 class="mat-card-kit-title text-gray text-bold">Anexos</h4>
                   <div class="line-gray"></div>
+                   <div class="col-md-12 col-lg-12 pdd-10-lg-t">
+                  	<c:if test="${not empty demanda.arquivos}">						
+						<c:forEach var="arquivo" items="${demanda.arquivos}">
+	                   		
+		                   
+		                   <div class="util pdd-15-lg-t pdd-10-lg-b col-md-12 col-lg-12">
+		                    <p class='text-gray col-md-7 col-lg-8'>
+		                      <i class='fa fa-file fa-1x'></i> ${arquivo.nome}.${arquivo.type}
+		                    </p>
+		                    <a href="./${arquivo.diretorio}" target="_blank" class='util-link col-md-2 col-lg-2'>
+		                     <i class='fa fa-download fa-1x'></i>  Download
+		                    </a>
+		                   </div>
+	                   </c:forEach>
+              		</c:if> 
+              		</div>
                   <!-- <div class="col-md-12 col-lg-12 pdd-10-lg-t">
                    <div class="util pdd-15-lg-t pdd-10-lg-b col-md-12 col-lg-12">
                     <p class='text-gray col-md-7 col-lg-8'>
@@ -203,6 +219,7 @@
                      <i class='fa fa-eye fa-1x'></i>  Visualizar
                     </a>
                    </div>
+                   
                    <div class="util pdd-10-lg-t pdd-10-lg-b col-md-12 col-lg-12">
                     <p class='text-gray col-md-7 col-lg-8'>
                       <i class='fa fa-file fa-1x'></i> print-bug-sm.jpg
@@ -218,16 +235,34 @@
                   
                   
                 <form action="upload" method="post" enctype="multipart/form-data">
-				 <label for="file">Arquivo</label>
-				 <input type="file" name="file" />
-				 <input type="submit" name="submit" value="upload" />
-				 <input type="hidden" name='idDemanda' value="${String.valueOf(demanda.id)}" class="form-control text-primary">
+                	<input type="hidden" name='idDemanda' value="${String.valueOf(demanda.id)}" class="form-control text-primary"> 	
+				 	
+				 	<div class="col-md-10 col-lg-10">
+						<label for="file" class='text-gray time-pend-task'>Escolha um arquivo</label> 
+                	</div>
+                	
+				 	<div class="col-md-10 col-lg-10">
+						<input type="file" name="file" />
+					</div>
+					
+					<div class="col-md-10 col-lg-10">
+						<label for="nome" class='text-gray time-pend-task'>Nome para o arquivo</label> 
+                	</div>
+                	
+					<div class="col-md-12 col-lg-12 pdd-15-lg-b">
+						<div class="col-md-10 col-lg-10">						
+							<input type="text" name="nome" value="upload" class="form-control" />
+						</div>
+						<div class="col-md-2 col-lg-2">
+							<input type="submit" name="submit" class="btn btn-primary text-white" value="upload" />
+						</div>
+					</div>
 				</form>
-                  <div class="col-md-12 col-lg-12 upload-file-link">
+                  <!-- <div class="col-md-12 col-lg-12 upload-file-link">
                       <a href="#" class='util-link'>
-                       <i class='fa fa-upload fa-1x'></i>  Carregar novo arquivo
+                       <i class='fa fa-upload fa-1x'></i> Carregar novo arquivo
                       </a>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

@@ -50,6 +50,9 @@
 													<c:when test="${demanda.status == 'em andamento'}">																											
 														<td class="text-warning text-bold"> <i class="fas fa-clock fa-1x"></i> ${demanda.status} </td>
 													</c:when>
+													<c:when test="${demanda.status == 'pausado'}">																											
+														<td class="text-warning text-bold"> <i class="fas fa-pause fa-1x"></i> ${demanda.status} </td>
+													</c:when>
 												</c:choose>
 												<td class="text-center"><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
 											</tr>

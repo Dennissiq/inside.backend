@@ -393,9 +393,34 @@
 
     function setSchedules() {
         cal.clear();
-        generateSchedule(cal.getViewName(), cal.getDateRangeStart(), cal.getDateRangeEnd());
-        cal.createSchedules(ScheduleList);
-        refreshScheduleVisibility();
+       
+        var idFuncionario = $("#idFuncionario").val();
+        var url = "rest/demandas";
+        var data = { id: idFuncionario };
+        
+        if(idFuncionario == ""){
+        	url = "rest/allDemandas"
+        	data = null;
+        }        
+        
+        $.ajax({
+            type: "GET",
+            dataType:"json",
+            url: url,
+            data: data,
+            success : function(response) {
+           	 	console.log(response);
+           	 
+	           	generateSchedule(cal.getViewName(), cal.getDateRangeStart(), cal.getDateRangeEnd(), response);
+	            cal.createSchedules(ScheduleList);
+	            refreshScheduleVisibility();
+           	 
+	            console.log("ScheduleList", ScheduleList);
+            },
+            error: function(){                      
+           	 console.log('Error while request..');
+            }
+        });                 
     }
 
     function setEventListener() {

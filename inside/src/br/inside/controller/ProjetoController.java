@@ -40,8 +40,7 @@ public class ProjetoController {
 			}
 		}
 		
-		session.setAttribute("lista", lista);
-		System.out.println(lista);
+		session.setAttribute("lista", lista);		
 		return "Projetos";
 	}
 	
@@ -54,7 +53,7 @@ public class ProjetoController {
 	public String addProjeto(@Valid Projeto projeto, Model model, HttpSession session) {		
 		try {
 			Cliente c = new Cliente();
-			c.setId(1);
+			c.setId(2);
 			
 			projeto.setCliente(c);
 			

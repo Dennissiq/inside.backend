@@ -1077,10 +1077,11 @@ input[type='checkbox'].tui-full-calendar-checkbox-round + span {
   top: 2px;
 }
 .tui-full-calendar-popup-edit,
+.tui-full-calendar-popup-detail,
 .tui-full-calendar-popup-delete {
   display: inline-block;
   padding: 7px 9px 11px 9px;
-  width: calc(50% - 1px);
+  width: calc(33% - 1px);
   outline: none;
   background: none;
   border: none;

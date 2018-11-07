@@ -90,7 +90,7 @@
                           </div>  
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
                             <div class="col-lg-3 col-md-3">
-                              <h5 for="endereco" class="text-gray">Endereço</h5>
+                              <h5 for="endereco" class="text-gray">Endereï¿½o</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
                               <input type="text" name="endereco" id="endereco" class="form-control" value="${cliente.endereco}" required> 
@@ -189,7 +189,7 @@
                     </div>
                      <div class="col-xs-12 col-xxs-12">
                       <div class="col-xs-12 col-xxs-12">
-                        <h5 class="text-gray">Endereço</h5>
+                        <h5 class="text-gray">Endereï¿½o</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
                         <input type="text" name="endereco" class="form-control" value="${cliente.endereco}" required>

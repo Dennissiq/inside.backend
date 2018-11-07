@@ -29,7 +29,7 @@ public class RecursoService {
 		
 		Recurso recurso = dao.criarRecurso(demanda, usuario);
 		
-		comentario.setRecurso(recurso);
+		//comentario.setRecurso(recurso);
 		
 		return comentarioService.criar(comentario); 
 	}
@@ -39,7 +39,7 @@ public class RecursoService {
 		
 		Recurso recurso = dao.criarRecurso(demanda, usuario);
 		
-		arquivo.setRecurso(recurso);
+		//arquivo.setRecurso(recurso);
 		
 		return arquivoService.persistir(arquivo); 
 	}

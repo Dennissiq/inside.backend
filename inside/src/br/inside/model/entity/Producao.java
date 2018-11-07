@@ -24,7 +24,7 @@ public class Producao {
 	private int id;
 	
 	@NotNull
-	private Date data;	
+	private Date data;
 	
 	@NotNull
 	@Column(name="hr_inicio")
@@ -80,6 +80,6 @@ public class Producao {
 	@Override
 	public String toString() {
 		return "Producao [id=" + id + ", data=" + data + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim
-				+ ", demanda=" + demanda + "]";
+				+ "]";
 	}
 }

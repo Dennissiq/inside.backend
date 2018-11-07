@@ -1,4 +1,4 @@
-<div id="sidebar-wrapper" class='invisible-xs invisible-xxs'>
+<div id="sidebar-wrapper" class='invisible-xs invisible-xxs' style="background: #264c54 !important">
 	<ul class="sidebar-nav">
 		<li class="sidebar section-bg-pattern pdd-15-md-t pdd-15-lg-t pdd-15-xlg-t pdd-30-md-b pdd-30-lg-b pdd-30-xlg-b">
 			<div class="container-fluid">
@@ -6,7 +6,7 @@
 					<div class="col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1 pdd-15-md-t pdd-15-lg-t pdd-15-md-b pdd-15-lg-b">
 						<div class="col-md-9 col-lg-9 col-lg-offset-2 col-md-offset-2 pdd-15-md-b pdd-15-lg-b">
 							<!-- <img src="./images/analyst_user.png" class="img-responsive img-circle" alt=""> -->
-							<i class='text-white fas fa-user-circle fa-5x'></i>
+							<i class='icon-user-sidebar text-white fas fa-user fa-4x'></i>
 						</div>
 						<div class="row">
 							<div class="col-md-12 col-lg-12">
@@ -30,9 +30,18 @@
 		<div class="line-white "></div>
 		<div class="menu pdd-30-md-t pdd-30-lg-t">
 			<li class="pdd-30-md-t pdd-30-lg-t">
-			<a href="demandas" class="text-white"><i
+			<a href="perfil" class="text-white"> <i
+					class="fas fa-edit text-white pdd-15-lg-r" aria-hidden="true"
+					style="display: inline"></i> Editar Perfil
+			</a></li>			
+			<li><a href="demandas" class="text-white"> <i
 					class="fas fa-tasks text-white pdd-15-lg-r" aria-hidden="true"
-					style="display: inline"></i> Demandas</a></li>
+					style="display: inline"></i> Demandas
+			</a></li>
+			<li><a href="cronograma" class="text-white"> <i
+					class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
+					style="display: inline"></i> Cronograma
+			</a></li>
 <!-- 			<li><a href="desempenho" class="text-white"> <i
 					class="fas fa-chart-line text-white pdd-15-lg-r" aria-hidden="true"
 					style="display: inline"></i> Desempenho

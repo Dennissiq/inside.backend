@@ -34,41 +34,25 @@
   <!-- Sidebar-->
   <div class="invisible-xs invisible-xxs">
 	<div id="wrapper" class="toggled">
-	
-		<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+		
+		<c:choose>
+			<c:when test="${usuario.perfil.nome == 'Analista'}">											
+				<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+			</c:when>
+			<c:when test="${usuario.perfil.nome == 'Administrador'}">
+				<c:import url="importViews/SidebarAdmin.jsp"></c:import>
+			</c:when>
+		</c:choose>
 		
 		<div class="container-fluid">
 			<div class="col-lg-11 col-md-11 ">				
 				<h6 class="text-gray pull-right text-bold"> <a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
 			</div>
 		</div>
-		<div class="" style="margin-left:52px;">
-	    <div id="lnb">
-	    	<h4 class="text-primary text-center text-bold text-bold">Demandas</h4>
-	        <div class="lnb-new-schedule">
-	            <button id="btn-new-schedule" type="button" class="btn btn-default btn-block lnb-new-schedule-btn" data-toggle="modal">
-	                Nova Demanda</button>
-	        </div>
-	        <div id="lnb-calendars" class="lnb-calendars">
-	            <div>
-	                <div class="lnb-calendars-item">
-	                    <label>
-	                        <input class="tui-full-calendar-checkbox-square" type="checkbox" value="all" checked>
-	                        <span></span>
-	                        <strong>View all</strong>
-	                    </label>
-	                </div>
-	            </div>
-	            <div id="calendarList" class="lnb-calendars-d1">
-	            </div>
-	        </div>
-	        <div class="lnb-footer">
-	            © NHN Entertainment Corp.
-	        </div>
-	    </div>
-	    <div id="right">
-	        <div id="menu">
-	            <span class="dropdown">
+		<div id="right">
+			<input type="hidden" name="idFuncionario" id="idFuncionario" value="${funcionario.idFuncionario}">
+			<div id="menu">
+	            <span class="dropdown">	
 	                <button id="dropdownMenu-calendarType" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
 	                    aria-haspopup="true" aria-expanded="true">
 	                    <i id="calendarTypeIcon" class="calendar-icon ic_view_month" style="margin-right: 4px;"></i>
@@ -122,8 +106,7 @@
 	                    </li>
 	                </ul>
 	            </span>
-	            <span id="menu-navi">
-	                <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
+	            <span id="menu-navi">	               
 	                <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
 	                    <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
 	                </button>
@@ -133,133 +116,7 @@
 	            </span>
 	            <span id="renderRange" class="render-range"></span>
 	        </div>
-	        <div id="calendar"></div>
-	    </div>   
-		</div>
-		
-	</div>
-  </div>
-
-  <div class="invisible-md invisible-lg invisible-xlg" style="overflow-x: hidden;">
-	<div class="row">
-		<div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
-				<h3 id="menu-toggle">Menu</h3>
-				<ul id="mainMenu">
-					<li><a href="demandas.html" style="color: #848484 !important;"><h4>Demandas</h4> </a>
-					</li>
-					<li><a href="desempenho.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>
-					<li><a href="index.html" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
-				</ul>
-		</div>
-	</div>
-	<div class="container-fluid">
-
-		<div class="row ">
-			<div class="pdd-12-xxs-t pdd-12-xs-t">
-				<div class="col-xs-12 col-xxs-12">
-				
-					<div class="container-fluid pdd-30-xs-b pdd-30-xxs-b">
-				
-						<div class="col-xs-12 col-xxs-12 pdd-30-xxs-b pdd-30-lg-b">
-							<h3 class="text-primary text-bold text-bold">Demandas</h3>
-							<div class="mat-card-kit">
-								<h4 class=" text-center text-gray text-bold pdd-15-xs-t  pdd-15-xxs-t ">Projeto Lisboa</h4>
-								<div class="line-gray"></div>
-								<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
-									<div class="">
-										<table class="table table-hover table-card">
-											<thead>
-												<tr>
-													<th class="legenda text-gray">Tarefa</th>
-													<th class="legenda text-gray">Projeto</th>
-													<th class="legenda text-gray">Status</th>
-													<th class="legenda text-gray"></th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="text-bold">Ajustes na integração</td>
-													<td class="text-bold">Fernando pessoa</td>
-													<td class="text-success text-center text-bold"> <i class="fas fa-check-circle"></i></td>
-													<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-												</tr>
-												<tr>
-													<td class="text-bold">Ajustes na integração</td>
-													<td class="text-bold">Fernando Sermano</td>
-													<td class="text-danger text-center text-bold"> <i class="fas fa-times-circle"></i></td>
-													<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-							<div class="mat-card-kit">
-								<h4 class=" text-center text-gray text-bold pdd-15-xs-t  pdd-15-xxs-t ">Projeto Lisboa</h4>
-								<div class="line-gray"></div>
-								<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
-									<div class="">
-										<table class="table table-hover table-card">
-											<thead>
-												<tr>
-													<th class="legenda text-gray">Tarefa</th>
-													<th class="legenda text-gray">Responsável</th>
-													<th class="legenda text-gray">Status</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="text-bold">Ajustes na integração</td>
-													<td class="text-bold">Fernando pessoa</td>
-													<td class="text-success text-center text-bold"> <i class="fas fa-check-circle"></i></td>
-													<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-												</tr>
-												<tr>
-													<td class="text-bold">Ajustes na integração</td>
-													<td class="text-bold">Fernando Sermano</td>
-													<td class="text-danger text-center text-bold"> <i class="fas fa-times-circle"></i></td>
-													<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-							<div class="mat-card-kit">
-								<h4 class=" text-center text-gray text-bold pdd-15-xs-t  pdd-15-xxs-t ">Projeto Lisboa</h4>
-								<div class="line-gray"></div>
-								<div class="container-fluid table-card pdd-30-md-t pdd-30-lg-t pdd-30-xlg-t">
-									<div class="">
-										<table class="table table-hover table-card">
-											<thead>
-												<tr>
-													<th class="legenda text-gray">Tarefa</th>
-													<th class="legenda text-gray">Responsável</th>
-													<th class="legenda text-gray">Status</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="text-bold">Ajustes na integração</td>
-													<td class="text-bold">Fernando pessoa</td>
-													<td class="text-success text-center text-bold"> <i class="fas fa-check-circle"></i></td>
-													<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-												</tr>
-												<tr>
-													<td class="text-bold">Ajustes na integração</td>
-													<td class="text-bold">Fernando Sermano</td>
-													<td class="text-danger text-center text-bold"> <i class="fas fa-times-circle"></i></td>
-													<td><a href="detalheDemanda.html"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div id="calendar"></div>
 		</div>
 	</div>
   </div>
@@ -271,12 +128,14 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
+        
+    <script src="js/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  
     <script type="text/javascript" src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>
     <script type="text/javascript" src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
     <script type="text/javascript" src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>    
     
     <script src="css/calendar/dist/tui-calendar.js"></script>
     <script src="css/calendar/js/data/calendars.js"></script>
@@ -284,6 +143,7 @@
     <script src="css/calendar/js/theme/dooray.js"></script>
     <script src="css/calendar/js/default.js"></script>
     
+    <!-- <script src="js/calendar.js"></script> -->
   <!-- Menu Toggle Script -->
   
 </body>
