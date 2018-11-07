@@ -5,7 +5,7 @@
 <c:import url="Header.jsp"/>
 <body>
 	<!-- MODAL -->
-<!-- 		<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTitle" aria-hidden="true" style="overflow-x: hidden;">
+ 		<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTitle" aria-hidden="true" style="overflow-x: hidden;">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -78,7 +78,7 @@
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 		<!-- DESKTOP -->
 		<!-- Sidebar-->
@@ -134,7 +134,7 @@
 												<td class="text-bold">${funcionario.especialidade }</td>
 												<td class="text-bold">${funcionario.localizacao}</td>
 												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Disponível </td>
-												<!-- <td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td> -->
+												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
 											</tr>
 										</c:forEach>
 									

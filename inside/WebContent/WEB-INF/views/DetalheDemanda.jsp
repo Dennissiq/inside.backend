@@ -388,6 +388,16 @@
                     <h5 class="mat-card-kit-title text-gray text-bold">Comentários</h5>
                     <div class="line-gray"></div>
                     <div class="col-xs-12 col-xxs-12">
+                    <c:if test="${not empty demanda.comentarios}">						
+						<c:forEach var="comentario" items="${demanda.comentarios}">
+	                   		<div class="col-xs-12 col-xxs-12 comment-box">
+		                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.usuario.login.split("@")[0]}</span></p>
+		                      <div class="line-gray"></div>
+		                     <p class='text-comment text-gray'>${comentario.comentario}</p>
+		                     <p class='time-comment'>${comentario.dtComentario }</p>
+		                   </div>
+	                   </c:forEach>
+              		</c:if> 
 <!--                       <div class="col-xs-12 col-xxs-12 comment-box">
                         <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> Fernando Pessoa</span></p>
                         <div class="line-gray"></div>
@@ -402,18 +412,7 @@
                           velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
                         <p class='time-comment'>08:50am - 24/08</p>
                       </div> -->
-                      <c:if test="${not empty demanda.recursos}">
-						<c:forEach var="recurso" items="${demanda.recursos}">
-							<c:forEach var="comentario" items="${recurso.comentario}">
-		                   		<div class="col-md-12 col-lg-12 comment-box">
-			                     <p class='user-comment'><i class='fa fa-user-circle fa-2x'></i> <span> ${comentario.recurso.usuario.login}</span></p>
-			                      <div class="line-gray"></div>
-			                     <p class='text-comment text-gray'>${comentario.comentario}</p>
-			                     <p class='time-comment'>${comentario.dtComentario }</p>
-			                   </div>
-		                   </c:forEach>
-	                   	</c:forEach>
-              		</c:if> 
+                      
                     </div>
                     <div class="col-xs-12 col-xxs-12">
                       <div class="line-gray"></div>
@@ -422,7 +421,7 @@
                       <div class="col-xs-12 col-xxs-12 comment-box">
                         <p>Adicionar novo comentário</p>
                         <form action="addComentario" method="post">
-                      <input type="hidden" name='recurso.demanda.id' value="${demanda.id}" class="form-control text-primary">
+                      <input type="hidden" name='demanda.id' value="${demanda.id}" class="form-control text-primary">
                       <div class="col-xs-12 col-xxs-12 ">
                         <textarea name="comentario" class='form-control' placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit."></textarea>
                       </div>

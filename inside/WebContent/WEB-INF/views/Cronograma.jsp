@@ -32,7 +32,7 @@
 </head>
 <body>
   <!-- Sidebar-->
-  <div class="invisible-xs invisible-xxs">
+  <div class="">
 	<div id="wrapper" class="toggled">
 		
 		<c:choose>
