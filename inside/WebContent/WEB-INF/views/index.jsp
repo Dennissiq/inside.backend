@@ -106,7 +106,7 @@
                   </div>
                 </div>
                 <div class="col-xxs-12 col-xs-12 pdd-10-xs-t pdd-10-xxs-t ">
-                   <input type="text" name="login" class="form-control text-primary" value="ti.dennissiqueira@gmail.com">
+                   <input type="text" name="login" class="form-control text-primary" value="dennis.siqueira@gmail.com">
                 </div>
               </div>
               <div class="row pdd-15-xxs-t pdd-15-xs-t">
@@ -114,7 +114,7 @@
                   <h5 class="text-primary text-bold text-center">Senha</h5>
                 </div>
                 <div class="col-xs-12 col-xxs-12 ">
-                  <input type="password" name="senha" class="form-control text-primary" value="1">
+                  <input type="password" name="senha" class="form-control text-primary" value="61071">
                 </div>
               </div>
               <div class="row">
