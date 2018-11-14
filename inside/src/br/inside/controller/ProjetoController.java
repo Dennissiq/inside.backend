@@ -1,5 +1,7 @@
 package br.inside.controller;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.inside.model.entity.Cliente;
@@ -69,18 +72,62 @@ public class ProjetoController {
 		return "CadastroProjeto";
 	}
 	
-	@RequestMapping("/atualizarProjeto")
+/*	@RequestMapping("/atualizarProjeto")
 	public String atualizarProjeto(@Valid Projeto projeto, Model model, HttpSession session) {
-		projeto = projetoService.atualizar(projeto);
+		projeto = projetoService.atualizarProjeto(projeto);
 		model.addAttribute("projeto", projeto);
 		
 		return "DetalheProjeto";
-	}
+	}*/
 	
-	@RequestMapping("/detalheProjeto")
+	@RequestMapping("/atualizar_projeto")
+	public String atualizarProjeto(@Valid Projeto projeto, BindingResult erros, Model model, HttpSession session) throws IOException{
+		
+		
+	/*		try {
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}*/
+		
+		if(!erros.hasErrors()) {
+			
+			Cliente c = new Cliente();
+			c.setId(2);
+			projeto.setCliente(c);
+						
+			projeto.setUser((User)session.getAttribute("usuario"));
+			projeto.setDescricao(projeto.getDescricao());
+			projeto.setHoras(projeto.getHoras());
+			projeto.setDataInicio(projeto.getDataInicio());
+			projeto.setStatus(projeto.getStatus());
+			/*projeto.setDataFim(projeto.getDataFim());*/
+		
+			projeto = projetoService.atualizarProjeto(projeto);
+			
+			model.addAttribute("projeto", projeto);
+			
+			System.out.println("updated");
+			
+			return "redirect: projetos";
+			
+		}else {
+			return "Projetos";
+		}
+	}
+
+	
+/*	@RequestMapping("/detalheProjeto")
 	public String detalheProjeto(@Valid Projeto projeto, Model model) {
 		projeto = projetoService.buscarProjeto(projeto.getId());
 		model.addAttribute("projeto", projeto);
 		return "DetalheProjeto";
+	}*/
+	
+	@RequestMapping("/detalheProjeto")
+	public String detalheProjeto(Model model, HttpSession session, int id) {
+		Projeto projeto = projetoService.buscarProjeto(id);		
+		model.addAttribute("projeto", projeto);
+		return "EditarProjeto";	
 	}
 }

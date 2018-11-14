@@ -23,7 +23,7 @@ public class ProjetoService {
 	}
 	
 	@Transactional
-	public Projeto atualizar(Projeto projeto) {
+	public Projeto atualizarProjeto(Projeto projeto) {
 		return dao.atualizar(projeto);
 	}
 	

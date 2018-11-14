@@ -37,16 +37,26 @@
 							<c:forEach var="projeto" items="${lista}">
 								<div class="mat-card-kit">
 									<h2 class=" text-center text-gray text-bold pdd-15-lg-t pdd-15-md-b">${projeto.descricao}</h2>
+									
 									<div class="line-gray"></div>	
 									<div class=" row row-card mat-card-kit">
-										<h5 class="mat-card-kit-title text-gray text-bold">Status do Projeto:<span class="text-warning">${projeto.status}</span></h5>
+										<div class="row row-card">
+											<div class="col-md-6 col-lg-6">
+												<h5 class="text-gray text-bold">Status do Projeto: <span class="text-warning">${projeto.status}</span></h5>
+											</div>
+											<div class="col-md-6 col-lg-6">
+												<h5 class="text-right text-gray text-bold"><a class="text-gray" href="detalheProjeto?id=${projeto.id}">Editar projeto</a></h5>
+											</div>
+										</div>
+										
+										
 										<div class="line-gray"></div>	
 										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
 											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 </span> </h5>
 											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 0 </span> </h5> 
 										</div>
 										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
-											<h5 class="mat-card-kit-title text-gray text-bold">Tempo gasto no projeto: <span class="text-gray"> ${projeto.horas}h </span> </h5> 
+											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de horas previstas no projeto: <span class="text-gray"> ${projeto.horas}h </span> </h5> 
 											<a href="novaDemanda?idProjeto=${projeto.id}">
 												<button type="button" class=" btn btn-sm btn-primary text-white btn-block">Adicionar nova demanda</button>
 											</a>
@@ -121,12 +131,13 @@
 								<h3 class=" text-center text-gray text-bold pdd-15-xs-t pdd-15-xxs-t ">${projeto.descricao}</h3>
 								<div class="line-gray"></div>	
 								<div class=" row row-card mat-card-kit">
-									<h5 class="mat-card-kit-title text-gray text-bold">Status do Projeto:<span class="text-success">completo</span></h5>
+									<h5 class="mat-card-kit-title text-gray text-bold">Status do Projeto:<span class="text-warning">${projeto.status}</span></h5>
+									<h5 class="mat-card-kit-title text-left text-gray text-bold"><a class="text-gray" href="detalheProjeto?id=${projeto.id}">Editar projeto</a></h5>
 									<div class="line-gray"></div>	
 									<div class="col-xs-12 col-xxs-12 pdd-10-xs-b pdd-10-xxs-b">
 										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 58 </span> </h5>
 										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 4 </span> </h5> 
-										<h5 class="mat-card-kit-title text-gray text-bold pdd-15-xs-b pdd-15-xxs-b">Tempo gasto no projeto: <span class="text-gray">
+										<h5 class="mat-card-kit-title text-gray text-bold pdd-15-xs-b pdd-15-xxs-b">Quantidade de horas previstas no projeto: <span class="text-gray">
 											${projeto.horas}h</span> </h5>
 										
 									</div>

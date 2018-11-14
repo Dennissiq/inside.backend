@@ -34,6 +34,10 @@ public class ProjetoDAO {
 		return manager.createQuery("select p from tb_projeto p").getResultList();
 	}
 	
+/*	public Projeto tarefasRealizadas(int id) {
+		return manager.createQuery("select count(status) from tb_demanda where status = 'finalizado' group by id_projeto").getSingleResult();
+	}*/
+	
 	@SuppressWarnings("unchecked")
 	public List<Projeto> listarProjetos(String chave){
 		String jpql = "select p from tb_projeto p where p.nome like :chave";
