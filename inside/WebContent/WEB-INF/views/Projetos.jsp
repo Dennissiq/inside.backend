@@ -40,6 +40,9 @@
 									<div class="line-gray"></div>	
 									<div class=" row row-card mat-card-kit">
 										<h5 class="mat-card-kit-title text-gray text-bold">Status do Projeto:<span class="text-warning">${projeto.status}</span></h5>
+										<a id="btn-cronograma" href="cronograma?idProjeto=${projeto.id}">
+											<span class='text-gray bold'><i class="fas fa-calendar fa-1x"></i> Cronograma</span>											
+										</a>
 										<div class="line-gray"></div>	
 										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
 											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 </span> </h5>

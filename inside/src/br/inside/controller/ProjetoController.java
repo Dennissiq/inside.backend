@@ -59,9 +59,9 @@ public class ProjetoController {
 			
 			projeto.setUser((User)session.getAttribute("usuario"));
 			projeto = projetoService.criar(projeto);
-			model.addAttribute("projeto", projeto);
+			//model.addAttribute("projeto", projeto);
 			
-			return this.projetosView(null, session, null);
+			return "redirect: projetos";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	

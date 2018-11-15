@@ -55,9 +55,7 @@
                 <div class="col-md-7 col-lg-7">
                   <textarea type="text" name='detalhes' required class="form-control text-dark"></textarea>
                 </div>
-              </div>
-                          
-              <input type="hidden" name='duracao' value='0' class="form-control text-primary">
+              </div>       
                           
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
                 <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">

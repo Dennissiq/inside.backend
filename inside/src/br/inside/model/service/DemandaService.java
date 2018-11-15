@@ -82,6 +82,14 @@ public class DemandaService {
 		return dao.listarDemandasPorAnalista(funcionario);
 	}
 	
+	public List<Demanda> listarDemandasPorAnalista(Funcionario funcionario, String status){
+		return dao.listarDemandasPorAnalista(funcionario, status);
+	}
+	
+	public List<Demanda> listarDemandasAtivasPorAnalista(Funcionario funcionario){
+		return dao.listarDemandasAtivasPorAnalista(funcionario);
+	}
+	
 	public boolean validPeriod(Demanda demanda) {
 		List<Demanda> demandas = dao.listarDemandasNoPeriodoSolicitado(demanda); 
 		
