@@ -32,4 +32,9 @@ public class UserService {
 	public User inserir(User user) {
 		return dao.inserir(user);
 	}
+	
+	@Transactional
+	public User atualizarUsuario(User user) {
+		return dao.atualizarUsuario(user);
+	}
 }

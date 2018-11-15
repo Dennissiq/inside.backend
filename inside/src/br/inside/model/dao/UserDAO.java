@@ -29,4 +29,7 @@ public class UserDAO {
 		manager.persist(user);
 		return user;
 	}
+	public User atualizarUsuario(User user) {
+		return manager.merge(user);
+	}
 }
