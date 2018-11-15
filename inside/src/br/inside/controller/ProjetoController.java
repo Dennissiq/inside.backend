@@ -71,24 +71,9 @@ public class ProjetoController {
 		
 		return "CadastroProjeto";
 	}
-	
-/*	@RequestMapping("/atualizarProjeto")
-	public String atualizarProjeto(@Valid Projeto projeto, Model model, HttpSession session) {
-		projeto = projetoService.atualizarProjeto(projeto);
-		model.addAttribute("projeto", projeto);
 		
-		return "DetalheProjeto";
-	}*/
-	
 	@RequestMapping("/atualizar_projeto")
 	public String atualizarProjeto(@Valid Projeto projeto, BindingResult erros, Model model, HttpSession session) throws IOException{
-		
-		
-	/*		try {
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}*/
 		
 		if(!erros.hasErrors()) {
 			
@@ -115,14 +100,6 @@ public class ProjetoController {
 			return "Projetos";
 		}
 	}
-
-	
-/*	@RequestMapping("/detalheProjeto")
-	public String detalheProjeto(@Valid Projeto projeto, Model model) {
-		projeto = projetoService.buscarProjeto(projeto.getId());
-		model.addAttribute("projeto", projeto);
-		return "DetalheProjeto";
-	}*/
 	
 	@RequestMapping("/detalheProjeto")
 	public String detalheProjeto(Model model, HttpSession session, int id) {

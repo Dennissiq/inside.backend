@@ -38,4 +38,12 @@ public class ProjetoService {
 	public List<Projeto> listarProjetos(String chave){
 		return dao.listarProjetos(chave);
 	}
+	
+/*	public Projeto tarefasRealizadas(int id_projeto) {
+		return dao.tarefasRealizadas(id_projeto);
+	}
+	
+	public Projeto funcionarioPorProjeto(int id_projeto) {
+		return dao.funcionarioPorProjeto(id_projeto);
+	}*/
 }
