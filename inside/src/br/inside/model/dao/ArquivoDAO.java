@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.inside.model.entity.Arquivo;
-import br.inside.model.entity.Arquivo;
 import br.inside.model.entity.Demanda;
 
 @Repository

@@ -55,9 +55,7 @@
                 <div class="col-md-7 col-lg-7">
                   <textarea type="text" name='detalhes' required class="form-control text-dark"></textarea>
                 </div>
-              </div>
-                          
-              <input type="hidden" name='duracao' value='0' class="form-control text-primary">
+              </div>       
                           
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
                 <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
@@ -123,20 +121,14 @@
 
 <!-- MOBILE -->
 <div class="invisible-md invisible-xlg invisible-lg" style="overflow-x: hidden;">
-<!--     <div class="row ">
-      <div class="col-xs-offset-1 col-xxs-offset-1 col-xs-11 col-xxs-offset-11 container-fluid">
-        <h3 id="menu-toggle">Menu</h3>
-        <ul id="mainMenu">
-          <li><a href="projetos.html" style="color: #848484 !important;"><h4>Projetos</h4> </a>
-          </li>
-          <li><a href="cadastroProjeto.html" style="color: #848484 !important;"> <h4>Cadastrar novo projeto</h4></a></li>
-          <li><a href="analistas.html" style="color: #848484 !important;"> <h4>Analistas</h4></a></li>
-          <li><a href="desempenhoAdmin.html" style="color: #848484 !important;"> <h4>Desempenho</h4></a></li>
-          <li><a href="index.html" style="color: #848484 !important;"> <h4>Sair</h4></a></li>
-        </ul>
-      </div>
-    </div> -->
-
+    	<c:choose>
+			<c:when test="${usuario.perfil.nome == 'Administrador'}">
+				<c:import url="importViews/MenuAdminMobile.jsp"></c:import>
+			</c:when>
+			<c:when test="${usuario.perfil.nome == 'Analista'}">
+				<c:import url="importViews/MenuAnalistaMobile.jsp"></c:import>
+			</c:when>
+		</c:choose>
     <div class="container pdd-30-xs-b pdd-30-xxs-b">
     
       <div class="row">

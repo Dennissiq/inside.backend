@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `pi_6_inside_2` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `pi_6_inside_2`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: pi_6_inside_2
@@ -198,7 +200,7 @@ CREATE TABLE `tb_funcionario` (
   CONSTRAINT `FK_TB_USUARIO_TB_CARGO_FUNC1` FOREIGN KEY (`ID_CARGO_FUNC`) REFERENCES `tb_cargo_func` (`ID_CARGO_FUNC`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FKe6br5on4uhp7j7hctb6igyvkk` FOREIGN KEY (`ID_CARGO_FUNC`) REFERENCES `tb_cargo_func` (`ID_CARGO_FUNC`),
   CONSTRAINT `FKqiymbt0btd7ra5ney5efstjnu` FOREIGN KEY (`LOGIN`) REFERENCES `tb_usuario` (`LOGIN`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,4 +395,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-07 19:26:00
+-- Dump completed on 2018-11-07 19:44:44

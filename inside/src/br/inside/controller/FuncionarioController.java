@@ -146,9 +146,12 @@ public class FuncionarioController {
 	@RequestMapping("/alterarDados")
 	public String atualizar(Funcionario funcionario, Model model, HttpSession session) {
 		try {
+			
 			Funcionario f = (Funcionario) session.getAttribute("funcionario");
+			System.out.println("FUNC: " + f.toString());
+			
 			funcionario.setCargo((f.getCargo()));
-			funcionario.setUser((f.getUser()));
+			funcionario.setUser((userService.atualizarUsuario(f.getUser())));			
 			funcionario = funcionarioService.atualizarFuncionario(funcionario);
 			model.addAttribute("funcionario", funcionario);
 			return "EditarPerfil";

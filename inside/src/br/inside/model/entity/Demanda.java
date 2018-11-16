@@ -44,7 +44,6 @@ public class Demanda {
 	@NotNull
 	private String detalhes;
 	
-	@NotNull	
 	private Timestamp duracao;
 		
 	private String status;

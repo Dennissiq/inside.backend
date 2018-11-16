@@ -51,9 +51,7 @@
                 <div class="row row-card">
                   <div class="col-lg-12 col-md-12">                    
                       <form action="alterarDados" method="POST" class="form-inline">
-                      	<input type='hidden' name='id' value="${funcionario.idFuncionario}">
-                      	<input type='hidden' name='=cargo.id' value="${funcionario.cargo.id}">
-                      	<input type='hidden' name='=user.login' value="${funcionario.user.login}">
+                      	<input type='hidden' name='idFuncionario' value="${funcionario.idFuncionario}">
                         <div class="row">
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
                             <div class="col-lg-3 col-md-3">

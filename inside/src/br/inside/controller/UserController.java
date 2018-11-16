@@ -32,7 +32,8 @@ public class UserController {
 	
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpSession session) {
-		session.invalidate();		
+		session.removeAttribute("error");	
+		session.invalidate();			
 		return "index";
 	}
 	
@@ -40,15 +41,17 @@ public class UserController {
 	public String login(@Valid User user, BindingResult erros, Model model, HttpSession session) throws IOException {
 		User userLogged = userService.login(user);
 		
-		if(userLogged != null){
+		if(userLogged != null){			
 			session.setAttribute("usuario", userLogged);
-			if(userLogged.getPerfil().getNome().equals("Administrador")) { //retornar o proprio perfil que sera o nome da sua 'index'; mudar o nome das jps				
+			
+			if(userLogged.getPerfil().getNome().equals("Administrador")) { //retornar o proprio perfil que sera o nome da sua 'index'; mudar o nome das jps												
+				session.setAttribute("funcionario", "");
 				return "redirect: projetos";
 			}
 			else {
 				Funcionario funcionario = funcionarioService.buscarFuncionario(userLogged);				
 				session.setAttribute("funcionario", funcionario);
-				return "redirect: demandas";
+				return "redirect: agenda";
 			}				
 		}else {			
 			model.addAttribute("error", "Login e/ou Senha inválidos.");

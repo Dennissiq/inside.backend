@@ -65,6 +65,10 @@ public class Projeto {
 	@OneToMany(mappedBy = "projeto", fetch = FetchType.EAGER)
 	private List<Demanda> demandas;
 	
+	private int tarefasRealizadas;
+	
+	private int funcionariosPorProjeto;
+	
 	public List<Demanda> getDemandas() {
 		return demandas;
 	}
@@ -160,4 +164,21 @@ public class Projeto {
 				+ ", atividade=" + atividade + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", horas="
 				+ horas + ", user=" + user + ", status=" + status + "]";
 	}
+
+	public int getTarefasRealizadas() {
+		return tarefasRealizadas;
+	}
+
+	public void setTarefasRealizadas(int tarefasRealizadas) {
+		this.tarefasRealizadas = tarefasRealizadas;
+	}
+
+	public int getFuncionariosPorProjeto() {
+		return funcionariosPorProjeto;
+	}
+
+	public void setFuncionariosPorProjeto(int funcionariosPorProjeto) {
+		this.funcionariosPorProjeto = funcionariosPorProjeto;
+	}
+
 }
