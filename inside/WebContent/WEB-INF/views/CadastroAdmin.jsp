@@ -41,7 +41,7 @@
                 <div class="line-gray"></div>
                 <div class="row row-card">
                   <div class="col-lg-12 col-md-12">                    
-                      <form action="cadastrar_analista" method="POST" class="form-inline">
+                      <form action="cadastrar_admin" method="POST" class="form-inline">
                         <div class="row">
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
                             <div class="col-lg-3 col-md-3">

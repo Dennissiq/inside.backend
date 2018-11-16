@@ -101,7 +101,7 @@ public class FuncionarioController {
 				user.setPerfil(p);
 				
 				Cargo c = new Cargo();
-				c.setId(2);
+				c.setId(1);
 				c.setDescricao(funcionario.getEspecialidade());
 				
 				funcionario.setCargo(c);
@@ -113,7 +113,7 @@ public class FuncionarioController {
 				SendMail sm = new SendMail("smtp.gmail.com","465");
 				sm.sendMail("auth.insidecompany@gmail.com",funcionario.getEmail(),"Olá "+ funcionario.getNome() +", está pronto para um novo desafio?", funcionario.getNome() + ", seu acesso à plataforma já está disponível!\nSeu usuário é: " + funcionario.getEmail() + "\nSua senha de acesso é: " + user.getSenha());
 				
-				return listarFuncionarios(session, model);
+				return "Projetos";
 				
 			}else {
 				return "CadastroAdmin";
