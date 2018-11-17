@@ -79,8 +79,7 @@ public class ProjetoController {
 			
 			Cliente c = new Cliente();
 			c.setId(2);
-			projeto.setCliente(c);
-						
+			projeto.setCliente(c);		
 			projeto.setUser((User)session.getAttribute("usuario"));
 			projeto.setDescricao(projeto.getDescricao());
 			projeto.setHoras(projeto.getHoras());

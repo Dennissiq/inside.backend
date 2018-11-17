@@ -84,7 +84,7 @@
                               <h5 for="email" class="text-gray">E-mail</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="text" name="email" id="email" class="form-control"  value="${funcionario.email}">
+                              <input type="text" name="email" id="email" class="form-control" readonly="readonly" value="${funcionario.email}">
                             </div>
                           </div>                                               
                         </div>
@@ -102,7 +102,7 @@
                               <h5 class="text-gray">Senha</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="password" name="user.senha" value="${user.senha} id="senha" class="form-control">
+                              <input type="password" name="user.senha" value="${funcionario.user.senha}" id="senha" class="form-control">
                             </div>
                           </div>                                             
                         </div>
@@ -221,7 +221,7 @@
                               <h5 class="text-gray">Senha</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="text" name="senha" class="form-control" value="${funcionario.especialidade }">
+                              <input type="password" name="user.senha" value="${funcionario.user.senha}" id="senha" class="form-control">
                             </div>
                      </div> 
                   </div>

@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.inside.model.entity.Cargo;
+import br.inside.model.entity.Cliente;
 import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.Perfil;
 import br.inside.model.entity.SendMail;
@@ -164,10 +165,17 @@ public class FuncionarioController {
 	public String atualizar(Funcionario funcionario, Model model, HttpSession session) {
 		try {
 			
+			Cargo c = new Cargo();
+			c.setId(2);
+			funcionario.setCargo(c);
+			funcionario.getUser().setSenha(funcionario.getUser().getSenha());
+		
 			Funcionario f = (Funcionario) session.getAttribute("funcionario");
+			funcionario.getUser().setPerfil(f.getUser().getPerfil());
+			funcionario.getUser().setLogin(f.getUser().getLogin());
 			System.out.println("FUNC: " + f.toString());
-			userService.atualizarUsuario(funcionario.getUser());			
-			funcionario.setCargo((f.getCargo()));
+			
+			userService.atualizarUsuario(funcionario.getUser());
 			funcionario = funcionarioService.atualizarFuncionario(funcionario);			
 			model.addAttribute("funcionario", funcionario);
 			
