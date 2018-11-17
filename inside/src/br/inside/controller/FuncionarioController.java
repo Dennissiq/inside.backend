@@ -142,6 +142,23 @@ public class FuncionarioController {
 			return "Erro";
 		}		
 	}
+	@RequestMapping("/listar_admin")
+	public String listarAdmin(HttpSession session, Model model) {
+		try {
+			
+			List<Funcionario> lista;
+			lista = funcionarioService.listarFuncionarios();
+			
+			session.setAttribute("lista", lista);
+			return "Admin";
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+		}		
+	}
+	
 	
 	@RequestMapping("/alterarDados")
 	public String atualizar(Funcionario funcionario, Model model, HttpSession session) {
