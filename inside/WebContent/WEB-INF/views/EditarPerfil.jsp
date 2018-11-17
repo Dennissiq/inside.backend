@@ -102,7 +102,7 @@
                               <h5 class="text-gray">Senha</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="password" name="funcionario.user.senha" value="${funcionario.user.senha} id="senha" class="form-control">
+                              <input type="password" name="user.senha" value="${user.senha} id="senha" class="form-control">
                             </div>
                           </div>                                             
                         </div>

@@ -105,11 +105,11 @@ public class FuncionarioController {
 			
 			Funcionario f = (Funcionario) session.getAttribute("funcionario");
 			System.out.println("FUNC: " + f.toString());
-			
+			userService.atualizarUsuario(funcionario.getUser());			
 			funcionario.setCargo((f.getCargo()));
-			funcionario.setUser((userService.atualizarUsuario(f.getUser())));			
-			funcionario = funcionarioService.atualizarFuncionario(funcionario);
+			funcionario = funcionarioService.atualizarFuncionario(funcionario);			
 			model.addAttribute("funcionario", funcionario);
+			
 			return "EditarPerfil";
 		} catch (IOException e) {
 			e.printStackTrace();
