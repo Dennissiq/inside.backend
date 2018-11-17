@@ -84,7 +84,7 @@
 
 			<div class="container-fluid">	
 				<div class="col-lg-11 col-md-11 ">
-					<h6 class="text-gray pull-right text-bold"> <a href="index.html"> <i class="fa fa-sign-out"></i> sair</a></h6>
+					<h6 class="text-gray pull-right text-bold"> <a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
 				</div>
 			</div>
 	
@@ -102,7 +102,7 @@
 									
 							</div>
 							<div class="col-md-2 col-lg-2 col-lg-offset-1 pdd-15-lg-t pdd-15-lg-b col-md-offset-1 pdd-15-md-t pdd-15-md-b" >
-							 	<a href="novo_analista" class='text-primary pdd-15-md-b '>
+							 	<a href="novo_admin" class='text-primary pdd-15-md-b '>
 									<i class="fas fa-user-plus fa-2x text-primary text-center" ></i>
 								</a>
 							</div>
@@ -114,10 +114,10 @@
 									<table class="table table-hover table-card">
 										<thead>
 											<tr>
-												<th class="legenda text-gray">Analista</th>
+												<th class="legenda text-gray">Nome</th>
 												<th class="legenda text-gray">Especialista</th>
 												<th class="legenda text-gray">Local</th>
-												<th class="legenda text-gray">Status</th>
+												<!-- <th class="legenda text-gray">Status</th> -->
 											<!-- 	<th class="legenda text-gray"></th> -->
 											</tr>
 										</thead>
@@ -127,7 +127,7 @@
 												<td class="text-bold">${funcionario.nome }</td>
 												<td class="text-bold">${funcionario.especialidade }</td>
 												<td class="text-bold">${funcionario.localizacao}</td>
-												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Disponível </td>
+												<!-- <td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Disponível </td> -->
 												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
 											</tr>
 										</c:forEach>
@@ -180,12 +180,12 @@
 				<div class="container-fluid pdd-30-lg-b pdd-30-md-b">
 			
 					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
-						<h2 class="text-primary text-bold text-bold">Analistas</h2>
+						<h2 class="text-primary text-bold text-bold">Administradores</h2>
 			
 						<div class="mat-card-kit">
 							<div class="row">
 								<div class="col-xs-9 col-xxs-9">
-									<h3 class=" text-center text-gray text-bold  pdd-15-md-b pdd-10-xxs-t pdd-10-xs-t">Projeto vs Analista</h3>
+									<h3 class=" text-center text-gray text-bold  pdd-15-md-b pdd-10-xxs-t pdd-10-xs-t">Administradores</h3>
 			
 								</div>
 								<div class="col-xs-2 col-xxs-2  pdd-15-xxs-t pdd-15-xxs-b  pdd-30-xs-t pdd-15-xs-b">
@@ -201,10 +201,10 @@
 									<table class="table table-hover table-card">
 										<thead>
 											<tr>
-												<th class="legenda text-gray">Analista</th>
+												<th class="legenda text-gray">Nome</th>
 												<th class="legenda text-gray">Especialista</th>
 												<th class="legenda text-gray">Local</th>
-												<th class="legenda text-gray">Status</th>
+												<!-- <th class="legenda text-gray">Status</th> -->
 												<th class="legenda text-gray"></th>
 											</tr>
 										</thead>

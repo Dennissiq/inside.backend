@@ -131,7 +131,7 @@ public class FuncionarioController {
 		try {
 			
 			List<Funcionario> lista;
-			lista = funcionarioService.listarFuncionarios();
+			lista = funcionarioService.listarFuncionarios(2);
 			
 			session.setAttribute("lista", lista);
 			return "Analistas";
@@ -147,7 +147,7 @@ public class FuncionarioController {
 		try {
 			
 			List<Funcionario> lista;
-			lista = funcionarioService.listarFuncionarios();
+			lista = funcionarioService.listarFuncionarios(1);
 			
 			session.setAttribute("lista", lista);
 			return "Admin";

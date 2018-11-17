@@ -43,10 +43,10 @@
 					class="fas fa-users text-white pdd-15-lg-r" aria-hidden="true"
 					style="display: inline"></i> Analistas
 			</a></li>
-			<li><a href="novo_admin" class="text-white"> <i
+<!-- 			<li><a href="novo_admin" class="text-white"> <i
 					class="fas fa-user-plus text-white pdd-15-lg-r" aria-hidden="true"
 					style="display: inline"></i> Cadastrar admin
-			</a></li>
+			</a></li> -->
 			<li>
 			<li><a href="listar_admin" class="text-white"> <i
 					class="fas fa-user-tie text-white pdd-15-lg-r" aria-hidden="true"

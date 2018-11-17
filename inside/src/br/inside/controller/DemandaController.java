@@ -70,7 +70,7 @@ public class DemandaController {
 	@RequestMapping("/novaDemanda")
 	public String novoDemandaForm(Model model, HttpSession session, int idProjeto) {			
 		try {
-			List<Funcionario> analistas = funcionarioService.listarFuncionarios();
+			List<Funcionario> analistas = funcionarioService.listarFuncionarios(2);
 			session.setAttribute("idProjeto", idProjeto);
 			model.addAttribute("analistas", analistas);
 			return "CadastroDemanda";
