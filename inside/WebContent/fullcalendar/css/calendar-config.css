@@ -1,0 +1,19 @@
+#calendar {
+	width: 900px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.fc-button {
+	background: none;
+    box-shadow: none;
+}
+
+.fc-event-container a {
+	padding: 6px;
+	border: none;
+}
+
+.fc-event, .fc-event-dot {
+    background-color: #28aba9;
+}

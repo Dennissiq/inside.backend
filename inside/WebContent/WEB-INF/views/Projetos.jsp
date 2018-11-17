@@ -44,11 +44,19 @@
 											<div class="col-md-6 col-lg-6">
 												<h5 class="text-gray text-bold">Status do Projeto: <span class="text-warning">${projeto.status}</span></h5>
 											</div>
-											<div class="col-md-6 col-lg-6">
-												<h5 class="text-right text-gray text-bold"><a class="text-gray" href="detalheProjeto?id=${projeto.id}">Editar projeto</a></h5>
+											<div class="col-md-6 col-lg-6">	
+												<div class="col-md-6 col-lg-6">
+													<a id="btn-cronograma" href="cronograma?idProjeto=${projeto.id}">
+														<span class='text-gray bold'><i class="fas fa-calendar fa-1x"></i> Cronograma</span>											
+													</a>
+												</div>											
+												<div class="col-md-6 col-lg-6">
+													<a class="text-gray" href="detalheProjeto?id=${projeto.id}">
+														<span class='text-gray bold'><i class="fas fa-edit fa-1x"></i> Editar projeto</span>
+													</a>
+												</div>												
 											</div>
 										</div>
-										
 										
 										<div class="line-gray"></div>	
 										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">

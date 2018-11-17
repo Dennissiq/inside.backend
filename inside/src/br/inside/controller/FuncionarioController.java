@@ -43,6 +43,11 @@ public class FuncionarioController {
 		return "CadastroAnalista";
 	}	
 	
+	@RequestMapping("/novo_admin")
+	public String novoAdmin(Model model, HttpSession session ) throws IOException{
+		return "CadastroAdmin";
+	}	
+	
 	@RequestMapping("/cadastrar_analista")
 	public String criarFuncionario(@Valid Funcionario funcionario, BindingResult erros, Model model, HttpSession session) throws IOException{
 		try {
@@ -82,12 +87,51 @@ public class FuncionarioController {
 		}
 	}
 	
+	@RequestMapping("/cadastrar_admin")
+	public String criarAdmin(@Valid Funcionario funcionario, BindingResult erros, Model model, HttpSession session) throws IOException{
+		try {
+			if(!erros.hasErrors()) {
+				Perfil p = new Perfil();				
+				p.setId(4);
+				p.setNome("Admin");
+				
+				User user = new User();
+				user.setLogin(funcionario.getEmail());
+				user.setSenha(((int)(Math.random() * ( 99999 - 11111 )) + 11111)+"" );
+				user.setPerfil(p);
+				
+				Cargo c = new Cargo();
+				c.setId(1);
+				c.setDescricao(funcionario.getEspecialidade());
+				
+				funcionario.setCargo(c);
+				funcionario.setUser(userService.inserir(user));
+				
+				funcionario = funcionarioService.inserirFuncionario(funcionario);
+				model.addAttribute("funcionario", funcionario);
+				
+				SendMail sm = new SendMail("smtp.gmail.com","465");
+				sm.sendMail("auth.insidecompany@gmail.com",funcionario.getEmail(),"Olá "+ funcionario.getNome() +", está pronto para um novo desafio?", funcionario.getNome() + ", seu acesso à plataforma já está disponível!\nSeu usuário é: " + funcionario.getEmail() + "\nSua senha de acesso é: " + user.getSenha());
+				
+				return "Admin";
+				
+			}else {
+				return "CadastroAdmin";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+			
+		}
+	}
+	
 	@RequestMapping("/listar_analistas")
 	public String listarFuncionarios(HttpSession session, Model model) {
 		try {
 			
 			List<Funcionario> lista;
-			lista = funcionarioService.listarFuncionarios();
+			lista = funcionarioService.listarFuncionarios(2);
 			
 			session.setAttribute("lista", lista);
 			return "Analistas";
@@ -98,6 +142,23 @@ public class FuncionarioController {
 			return "Erro";
 		}		
 	}
+	@RequestMapping("/listar_admin")
+	public String listarAdmin(HttpSession session, Model model) {
+		try {
+			
+			List<Funcionario> lista;
+			lista = funcionarioService.listarFuncionarios(1);
+			
+			session.setAttribute("lista", lista);
+			return "Admin";
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+		}		
+	}
+	
 	
 	@RequestMapping("/alterarDados")
 	public String atualizar(Funcionario funcionario, Model model, HttpSession session) {

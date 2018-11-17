@@ -46,8 +46,8 @@ public class FuncionarioService {
 		return dao.atualizarFuncionario(funcionario);
 	}
 	
-	public List<Funcionario> listarFuncionarios() throws IOException{
-		return dao.listarFuncionarios();
+	public List<Funcionario> listarFuncionarios(int idCargo) throws IOException{
+		return dao.listarFuncionarios(idCargo);
 	}
 	
 }

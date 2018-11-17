@@ -17,9 +17,9 @@ import br.inside.model.service.ClienteService;
 
 @Controller
 public class ClienteController {
+	
 	@Autowired
 	private ClienteService cService;
-	
 	
 	@RequestMapping("/novo_cliente")
 	public String novo(Model model, HttpSession session ) throws IOException{

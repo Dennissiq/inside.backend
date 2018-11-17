@@ -15,6 +15,7 @@ import br.inside.model.entity.Projeto;
 
 @Service
 public class ProducaoService {
+	
 	@Autowired
 	private ProducaoDAO dao;
 	
