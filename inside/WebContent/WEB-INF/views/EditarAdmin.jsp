@@ -12,7 +12,7 @@
 <div class="invisible-xs invisible-xxs">
   <div id="wrapper" class="toggled">
  	<!-- Sidebar-->
-	<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+	<c:import url="importViews/SidebarAdmin.jsp"></c:import>
 
 
         <div class="pdd-15-lg-t pdd-15-md-t">
@@ -54,13 +54,13 @@
                       	<input type='hidden' name='idFuncionario' value="${funcionario.idFuncionario}">
                         <div class="row">
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
-                           <!--  <div class="col-lg-3 col-md-3">
+                           <div class="col-lg-3 col-md-3">
                               <h5 for="nome" class="text-gray">Nome</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
                               <input type="text" name="nome" id="nome" class="form-control"  readonly="readonly" value="${funcionario.nome }">
                             </div>
-                          </div> -->
+                          </div>
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t">
                             <div class="col-lg-3 col-md-3">
                               <h5 for="localizacao" class="text-gray">Local</h5>
