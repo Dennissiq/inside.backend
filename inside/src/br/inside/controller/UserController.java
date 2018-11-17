@@ -63,4 +63,9 @@ public class UserController {
 	public String perfilForm(Model model, HttpSession session) {
 		return "EditarPerfil";
 	}
+	
+	@RequestMapping("/perfil_admin")
+	public String perfilAdmin(Model model, HttpSession session) {
+		return "EditarAdmin";
+	}
 }
