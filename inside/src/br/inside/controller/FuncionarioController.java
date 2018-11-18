@@ -93,8 +93,7 @@ public class FuncionarioController {
 		try {
 			if(!erros.hasErrors()) {
 				Perfil p = new Perfil();				
-				p.setId(4);
-				p.setNome("Admin");
+				p.setId(3);
 				
 				User user = new User();
 				user.setLogin(funcionario.getEmail());
@@ -102,8 +101,7 @@ public class FuncionarioController {
 				user.setPerfil(p);
 				
 				Cargo c = new Cargo();
-				c.setId(1);
-				c.setDescricao(funcionario.getEspecialidade());
+				c.setId(3);
 				
 				funcionario.setCargo(c);
 				funcionario.setUser(userService.inserir(user));
@@ -143,12 +141,12 @@ public class FuncionarioController {
 			return "Erro";
 		}		
 	}
-	@RequestMapping("/listar_admin")
+	@RequestMapping("/listar_gestores")
 	public String listarAdmin(HttpSession session, Model model) {
 		try {
 			
 			List<Funcionario> lista;
-			lista = funcionarioService.listarFuncionarios(1);
+			lista = funcionarioService.listarFuncionarios(3);
 			
 			session.setAttribute("lista", lista);
 			return "Admin";
@@ -163,8 +161,7 @@ public class FuncionarioController {
 	
 	@RequestMapping("/alterarDados")
 	public String atualizar(Funcionario funcionario, Model model, HttpSession session) {
-		try {
-			
+		try {			
 			Cargo c = new Cargo();
 			c.setId(2);
 			funcionario.setCargo(c);
@@ -173,7 +170,6 @@ public class FuncionarioController {
 			Funcionario f = (Funcionario) session.getAttribute("funcionario");
 			funcionario.getUser().setPerfil(f.getUser().getPerfil());
 			funcionario.getUser().setLogin(f.getUser().getLogin());
-			System.out.println("FUNC: " + f.toString());
 			
 			userService.atualizarUsuario(funcionario.getUser());
 			funcionario = funcionarioService.atualizarFuncionario(funcionario);			

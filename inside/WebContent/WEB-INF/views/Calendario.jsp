@@ -1,9 +1,8 @@
-<%@ page language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -48,12 +47,9 @@
 			</div>
 		</div>
 		<div id="right">
+			<input type="hidden" name="perfil" id="perfil" value="${usuario.perfil.nome}">
 			<c:if test="${projeto != null}">
 				<input type="hidden" name="idProjeto" id="idProjeto" value="${projeto.id}">
-			</c:if>
-			
-			<c:if test="${funcionario == ''}">
-				<input type="hidden" name="idFuncionario" id="idFuncionario" value="">
 			</c:if>
 			<c:if test="${funcionario != ''}">
 				<input type="hidden" name="idFuncionario" id="idFuncionario" value="${funcionario.idFuncionario}">
@@ -64,12 +60,14 @@
 	</div>
   </div>
 	
-	<script src='fullcalendar/lib/moment.min.js'></script>
 	<script src='fullcalendar/lib/jquery.min.js'></script>	
+	<script src='fullcalendar/lib/moment.min.js'></script>
 	<script src='fullcalendar/js/theme-chooser.js'></script>
 	<script src='fullcalendar/js/fullcalendar.min.js'></script>
-	<script src='fullcalendar/js/locale-all.js'></script>
+	<script src='fullcalendar/js/pt-br.js'></script>
 	
+	<!-- <script src='fullcalendar/js/locale-all.js'></script> -->
+
  	<script src='fullcalendar/js/calendar-config.js'></script>	  
 </body>
 </html>

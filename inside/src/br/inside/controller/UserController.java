@@ -41,11 +41,14 @@ public class UserController {
 	public String login(@Valid User user, BindingResult erros, Model model, HttpSession session) throws IOException {
 		User userLogged = userService.login(user);
 		
+		System.out.println(userLogged);
 		if(userLogged != null){			
 			session.setAttribute("usuario", userLogged);
 			
 			if(userLogged.getPerfil().getNome().equals("Administrador")) { //retornar o proprio perfil que sera o nome da sua 'index'; mudar o nome das jps												
-				session.setAttribute("funcionario", "");
+				Funcionario funcionario = funcionarioService.buscarFuncionario(userLogged);
+				System.out.println(funcionario);
+				session.setAttribute("funcionario", funcionario);
 				return "redirect: projetos";
 			}
 			else {

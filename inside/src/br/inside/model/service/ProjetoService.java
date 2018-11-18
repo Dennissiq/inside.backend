@@ -39,11 +39,11 @@ public class ProjetoService {
 		return dao.listarProjetos(chave);
 	}
 	
-/*	public Projeto tarefasRealizadas(int id_projeto) {
+	public int tarefasRealizadas(int id_projeto) {
 		return dao.tarefasRealizadas(id_projeto);
 	}
 	
-	public Projeto funcionarioPorProjeto(int id_projeto) {
+	/*public int funcionarioPorProjeto(int id_projeto) {
 		return dao.funcionarioPorProjeto(id_projeto);
 	}*/
 }

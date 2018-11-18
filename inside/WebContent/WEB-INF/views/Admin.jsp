@@ -9,64 +9,20 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title text-gray text-bold" id="editarTitle">Detalhes do Administrador</h4>
+						<h4 class="modal-title text-gray text-bold" id="editarTitle">Detalhes do Gestor</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="line-gray"></div>
-					<div class="row">
-						<div class="col-md-4 col-lg-4 col-xs-4 col-xxs-4 pdd-15-lg-b pdd-30-lg-t pdd-30-md-t pdd-15-md-b pdd-15-xxs-b pdd-30-xxs-t pdd-30-xs-t pdd-15-xs-b col-lg-offset-1 col-xs-offset-1 col-xxs-offset-1 col-md-offset-1">
-							<img src="./images/perfil.jpg" class="img-responsive img-circle" alt="">
-						</div>
-						<div class="col-md-7 col-lg-7 pdd-15-lg-b pdd-30-lg-t pdd-30-md-t pdd-15-md-b pdd-15-xxs-b pdd-30-xxs-t pdd-30-xs-t pdd-15-xs-b">
+					<div class="row modal-header-info">		
+						<div class="col-md-12 col-lg-12 pdd-15-lg-b pdd-30-lg-t pdd-30-md-t pdd-15-md-b pdd-15-xxs-b pdd-30-xxs-t pdd-30-xs-t pdd-15-xs-b">
 							<div class="col-md-12 col-lg-12 ">
-								<h4 class="text-gray ">Fernando Pessoa </h4>
+								<h4 class="text-gray" id="modal-nome">Fernando Pessoa </h4>
 							</div>
-			 
-						
-						</div>
-					</div>
-		
-					<div class="modal-body ">
-						<div class="container-fluid table-card">
-							<div class="pdd-15-md-t pdd-15-lg-t">
-								<table class="table table-hover table-card">
-									<thead>
-										<tr>
-											<th class="text-gray text-left">Projeto</th>
-											<th class="text-gray ">Demanda</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Atualizar SDKs</td>
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo </td>
-											<td>Novo Design Pattern do Projeto</td>
-		
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Atualizar SDKs</td>
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Atualizar SDKs</td>
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Novo Design Pattern do Projeto</td>
-		
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Atualizar SDKs</td>
-										</tr>
-									</tbody>
-								</table>
+							<div class="col-md-12 col-lg-12">
+								<h5 class="text-danger" id="modal-email">fernando.pessoa@gmail.com</h5>
+								<h5 class="text-gray" id="modal-especialidade">Analista Jr</h5>
 							</div>
 						</div>
 					</div>
@@ -93,12 +49,12 @@
 				<div class="container-fluid pdd-30-lg-b pdd-30-md-b">
 
 					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
-						<h1 class="text-primary text-bold text-bold">Administradores</h1>
+						<h1 class="text-primary text-bold text-bold">Funcionários</h1>
 						
 						<div class="mat-card-kit">
 							<div class="row">
 								<div class="col-md-6 col-lg-6 col-lg-offset-3 col-md-offset-3" >
-									<h2 class=" text-center text-gray text-bold  pdd-15-md-b">Administradores</h2>
+									<h2 class=" text-center text-gray text-bold  pdd-15-md-b">Gestores</h2>
 									
 							</div>
 							<div class="col-md-2 col-lg-2 col-lg-offset-1 pdd-15-lg-t pdd-15-lg-b col-md-offset-1 pdd-15-md-t pdd-15-md-b" >

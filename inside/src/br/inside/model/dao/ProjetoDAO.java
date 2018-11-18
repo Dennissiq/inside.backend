@@ -46,17 +46,19 @@ public class ProjetoDAO {
 		return result;
 	}
 	
-/*	public Projeto tarefasRealizadas(int id_projeto) {
-		String jpql = "select t count(t.status) from tb_demanda t where t.status = 'finalizado' group by :id_projeto";
+	public int tarefasRealizadas(int id_projeto) {
+		String jpql = "select count(d) from tb_demanda d where d.status = 'finalizado' AND d.projeto.id = :id_projeto";
 		
 		Query query = manager.createQuery(jpql);
 		query.setParameter("id_projeto", "%"+id_projeto+"%");
 		
-		Projeto result = (Projeto) query.getSingleResult();
+		int result = query.getFirstResult();
+		
+		System.out.println(result);
 		return result;
 	}
 	
-	public Projeto funcionarioPorProjeto(int id_projeto) {
+	/*public Projeto funcionarioPorProjeto(int id_projeto) {
 		String jpql = "select count(distinct id_funcionario) from tb_demanda group by :id_projeto";
 		
 		Query query = manager.createQuery(jpql);
@@ -65,5 +67,4 @@ public class ProjetoDAO {
 		Projeto result = (Projeto) query.getSingleResult();
 		return result;
 	}*/
-	
 }

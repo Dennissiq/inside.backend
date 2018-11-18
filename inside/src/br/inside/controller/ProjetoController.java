@@ -1,7 +1,6 @@
 package br.inside.controller;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.inside.model.entity.Cliente;
 import br.inside.model.entity.Projeto;
 import br.inside.model.entity.User;
+import br.inside.model.service.ClienteService;
 import br.inside.model.service.DemandaService;
 import br.inside.model.service.ProjetoService;
 
@@ -27,6 +27,9 @@ public class ProjetoController {
 	
 	@Autowired
 	private DemandaService demandaService;
+	
+	@Autowired
+	private ClienteService clienteService;
 
 	@RequestMapping("/projetos")
 	public String projetosView(Model model, HttpSession session, String chave) {
@@ -48,7 +51,9 @@ public class ProjetoController {
 	}
 	
 	@RequestMapping("/novoProjeto")
-	public String novoProjetoForm(Model model, HttpSession session) {			
+	public String novoProjetoForm(Model model, HttpSession session) throws IOException {		
+		List<Cliente> clientes = clienteService.listarClientes();
+		model.addAttribute("clientes", clientes);
 		return "CadastroProjeto";
 	}
 	
@@ -62,7 +67,6 @@ public class ProjetoController {
 			
 			projeto.setUser((User)session.getAttribute("usuario"));
 			projeto = projetoService.criar(projeto);
-			//model.addAttribute("projeto", projeto);
 			
 			return "redirect: projetos";
 		} catch (Exception e) {

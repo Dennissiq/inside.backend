@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <c:import url="Header.jsp"/>
@@ -13,8 +14,6 @@
 	
  	<!-- Sidebar-->
 	<c:import url="importViews/SidebarAdmin.jsp"></c:import>
-	
-	
 	
 		<div class="pdd-15-lg-t pdd-15-md-t">
 	
@@ -42,7 +41,20 @@
 									<div class=" row row-card mat-card-kit">
 										<div class="row row-card">
 											<div class="col-md-6 col-lg-6">
-												<h5 class="text-gray text-bold">Status do Projeto: <span class="text-warning">${projeto.status}</span></h5>
+												<h5 class="text-gray text-bold">Status do Projeto: 													
+													<c:choose>
+														<c:when test="${projeto.status == 'aberto'}">
+															<span class="text-warning"> 
+																<i class="fas fa-clock fa-1x"></i> ${projeto.status}
+															</span>									
+														</c:when>
+														<c:when test="${projeto.status == 'finalizado'}">
+															<span class="text-success">
+																<i class="fas fa-check fa-1x"></i> ${projeto.status}
+															</span>									
+														</c:when>
+													</c:choose>
+												</h5>
 											</div>
 											<div class="col-md-6 col-lg-6">	
 												<div class="col-md-6 col-lg-6">
@@ -60,7 +72,7 @@
 										
 										<div class="line-gray"></div>	
 										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
-											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 </span> </h5>
+											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 / ${fn:length(projeto.demandas)} </span> </h5>
 											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 0 </span> </h5> 
 										</div>
 										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
@@ -139,14 +151,27 @@
 								<h3 class=" text-center text-gray text-bold pdd-15-xs-t pdd-15-xxs-t ">${projeto.descricao}</h3>
 								<div class="line-gray"></div>	
 								<div class=" row row-card mat-card-kit">
-									<h5 class="mat-card-kit-title text-gray text-bold">Status do Projeto:<span class="text-warning">${projeto.status}</span></h5>
+									<h5 class="mat-card-kit-title text-gray text-bold">Status do Projeto:
+										<c:choose>
+											<c:when test="${projeto.status == 'aberto'}">
+												<span class="text-warning"> 
+													<i class="fas fa-clock fa-1x"></i> ${projeto.status}
+												</span>									
+											</c:when>
+											<c:when test="${projeto.status == 'finalizado'}">
+												<span class="text-success">
+													<i class="fas fa-check fa-1x"></i> ${projeto.status}
+												</span>									
+											</c:when>
+										</c:choose>
+									</h5>
 									<h5 class="mat-card-kit-title text-left text-gray text-bold"><a class="text-gray" href="detalheProjeto?id=${projeto.id}">Editar projeto</a></h5>
 									<div class="line-gray"></div>	
 									<div class="col-xs-12 col-xxs-12 pdd-10-xs-b pdd-10-xxs-b">
-										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 58 </span> </h5>
-										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 4 </span> </h5> 
+										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 / ${fn:length(projeto.demandas)} </span> </h5>
+										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 0 </span> </h5> 
 										<h5 class="mat-card-kit-title text-gray text-bold pdd-15-xs-b pdd-15-xxs-b">Quantidade de horas previstas no projeto: <span class="text-gray">
-											${projeto.horas}h</span> </h5>
+											${projeto.horas}h</span>n</h5>
 										
 									</div>
 									<div class="col-xs-12 col-xxs-12 pdd-30-xs-b pdd-30-xxs-b ">

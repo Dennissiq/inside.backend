@@ -27,14 +27,14 @@
             
             <div class="container-fluid pdd-30-lg-b pdd-30-md-b">
      
-              <h1 class="text-primary text-bold">Novo Administrador</h1>
+              <h1 class="text-primary text-bold">Gestor</h1>
               <div class="mat-card-kit ">
   
                 <div class="row">
                   <div class="col-md-12 col-lg-12">
-                  <a href="projetos" class='col-md-2 col-lg-2 col-sm-2 col-xs-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a> 
+                  <a href="listar_gestores" class='col-md-2 col-lg-2 col-sm-2 col-xs-2'><i class="back fa fa-chevron-circle-left fa-3x"></i></a> 
                     <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-                      <h2 class="text-gray text-bold">Cadastrar Novo Administrador</h2>
+                      <h2 class="text-gray text-bold">Cadastro</h2>
                     </div>
                   </div>
                 </div>

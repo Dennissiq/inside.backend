@@ -19,6 +19,25 @@ $(document).ready(function() {
         });
 	}
 	
+	function background(status){
+		switch (status) {
+		case 'aberto':
+			return "#F84B7A";
+			break;
+		case 'em andamento':
+			return "#FFC051";
+			break;
+		case 'finalizado':
+			return "#00DF43";
+			break;
+		case 'pausado':
+			return "#FFC051";
+			break;
+		default:
+			break;
+		}
+	}
+	
     function parseEvents(demandas){
     	var list = [];
     	
@@ -27,7 +46,8 @@ $(document).ready(function() {
 				title: demandas[d].descricao,
 	            start: demandas[d].dtInicio,
 	            end: demandas[d].dtFim,
-	            url: 'detalheDemanda?idDemanda=' + demandas[d].id
+	            url: 'detalheDemanda?idDemanda=' + demandas[d].id,
+	            backgroundColor: background(demandas[d].status)
     		}
     		
     		list.push(demanda);
@@ -37,19 +57,23 @@ $(document).ready(function() {
     }
     
     function initializeData(){
+    	var perfil = $("#perfil").val();    	
     	var idFuncionario = $("#idFuncionario").val();
-        var url = "rest/demandas";
-        var data = { id: idFuncionario };
-        
-        var idProjeto = 0;
-        
-        if(idFuncionario == ""){
-        	idProjeto = $("#idProjeto").val();
-        	url = "rest/allDemandas/" + idProjeto;
-        	data = null;
-        }        
-        
-        console.log(url);        
+    	
+    	console.log(perfil);
+    	
+    	if(perfil == "Analista"){
+    		var url = "rest/demandas";
+            var data = { id: idFuncionario };
+    	}else{
+    		if($("#idProjeto") != undefined){
+        		idProjeto = $("#idProjeto").val();
+            	url = "rest/allDemandas/" + idProjeto;
+            	data = null;
+        	}
+    	}
+    	
+        console.log(url);
         
         ajax("GET", url, data, function(demandas){
         	$('#calendar').fullCalendar({
@@ -59,7 +83,6 @@ $(document).ready(function() {
         			 center: 'title',
         			 right: 'month,agendaWeek,agendaDay,listMonth'
         		 },
-        		 locale: 'pt-br',
         		 height: 580,
         		 buttonIcons: false, // show the prev/next text
         		 weekNumbers: true,
@@ -78,9 +101,10 @@ $(document).ready(function() {
         	      selectable: true,
         	      selectHelper: true,
         	      select: function(start, end) {
-        	    	if(idFuncionario == ""){
-        	    		window.location.replace("novaDemanda?idProjeto="+idProjeto);
-        	    	}
+        	    	  
+        	    	  if($("#idProjeto") != undefined){
+        	    		  window.location.replace("novaDemanda?idProjeto="+idProjeto);
+        	      	  }
         	        
         	    	/*var title = prompt('Event Title:');
         	        var eventData;
@@ -94,6 +118,22 @@ $(document).ready(function() {
         	        }
         	        $('#calendar').fullCalendar('unselect');*/
         	      },
+        	      businessHours: {
+	    	    	  // days of week. an array of zero-based day of week integers (0=Sunday)
+	    	    	  dow: [ 1, 2, 3, 4, 5 ], // Monday - Thursday
+	
+	    	    	  start: '9:00', // a start time (10am in this example)
+	    	    	  end: '18:00', // an end time (6pm in this example)
+    	    	 },
+    	    	 buttonText: {
+    	    		month: 'Mes',
+    	    		list: 'Lista'
+	    		},
+	    		buttonIcons: {
+	    			prev: 'left-single-arrow',
+	    			next: 'right-single-arrow',
+	    		},
+	    		hiddenDays: [ 0, 6 ]
             });
         });
     }

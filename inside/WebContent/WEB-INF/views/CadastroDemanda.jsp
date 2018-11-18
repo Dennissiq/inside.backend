@@ -239,22 +239,6 @@
 	    singleDatePicker: true,
 	    showDropdowns: true
 	  });
-	  
-	 /* $('#datepicker1').datepicker({
-	      weekStart: 1,
-	      daysOfWeekHighlighted: "6,0",
-	      autoclose: true,
-	      todayHighlight: true,
-	  });
-	  $('#datepicker1').datepicker("setDate", new Date());
-	  
-	  $('#datepicker2').datepicker({
-	      weekStart: 1,
-	      daysOfWeekHighlighted: "6,0",
-	      autoclose: true,
-	      todayHighlight: true,
-	  });
-	  $('#datepicker2').datepicker("setDate", new Date());*/
     });
   </script>
   <script src="js/menu-mobile.js"></script>

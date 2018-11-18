@@ -6,13 +6,18 @@
 <c:import url="Header.jsp"></c:import>
 
 <body>
-
-  
   <!-- DESKTOP -->
 <div class="invisible-xs invisible-xxs">
   <div id="wrapper" class="toggled">
  	<!-- Sidebar-->
-	<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+	<c:choose>
+		<c:when test="${usuario.perfil.nome == 'Administrador'}">
+			<c:import url="importViews/SidebarAdmin.jsp"></c:import>
+		</c:when>
+		<c:when test="${usuario.perfil.nome == 'Analista'}">
+			<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+		</c:when>
+	</c:choose>
 
 
         <div class="pdd-15-lg-t pdd-15-md-t">
