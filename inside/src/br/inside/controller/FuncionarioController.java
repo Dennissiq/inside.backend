@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.inside.model.entity.Cargo;
+import br.inside.model.entity.Cliente;
 import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.Perfil;
 import br.inside.model.entity.SendMail;
@@ -41,6 +42,11 @@ public class FuncionarioController {
 	@RequestMapping("/novo_analista")
 	public String novo(Model model, HttpSession session ) throws IOException{
 		return "CadastroAnalista";
+	}	
+	
+	@RequestMapping("/novo_admin")
+	public String novoAdmin(Model model, HttpSession session ) throws IOException{
+		return "CadastroAdmin";
 	}	
 	
 	@RequestMapping("/cadastrar_analista")
@@ -82,12 +88,49 @@ public class FuncionarioController {
 		}
 	}
 	
+	@RequestMapping("/cadastrar_admin")
+	public String criarAdmin(@Valid Funcionario funcionario, BindingResult erros, Model model, HttpSession session) throws IOException{
+		try {
+			if(!erros.hasErrors()) {
+				Perfil p = new Perfil();				
+				p.setId(3);
+				
+				User user = new User();
+				user.setLogin(funcionario.getEmail());
+				user.setSenha(((int)(Math.random() * ( 99999 - 11111 )) + 11111)+"" );
+				user.setPerfil(p);
+				
+				Cargo c = new Cargo();
+				c.setId(3);
+				
+				funcionario.setCargo(c);
+				funcionario.setUser(userService.inserir(user));
+				
+				funcionario = funcionarioService.inserirFuncionario(funcionario);
+				model.addAttribute("funcionario", funcionario);
+				
+				SendMail sm = new SendMail("smtp.gmail.com","465");
+				sm.sendMail("auth.insidecompany@gmail.com",funcionario.getEmail(),"Olá "+ funcionario.getNome() +", está pronto para um novo desafio?", funcionario.getNome() + ", seu acesso à plataforma já está disponível!\nSeu usuário é: " + funcionario.getEmail() + "\nSua senha de acesso é: " + user.getSenha());
+				
+				return "Admin";
+				
+			}else {
+				return "CadastroAdmin";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+			
+		}
+	}
+	
 	@RequestMapping("/listar_analistas")
 	public String listarFuncionarios(HttpSession session, Model model) {
 		try {
 			
 			List<Funcionario> lista;
-			lista = funcionarioService.listarFuncionarios();
+			lista = funcionarioService.listarFuncionarios(2);
 			
 			session.setAttribute("lista", lista);
 			return "Analistas";
@@ -98,18 +141,40 @@ public class FuncionarioController {
 			return "Erro";
 		}		
 	}
+	@RequestMapping("/listar_gestores")
+	public String listarAdmin(HttpSession session, Model model) {
+		try {
+			
+			List<Funcionario> lista;
+			lista = funcionarioService.listarFuncionarios(3);
+			
+			session.setAttribute("lista", lista);
+			return "Admin";
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erro", e);
+			return "Erro";
+		}		
+	}
+	
 	
 	@RequestMapping("/alterarDados")
 	public String atualizar(Funcionario funcionario, Model model, HttpSession session) {
-		try {
-			
+		try {			
+			Cargo c = new Cargo();
+			c.setId(2);
+			funcionario.setCargo(c);
+			funcionario.getUser().setSenha(funcionario.getUser().getSenha());
+		
 			Funcionario f = (Funcionario) session.getAttribute("funcionario");
-			System.out.println("FUNC: " + f.toString());
+			funcionario.getUser().setPerfil(f.getUser().getPerfil());
+			funcionario.getUser().setLogin(f.getUser().getLogin());
 			
-			funcionario.setCargo((f.getCargo()));
-			funcionario.setUser((f.getUser()));
-			funcionario = funcionarioService.atualizarFuncionario(funcionario);
+			userService.atualizarUsuario(funcionario.getUser());
+			funcionario = funcionarioService.atualizarFuncionario(funcionario);			
 			model.addAttribute("funcionario", funcionario);
+			
 			return "EditarPerfil";
 		} catch (IOException e) {
 			e.printStackTrace();

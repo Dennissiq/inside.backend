@@ -98,8 +98,31 @@ public class DemandaDAO {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Demanda> listarDemandasAtivasPorAnalista(Funcionario f){
+		String jpql = "select d from tb_demanda d where d.status != 'finalizado' AND d.funcionario = :funcionario";
+		
+		Query query = manager.createQuery(jpql);
+		query.setParameter("funcionario", f);
+
+		List<Demanda> result = query.getResultList();
+		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Demanda> listarDemandasPorAnalista(Funcionario f, String status){
+		String jpql = "select d from tb_demanda d where d.funcionario = :funcionario AND d.status = :status";
+		
+		Query query = manager.createQuery(jpql);
+		query.setParameter("funcionario", f);
+		query.setParameter("status", status);
+
+		List<Demanda> result = query.getResultList();
+		return result;
+	}
+	
 	public List<Demanda> listarDemandasNoPeriodoSolicitado(Demanda demanda){
-		String jpql = "select d from tb_demanda d where d.funcionario = :funcionario AND :startDate BETWEEN d.dtInicio AND d.dtFim";
+		String jpql = "select d from tb_demanda d where d.status != 'finalizado' AND d.funcionario = :funcionario AND :startDate BETWEEN d.dtInicio AND d.dtFim";
 		
 		Query query = manager.createQuery(jpql);
 		query.setParameter("funcionario", demanda.getFuncionario());

@@ -45,6 +45,6 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [login=" + login + ", senha=" + senha + ", perfil={perfil.id=" + perfil.getId() + ",perfil.nome="+perfil.getNome() +"}]";
+		return "{login=" + login + ", senha=" + senha + ", perfil={perfil.id=" + perfil.getId() + ",perfil.nome="+perfil.getNome() +"}}";
 	}
 }

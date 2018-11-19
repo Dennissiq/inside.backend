@@ -5,7 +5,7 @@
 <c:import url="Header.jsp"/>
 <body>
 	<!-- MODAL -->
- 		<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTitle" aria-hidden="true" style="overflow-x: hidden;">
+ 		<div class="modal fade" id="editar" style="overflow-x: hidden;">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -15,21 +15,20 @@
 						</button>
 					</div>
 					<div class="line-gray"></div>
-					<div class="row">
-						<div class="col-md-4 col-lg-4 col-xs-4 col-xxs-4 pdd-15-lg-b pdd-30-lg-t pdd-30-md-t pdd-15-md-b pdd-15-xxs-b pdd-30-xxs-t pdd-30-xs-t pdd-15-xs-b col-lg-offset-1 col-xs-offset-1 col-xxs-offset-1 col-md-offset-1">
-							<img src="./images/perfil.jpg" class="img-responsive img-circle" alt="">
-						</div>
-						<div class="col-md-7 col-lg-7 pdd-15-lg-b pdd-30-lg-t pdd-30-md-t pdd-15-md-b pdd-15-xxs-b pdd-30-xxs-t pdd-30-xs-t pdd-15-xs-b">
-							<div class="col-md-12 col-lg-12 ">
-								<h4 class="text-gray ">Fernando Pessoa </h4>
+					<div class="row modal-header-info">						
+						<div class="col-md-12 col-lg-12 pdd-15-lg-b pdd-30-lg-t pdd-30-md-t pdd-15-md-b pdd-15-xxs-b pdd-30-xxs-t pdd-30-xs-t pdd-15-xs-b">
+							<div class="col-md-12 col-lg-12">
+								<h4 class="text-gray">
+									<i class="fas fa-user-circle fa-1x"></i> <span id="modal-nome">Fernando Pessoa</span> 
+								</h4>
 							</div>
 							<div class="col-md-12 col-lg-12">
-								<h5 class="text-danger">em 2 projetos, 7 demandas </h5>
-								<h5 class="text-danger">Indisponível até 25/08/18</h5>
-							</div>
-							<div class="col-md-8 col-lg-8 col-xs-8 col-xxs-8  col-xs-offset-2 col-xxs-offset-2">
-								<h5 class="text-gray">Ajustar agenda do analista</h5>
-								<input type="text" name="daterange" class="form-control" value="" />
+								<h5 class="text-danger">
+									<i class="fas fa-envelope fa-1x"></i> <span id="modal-email"> fernando.pessoa@gmail.com</span>
+								</h5>
+								<h5 class="text-gray">
+									<i class="fas fa-briefcase fa-1x"></i> <span id="modal-especialidade">Analista Jr</span>
+								</h5>
 							</div>
 						</div>
 					</div>
@@ -41,36 +40,11 @@
 									<thead>
 										<tr>
 											<th class="text-gray text-left">Projeto</th>
-											<th class="text-gray ">Demanda</th>
+											<th class="text-gray">Demanda</th>
+											<th class="text-gray"></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Atualizar SDKs</td>
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo </td>
-											<td>Novo Design Pattern do Projeto</td>
-		
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Atualizar SDKs</td>
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Atualizar SDKs</td>
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Novo Design Pattern do Projeto</td>
-		
-										</tr>
-										<tr>
-											<td class="text-left">Projeto Rio - Governo</td>
-											<td>Atualizar SDKs</td>
-										</tr>
+									<tbody id="modal-list-project">
 									</tbody>
 								</table>
 							</div>
@@ -90,7 +64,7 @@
 
 			<div class="container-fluid">	
 				<div class="col-lg-11 col-md-11 ">
-					<h6 class="text-gray pull-right text-bold"> <a href="index.html"> <i class="fa fa-sign-out"></i> sair</a></h6>
+					<h6 class="text-gray pull-right text-bold"> <a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
 				</div>
 			</div>
 	
@@ -99,12 +73,12 @@
 				<div class="container-fluid pdd-30-lg-b pdd-30-md-b">
 
 					<div class="col-md-9 col-lg-12 pdd-30-md-b pdd-30-lg-b">
-						<h1 class="text-primary text-bold text-bold">Analistas</h1>
+						<h1 class="text-primary text-bold text-bold">Funcionários</h1>
 						
 						<div class="mat-card-kit">
 							<div class="row">
 								<div class="col-md-6 col-lg-6 col-lg-offset-3 col-md-offset-3" >
-									<h2 class=" text-center text-gray text-bold  pdd-15-md-b">Projeto vs Analista</h2>
+									<h2 class=" text-center text-gray text-bold  pdd-15-md-b">Analistas</h2>
 									
 							</div>
 							<div class="col-md-2 col-lg-2 col-lg-offset-1 pdd-15-lg-t pdd-15-lg-b col-md-offset-1 pdd-15-md-t pdd-15-md-b" >
@@ -133,39 +107,10 @@
 												<td class="text-bold">${funcionario.nome }</td>
 												<td class="text-bold">${funcionario.especialidade }</td>
 												<td class="text-bold">${funcionario.localizacao}</td>
-												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Disponível </td>
-												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
+												<td class="text-success text-bold"><i class="fas fa-check-circle"></i> Disponível</td>
+												<td><a href="#" class='text-primary pdd-15-md-b' data-nome="${funcionario.nome}" data-email="${funcionario.email}" data-especialidade="${funcionario.especialidade}"  data-id="${funcionario.idFuncionario}" data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a></td>
 											</tr>
 										</c:forEach>
-									
-<!-- 											<tr>
-												<td class="text-bold">Machado de Assis</td>
-												<td class="text-bold">Engenheiro de Software</td>
-												<td class="text-bold">Rio de Janeiro</td>
-												<td class="text-warning text-bold"> <i class="fas fa-exclamation-circle"></i>  em 2 projetos, 25 demandas </td>
-												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold"> Jorge Amando</td>
-												<td class="text-bold">Scrum Master</td>
-												<td class="text-bold">Rio de Janeiro</td>
-												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Disponível </td>
-												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold">Machado de Assis</td>
-												<td class="text-bold">Engenheiro de Software</td>
-												<td class="text-bold">Rio de Janeiro</td>
-												<td class="text-warning text-bold"> <i class="fas fa-exclamation-circle"></i>  em 2 projetos, 25 demandas </td>
-												<td><a href="#" class='text-gray pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr>
-											<tr>
-												<td class="text-bold"> Jorge Amando</td>
-												<td class="text-bold">Scrum Master</td>
-												<td class="text-bold">Rio de Janeiro</td>
-												<td class="text-success text-bold"> <i class="fas fa-check-circle"></i> Disponível </td>
-												<td><a href="#" class='text-primary pdd-15-md-b' data-toggle="modal" data-target="#editar"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>
-											</tr> -->
 										</tbody>
 									</table>
 								</div>
@@ -254,6 +199,70 @@
 				console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
 			});
 		});
+			
+        $("#editar").on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); //botao que disparou a modal
+            
+            var id = button.data('id');
+            var nome = button.data('nome');
+            var email = button.data('email');
+            var especialidade = button.data('especialidade');
+            
+            $("#modal-nome").text(nome);
+            $("#modal-email").text(email);
+            $("#modal-especialidade").text(especialidade);
+            
+            var url = "rest/demandas";
+            var data = { id: id};
+            
+            $.ajax({
+                type: "GET",
+                dataType:"json",
+                url: url,
+                data: data,
+                success : function(response) {
+                	console.log(response);
+                	                	
+                	var body = $("#modal-list-project");
+                	
+                	if (body.children().length > 0) {
+                	    body.empty();
+                	}
+                	
+                	for ( var i in response) {
+                		
+                    	var tr = $("<tr />");
+                    	
+                    	var projeto = $("<td />", {
+                    		text: "Projeto A"
+                    	});
+                    	
+                    	var demanda = $("<td />", {
+                    		text: response[i].descricao
+                    	});
+                    	
+                    	var link = $("<td />")
+                    	
+                    	$("<a />", {
+                    		href: 'detalheDemanda?idDemanda=' + response[i].id,
+                    	    title: 'Detalhe da Demanda',
+                    	    text: 'detalhes',
+                    	    class: 'btn btn-primary modal-btn-detail'
+                    	}).appendTo(link);
+                    	
+                    	projeto.appendTo(tr);
+                    	demanda.appendTo(tr);
+                    	link.appendTo(tr);
+                    	tr.appendTo(body);
+					}
+
+                	console.log(body);
+                },
+                error: function(){                      
+               		console.log('Error while request..');
+                }
+            });
+        });    
 	</script>
   <!-- Menu Toggle Script -->
 </body>

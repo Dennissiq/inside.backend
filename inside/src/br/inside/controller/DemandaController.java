@@ -21,12 +21,14 @@ import br.inside.model.entity.Arquivo;
 import br.inside.model.entity.Comentario;
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
+import br.inside.model.entity.Projeto;
 import br.inside.model.entity.User;
 import br.inside.model.service.ArquivoService;
 import br.inside.model.service.ComentarioService;
 import br.inside.model.service.DemandaService;
 import br.inside.model.service.FuncionarioService;
 import br.inside.model.service.ProducaoService;
+import br.inside.model.service.ProjetoService;
 
 @Controller
 public class DemandaController {
@@ -45,6 +47,9 @@ public class DemandaController {
 	
 	@Autowired
 	private ArquivoService arquivoService;
+	
+	@Autowired
+	private ProjetoService projetoService;
 	
 	@RequestMapping("/demandas")
 	public String demandasView(Model model, HttpSession session, String chave) throws IOException {
@@ -66,7 +71,7 @@ public class DemandaController {
 	@RequestMapping("/novaDemanda")
 	public String novoDemandaForm(Model model, HttpSession session, int idProjeto) {			
 		try {
-			List<Funcionario> analistas = funcionarioService.listarFuncionarios();
+			List<Funcionario> analistas = funcionarioService.listarFuncionarios(2);
 			session.setAttribute("idProjeto", idProjeto);
 			model.addAttribute("analistas", analistas);
 			return "CadastroDemanda";
@@ -79,22 +84,21 @@ public class DemandaController {
 	
 	@RequestMapping("/addDemanda")
 	public String addDemanda(@Valid Demanda demanda, Model model, HttpSession session) {
+		System.out.println("AddDemanda");
 		try {			
-			
 			Funcionario funcionario = new Funcionario();
 			funcionario.setIdFuncionario(demanda.getFuncionario().getIdFuncionario());
 			funcionario = funcionarioService.buscarFuncionario(funcionario.getIdFuncionario());
-			demanda.setFuncionario(funcionario);
+			demanda.setFuncionario(funcionario);			
 			
 			if(demandaService.validPeriod(demanda)) {
 				demanda = demandaService.criar(demanda);
-				model.addAttribute("projeto", demanda);
 				return "redirect: projetos";
 			} else {
 				String error = "O analista já possui tarefas agendadas para este período.";
 				session.setAttribute("error", error);
-				return "redirect: novaDemanda?idProjeto=4";
-			}			
+				return "redirect: novaDemanda?idProjeto=" + demanda.getProjeto().getId();
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -268,9 +272,17 @@ public class DemandaController {
 		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
 	}
 	
-	@RequestMapping("/cronograma")
+	@RequestMapping("/agenda")
 	public String Cronograma() {
 		
-		return "Cronograma";
+		return "Calendario";
+	}
+	
+	@RequestMapping("/cronograma")
+	public String Cronograma(Model model, HttpSession session, int idProjeto) {				
+		Projeto projeto = projetoService.buscarProjeto(idProjeto);
+		model.addAttribute("projeto", projeto);
+		
+		return "Calendario";
 	}
 }

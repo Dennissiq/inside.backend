@@ -55,9 +55,7 @@
                 <div class="col-md-7 col-lg-7">
                   <textarea type="text" name='detalhes' required class="form-control text-dark"></textarea>
                 </div>
-              </div>
-                          
-              <input type="hidden" name='duracao' value='0' class="form-control text-primary">
+              </div>       
                           
               <div class="row row-card pdd-30-md-t pdd-30-lg-t">              
                 <div class="col-md-3 col-lg-3 col-lg-offset-1 col-md-offset-1">
@@ -241,22 +239,6 @@
 	    singleDatePicker: true,
 	    showDropdowns: true
 	  });
-	  
-	 /* $('#datepicker1').datepicker({
-	      weekStart: 1,
-	      daysOfWeekHighlighted: "6,0",
-	      autoclose: true,
-	      todayHighlight: true,
-	  });
-	  $('#datepicker1').datepicker("setDate", new Date());
-	  
-	  $('#datepicker2').datepicker({
-	      weekStart: 1,
-	      daysOfWeekHighlighted: "6,0",
-	      autoclose: true,
-	      todayHighlight: true,
-	  });
-	  $('#datepicker2').datepicker("setDate", new Date());*/
     });
   </script>
   <script src="js/menu-mobile.js"></script>

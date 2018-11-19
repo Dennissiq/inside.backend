@@ -48,7 +48,6 @@ public class Demanda {
 	@NotNull
 	private String detalhes;
 	
-	@NotNull	
 	private Timestamp duracao;
 		
 	private String status;
@@ -65,9 +64,11 @@ public class Demanda {
 	private Projeto projeto;
 	
 	@OneToMany(mappedBy = "demanda", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<Comentario> comentarios;
 	
 	@OneToMany(mappedBy = "demanda", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<Arquivo> arquivos;
 	
 	public Date getDtInicio() {

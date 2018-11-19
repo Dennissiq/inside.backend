@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CascadeType;
+
 import com.sun.istack.internal.NotNull;
 
 @Entity(name="tb_funcionario")
@@ -151,7 +153,7 @@ public class Funcionario {
 	@Override
 	public String toString() {
 		return "Funcionario [id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", localizacao="
-				+ localizacao + ", rg=" + rg + ", observacoes=" + observacoes + ", celular=" + celular + ", telefone="
+				+ localizacao + ", celular=" + celular + ", rg=" + rg + ", observacoes=" + observacoes + ", telefone="
 				+ telefone + ", especialidade=" + especialidade + ", cargo=" + cargo + ", user=" + user + "]";
 	}
 

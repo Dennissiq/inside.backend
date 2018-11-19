@@ -19,7 +19,6 @@
     <!-- <script src="https://use.fontawesome.com/0fecb3c89d.js"></script> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/v4-shims.css">
-
 </head>
 
 <body class="section-primary" id="login-page">
@@ -27,7 +26,7 @@
   <div class="container col-lg-offset-3 col-md-offset-3 pdd-100-lg-t">
     <div class="row">
       <div class="col-md-3 col-lg-3 col-lg-offset-2 ">
-        <img class="img-responsive" src="<%=request.getContextPath()%>/images/logo_2.png">
+        <img class="img-responsive" src="images/logo_2.png">
       </div>
     </div>
   </div>
@@ -52,7 +51,7 @@
 	                </div>
 	              </div>
 	              <div class="col-lg-8 col-md-8 pdd-15-md-t ">
-	                <input type="text" name="login" class="form-control text-primary" value="janaina.abc3@gmail.com">
+	                <input type="text" name="login" class="form-control text-primary" value="dennis.siqueira@gmail.com">
 	              </div>
 	            </div>
 	            <div class="row pdd-15-lg-t pdd-15-md-t">
@@ -60,7 +59,7 @@
 	                <h5 class="text-primary text-bold text-center">Senha</h5>
 	              </div>
 	              <div class="col-lg-8 col-md-8 ">
-	                <input type="password" name="senha" class="form-control text-primary" value="49560">
+	                <input type="password" name="senha" class="form-control text-primary" value="61071">
 	              </div>
 	            </div>
 	            <div class="row">

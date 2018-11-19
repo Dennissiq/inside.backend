@@ -61,15 +61,19 @@
                       <div class="row row-card">
                      <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t">
                         <div class="col-xxs-12 col-xs-12">
-                          <h5 class="text-gray">CNPJ do Cliente</h5>
+                          <h5 class="text-gray">Cliente</h5>
                         </div>
                         <div class="col-xxs-12 col-xs-12">
-                          <input type="text" name="cliente.nome" class="form-control" required>
+                          <select class="form-control text-dark" name='cliente.id'>
+		                  	<c:forEach var="cliente" items="${clientes}">
+		                  		<option value="${cliente.id}">${cliente.nome}</option>
+		                  	</c:forEach>                  	                  
+		                  </select>
                         </div>
                       </div>
                       <div class="col-xxs-6 col-xs-6 pdd-30-xxs-t">
                         <div class="col-xxs-3 col-xs-3">
-                          <h5 class="text-gray">Atividade</h5>
+                          <h5 class="text-gray">Ramo</h5>
                         </div>
                         <div class="col-xxs-12 col-xs-12">
                           <input type="text" name="atividade" class="form-control" required>
@@ -85,8 +89,6 @@
                           <input type="text" name="dataInicio" class="form-control" required>
                         </div>
                       </div>
-                     
-                      
                       <div class="col-xxs-6 col-xs-6 ">
                         <div class="col-xxs-12 col-xs-12">
                           <h5 class="text-gray">Data final</h5>
@@ -110,7 +112,9 @@
                           <h5 class="text-gray">Status</h5>
                         </div>
                         <div class="col-xxs-6 col-xs-6">
-                          <input type="text" name="status" class="form-control" required>
+                        	<select class="form-control text-dark" name='status'>			                  	
+			                  	<option value="aberto">Aberto</option>			                  	           
+		                	</select>
                         </div>
                       </div>
                     </div>
@@ -173,10 +177,14 @@
                       </div>
                      <div class="col-xxs-12 col-xs-12 pdd-15-xxs-t pdd-15-xs-t">
                         <div class="col-xxs-12 col-xs-12">
-                          <h5 class="text-gray">CNPJ do Cliente</h5>
+                          <h5 class="text-gray">Cliente</h5>
                         </div>
                         <div class="col-xxs-12 col-xs-12 pdd-15-xxs-t pdd-15-xs-t">
-                          <input type="text" name="cliente.nome" class="form-control" required>
+                          <select class="form-control text-dark" name='cliente.id'>
+		                  	<c:forEach var="cliente" items="${clientes}">
+		                  		<option value="${cliente.id}">${cliente.nome}</option>
+		                  	</c:forEach>                  	                  
+		                  </select>
                         </div>
                       </div>
                       <div class="col-xxs-12 col-xs-12 pdd-15-xxs-t pdd-15-xs-t">
@@ -237,7 +245,23 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery.min.js"></script>
-  <script src="javascripts/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>	
+  <script src="js/daterangepicker.js"></script>
+  <script>
+  $(function() {
+	  $('input[name="dataInicio"]').daterangepicker({
+	    singleDatePicker: true,
+	    showDropdowns: true,
+	    locale: 'pt-br'
+	  });
+	  
+	  $('input[name="dataFim"]').daterangepicker({
+	    singleDatePicker: true,
+	    showDropdowns: true,
+	    locale: 'pt-br'
+	  });
+    });
+  </script>
   <script src="js/menu-mobile.js"></script>
 </body>
 </html>

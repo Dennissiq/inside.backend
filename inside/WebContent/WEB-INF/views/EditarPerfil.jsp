@@ -6,13 +6,18 @@
 <c:import url="Header.jsp"></c:import>
 
 <body>
-
-  
   <!-- DESKTOP -->
 <div class="invisible-xs invisible-xxs">
   <div id="wrapper" class="toggled">
  	<!-- Sidebar-->
-	<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+	<c:choose>
+		<c:when test="${usuario.perfil.nome == 'Administrador'}">
+			<c:import url="importViews/SidebarAdmin.jsp"></c:import>
+		</c:when>
+		<c:when test="${usuario.perfil.nome == 'Analista'}">
+			<c:import url="importViews/SidebarAnalista.jsp"></c:import>
+		</c:when>
+	</c:choose>
 
 
         <div class="pdd-15-lg-t pdd-15-md-t">
@@ -84,7 +89,7 @@
                               <h5 for="email" class="text-gray">E-mail</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="text" name="email" id="email" class="form-control"  value="${funcionario.email}">
+                              <input type="text" name="email" id="email" class="form-control" readonly="readonly" value="${funcionario.email}">
                             </div>
                           </div>                                               
                         </div>
@@ -102,7 +107,7 @@
                               <h5 class="text-gray">Senha</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="password" name="funcionario.user.senha" value="${funcionario.user.senha} id="senha" class="form-control">
+                              <input type="password" name="user.senha" value="${funcionario.user.senha}" id="senha" class="form-control">
                             </div>
                           </div>                                             
                         </div>
@@ -221,7 +226,7 @@
                               <h5 class="text-gray">Senha</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input type="text" name="senha" class="form-control" value="${funcionario.especialidade }">
+                              <input type="password" name="user.senha" value="${funcionario.user.senha}" id="senha" class="form-control">
                             </div>
                      </div> 
                   </div>
@@ -251,7 +256,9 @@
   <script src="js/jquery.min.js"></script>
   <script src="javascripts/bootstrap.min.js"></script>
   <script src="js/menu-mobile.js"></script>
-
+  <script src="js/jquery-1.2.6.pack.js" type="text/javascript"></script>
+  <script src="js/jquery.maskedinput-1.1.4.pack.js" type="text/javascript" /></script>
+  
   <script>
     function swalSucess() {
         swal({
@@ -261,6 +268,10 @@
         });
         document.getElementById("success-criar")[0].setAttribute("value", "criar");
       }
+    
+    $(document).ready(function(){	
+		$("#cpf").mask("999.999.999-99");
+	});
     
      /* value="criar" */
   </script>

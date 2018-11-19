@@ -23,7 +23,7 @@ public class ProjetoService {
 	}
 	
 	@Transactional
-	public Projeto atualizar(Projeto projeto) {
+	public Projeto atualizarProjeto(Projeto projeto) {
 		return dao.atualizar(projeto);
 	}
 	
@@ -38,4 +38,12 @@ public class ProjetoService {
 	public List<Projeto> listarProjetos(String chave){
 		return dao.listarProjetos(chave);
 	}
+	
+	public int tarefasRealizadas(int id_projeto) {
+		return dao.tarefasRealizadas(id_projeto);
+	}
+	
+	/*public int funcionarioPorProjeto(int id_projeto) {
+		return dao.funcionarioPorProjeto(id_projeto);
+	}*/
 }
