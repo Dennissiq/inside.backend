@@ -1,5 +1,6 @@
 package br.inside.model.dao;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -23,7 +24,7 @@ public class DemandaDAO {
 		return demanda;
 	}
 	
-	public Demanda atualizar(Demanda demanda) {
+	public Demanda atualizarDemanda(Demanda demanda) throws IOException{
 		return manager.merge(demanda);
 	}
 	

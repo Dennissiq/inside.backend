@@ -1,5 +1,6 @@
 package br.inside.model.service;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -29,8 +30,8 @@ public class DemandaService {
 	}
 	
 	@Transactional
-	public Demanda atualizar(Demanda demanda) {
-		return dao.atualizar(demanda);
+	public Demanda atualizar(Demanda demanda) throws IOException {
+		return dao.atualizarDemanda(demanda);
 	}
 	
 	@Transactional
