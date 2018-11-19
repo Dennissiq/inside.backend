@@ -174,7 +174,7 @@
                         <h5 class="text-gray">E-mail</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                        <input type="text" name="email" id="email" class="form-control" value="${cliente.email}"required> 
+                        <input type="email" name="email" id="email" class="form-control" value="${cliente.email}"required> 
                       </div>
                     </div>
                   </div>
@@ -221,6 +221,9 @@
   <script src="js/jquery.min.js"></script>
   <script src="javascripts/bootstrap.min.js"></script>
   <script src="js/menu-mobile.js"></script>
+  <script src="js/jquery-1.2.6.pack.js" type="text/javascript"></script>
+  <script src="js/jquery.maskedinput-1.1.4.pack.js" type="text/javascript" /></script>
+  
 
   <script>
     function swalSucess() {
@@ -231,6 +234,12 @@
         });
         document.getElementById("success-create")[0].setAttribute("value", "criar");
       }
+    
+    $(document).ready(function(){	
+		$("#cnpj").mask("99.999.999/9999-99");
+		$("#telefone").mask("(99) 99999-9999");
+	});
+    
     
      /* value="criar" */
   </script>
