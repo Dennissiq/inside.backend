@@ -51,7 +51,7 @@
 	                </div>
 	              </div>
 	              <div class="col-lg-8 col-md-8 pdd-15-md-t ">
-	                <input type="text" name="login" class="form-control text-primary" value="dennis.siqueira@gmail.com">
+	                <input type="text" name="login" class="form-control text-primary" value="admin">
 	              </div>
 	            </div>
 	            <div class="row pdd-15-lg-t pdd-15-md-t">
@@ -59,7 +59,7 @@
 	                <h5 class="text-primary text-bold text-center">Senha</h5>
 	              </div>
 	              <div class="col-lg-8 col-md-8 ">
-	                <input type="password" name="senha" class="form-control text-primary" value="61071">
+	                <input type="password" name="senha" class="form-control text-primary" value="admin">
 	              </div>
 	            </div>
 	            <div class="row">

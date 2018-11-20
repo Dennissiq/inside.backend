@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -55,7 +54,7 @@
 											<div
 												class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
 												<div class="col-lg-3 col-md-3">
-													<h5 for="descricao" class="text-gray">DescriÁ„o</h5>
+													<h5 for="descricao" class="text-gray">Descri√ß√£o</h5>
 												</div>
 												<div class="col-lg-9 col-md-9">
 													<input type="text" name="descricao" id="descricao"
@@ -68,7 +67,7 @@
 													<h5 for="dtInicio" class="text-gray">Data Inicio</h5>
 												</div>
 												<div class="col-lg-9 col-md-9">
-														<input data-date-format="dd/mm/yyyy" name='dtInicio' id="datepicker2" class="form-control text-primary" required>  
+														<input name='dtInicio' value="${demanda.dtInicio}" id="datepicker2" class="form-control text-primary" required>  
 												</div>
 											</div>
 										</div>
@@ -79,13 +78,13 @@
 													<h5 for="dtFim" class="text-gray">Data Final</h5>
 												</div>
 												<div class="col-lg-9 col-md-9">
-													<input data-date-format="dd/mm/yyyy" name='dtFim' id="datepicker1" class="form-control text-primary" required>  
+													<input name='dtFim' id="datepicker1" value="${demanda.dtFim}" class="form-control text-primary" required>  
 												</div>
 											</div>
 											<div
 												class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
 												<div class="col-lg-3 col-md-3">
-													<h5 for="responsavel" class="text-gray">Respons·vel</h5>
+													<h5 for="responsavel" class="text-gray">Respons√°vel</h5>
 												</div>
 												<div class="col-md-7 col-lg-7">
 													<select class="form-control text-dark"
@@ -273,14 +272,28 @@
   
 	<script>
   $(function() {
-	  $('input[name="dtInicio"]').daterangepicker({
+	  var dtInicio = $('input[name="dtInicio"]');
+	  var dtFim = $('input[name="dtFim"]');
+	  
+	  var _inicio = dtInicio.val().split('-');
+	  dtInicio.val(_inicio[1] + '/' + _inicio[2] + '/' + _inicio[0]);
+	  
+	  var _fim = dtFim.val().split('-');
+	  dtFim.val(_fim[1] + '/' + _fim[2] + '/' + _fim[0]);
+	  
+	  console.log(dtInicio.val());
+	  console.log(dtFim.val());
+	  
+	  dtInicio.daterangepicker({
 	    singleDatePicker: true,
-	    showDropdowns: true
+	    showDropdowns: true,
+	    locale: 'pt-br'
 	  });
 	  
-	  $('input[name="dtFim"]').daterangepicker({
+	  dtFim.daterangepicker({
 	    singleDatePicker: true,
-	    showDropdowns: true
+	    showDropdowns: true,
+	    locale: 'pt-br'
 	  });
 	  
 	 /* $('#datepicker1').datepicker({

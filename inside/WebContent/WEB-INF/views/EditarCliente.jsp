@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -90,7 +89,7 @@
                           </div>  
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
                             <div class="col-lg-3 col-md-3">
-                              <h5 for="endereco" class="text-gray">Endere�o</h5>
+                              <h5 for="endereco" class="text-gray">Endereço</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
                               <input type="text" name="endereco" id="endereco" class="form-control" value="${cliente.endereco}" required> 
@@ -189,7 +188,7 @@
                     </div>
                      <div class="col-xs-12 col-xxs-12">
                       <div class="col-xs-12 col-xxs-12">
-                        <h5 class="text-gray">Endere�o</h5>
+                        <h5 class="text-gray">Endereï¿½o</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
                         <input type="text" name="endereco" class="form-control" value="${cliente.endereco}" required>
@@ -223,8 +222,6 @@
   <script src="js/menu-mobile.js"></script>
   <script src="js/jquery-1.2.6.pack.js" type="text/javascript"></script>
   <script src="js/jquery.maskedinput-1.1.4.pack.js" type="text/javascript" /></script>
-  
-
   <script>
     function swalSucess() {
         swal({
@@ -237,17 +234,8 @@
     
     $(document).ready(function(){	
 		$("#cnpj").mask("99.999.999/9999-99");
-		$("#telefone").mask("(99) 99999-9999");
+		$("#telefone").mask("(99) 9999-9999");
 	});
-    
-    
-     /* value="criar" */
   </script>
-
-
-  
-
-  <!-- Menu Toggle Script -->
-
 </body>
 </html>

@@ -63,7 +63,7 @@
 													</a>
 												</div>											
 												<div class="col-md-6 col-lg-6">
-													<a class="text-gray" href="detalheProjeto?id=${projeto.id}">
+													<a class="text-gray" href="editarProjeto?id=${projeto.id}">
 														<span class='text-gray bold'><i class="fas fa-edit fa-1x"></i> Editar projeto</span>
 													</a>
 												</div>												

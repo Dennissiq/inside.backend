@@ -127,22 +127,10 @@ public class DemandaController {
 	}
 	
 	@RequestMapping("/atualizar_demanda")
-	public String atualizarDemanda(@Valid Demanda demanda, BindingResult erros, Model model, HttpSession session) throws IOException{
-		System.out.println("demanda: " + demanda);
+	public String atualizarDemanda(@Valid Demanda demanda, BindingResult erros, Model model, HttpSession session) throws IOException{		
 		
-		if(!erros.hasErrors()) {
-			Demanda dema = new Demanda();
-			dema.setDescricao(demanda.getDescricao());
-			dema.setDtInicio(demanda.getDtInicio());
-			dema.setDtFim(demanda.getDtFim());
-			dema.setDetalhes(demanda.getDetalhes());
-			dema.setFuncionario(demanda.getFuncionario());
-			dema.setStatus(demanda.getStatus());			
-			
-			demanda = demandaService.atualizar(demanda);
-
-			model.addAttribute("demanda", demanda);
-			
+		if(!erros.hasErrors()) {	
+			demandaService.atualizar(demanda);
 			return "redirect: projetos";
 			
 		}else {

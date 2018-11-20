@@ -1,3 +1,0 @@
-#Tomcat publish data
-#Mon Nov 19 21:32:54 BRST 2018
-org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\Fernanda\ Cosme\\Documents\\GitHub\\inside.backend\\inside\\WebContent\\WEB-INF\\lib\\spring-web-4.2.4.RELEASE.jar=WEB-INF/lib/spring-web-4.2.4.RELEASE.jar
