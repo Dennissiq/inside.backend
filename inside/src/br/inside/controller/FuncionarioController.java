@@ -112,7 +112,7 @@ public class FuncionarioController {
 				SendMail sm = new SendMail("smtp.gmail.com","465");
 				sm.sendMail("auth.insidecompany@gmail.com",funcionario.getEmail(),"Olá "+ funcionario.getNome() +", está pronto para um novo desafio?", funcionario.getNome() + ", seu acesso à plataforma já está disponível!\nSeu usuário é: " + funcionario.getEmail() + "\nSua senha de acesso é: " + user.getSenha());
 				
-				return "Admin";
+				return "redirect: listar_gestores";
 				
 			}else {
 				return "CadastroAdmin";
