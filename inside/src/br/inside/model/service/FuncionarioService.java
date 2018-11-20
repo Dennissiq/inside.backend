@@ -50,4 +50,8 @@ public class FuncionarioService {
 		return dao.listarFuncionarios(idCargo);
 	}
 	
+	public List<Funcionario> listarFuncionarios() throws IOException{
+		return dao.listarFuncionarios();
+	}
+	
 }

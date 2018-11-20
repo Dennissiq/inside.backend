@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.inside.model.entity.Cargo;
+import br.inside.model.entity.Cliente;
 import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.User;
@@ -27,6 +28,11 @@ public class FuncionarioDAO {
 	
 	public Funcionario buscarFuncionario(int idFuncionario) throws IOException{
 		return manager.find(Funcionario.class, idFuncionario);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Funcionario> listarFuncionarios() throws IOException{
+		return manager.createQuery("select f from tb_funcionario f").getResultList();
 	}
 	
 	public Funcionario buscarFuncionario(User login) throws IOException{

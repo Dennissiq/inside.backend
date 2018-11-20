@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -251,6 +250,10 @@
   <script src="js/jquery.min.js"></script>
   <script src="javascripts/bootstrap.min.js"></script>
   <script src="js/menu-mobile.js"></script>
+  <script src="js/jquery-1.2.6.pack.js" type="text/javascript"></script>
+  <script src="js/jquery.maskedinput-1.1.4.pack.js" type="text/javascript" /></script>
+  
+  
 
   <script>
     function swalSucess() {
@@ -261,6 +264,12 @@
         });
         document.getElementById("success-criar")[0].setAttribute("value", "criar");
       }
+    
+    $(document).ready(function(){	
+		$("#cpf").mask("999.999.999-99");
+		$("#celular").mask("(99) 99999-9999");
+	});
+    
     
      /* value="criar" */
   </script>

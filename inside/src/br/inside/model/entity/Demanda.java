@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,11 +34,13 @@ public class Demanda {
 	private String descricao;
 	
 	@NotNull
+	@Temporal(value = TemporalType.DATE)
 	@Column(name="dt_inicio")
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm a z")
 	private Date dtInicio;
 	
 	@NotNull
+	@Temporal(value = TemporalType.DATE)
 	@Column(name="dt_fim")
 	 @JsonFormat(pattern="yyyy-MM-dd HH:mm a z")
 	private Date dtFim;

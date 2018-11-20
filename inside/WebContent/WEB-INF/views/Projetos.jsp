@@ -63,7 +63,7 @@
 													</a>
 												</div>											
 												<div class="col-md-6 col-lg-6">
-													<a class="text-gray" href="detalheProjeto?id=${projeto.id}">
+													<a class="text-gray" href="editarProjeto?id=${projeto.id}">
 														<span class='text-gray bold'><i class="fas fa-edit fa-1x"></i> Editar projeto</span>
 													</a>
 												</div>												
@@ -112,7 +112,10 @@
 																	<td class="text-warning text-bold text-center"> <i class="fas fa-pause fa-1x"></i> ${demanda.status} </td>
 																</c:when>
 															</c:choose>
-															<td><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a>  </td>
+															<td><a href="detalheDemanda?idDemanda=${demanda.id}">
+															<i class="fa fa-search text-gray" aria-hidden="true"></i></a>  </td>
+															<td><a href="editarDemanda?idDemanda=${demanda.id}">
+															<i class="fas fa-edit text-gray" aria-hidden="true"></i></a>  </td>
 														</tr>
 														</c:forEach>
 													</c:if>	

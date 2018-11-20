@@ -2,6 +2,7 @@ package br.inside.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.inside.model.entity.Funcionario;
 import br.inside.model.entity.User;
-import br.inside.model.service.CargoService;
 import br.inside.model.service.FuncionarioService;
 import br.inside.model.service.UserService;
 
@@ -26,7 +26,18 @@ public class UserController {
 	private FuncionarioService funcionarioService;
 
 	@RequestMapping("/index")
-	public String loginForm(Model model, HttpSession session) {
+	public String loginForm(Model model, HttpSession session, HttpServletRequest request) {
+		User user = (User) request.getSession().getAttribute("usuario");
+		
+		if (user != null) {
+			if(user.getPerfil().getNome().equals("Administrador") ||
+					user.getPerfil().getNome().equals("Gestor de Projetos")) {
+				return "redirect: projetos";
+			}else {
+				return "redirect: agenda";
+			}
+		}
+		
 		return "index";
 	}
 	
@@ -41,13 +52,11 @@ public class UserController {
 	public String login(@Valid User user, BindingResult erros, Model model, HttpSession session) throws IOException {
 		User userLogged = userService.login(user);
 		
-		System.out.println(userLogged);
 		if(userLogged != null){			
 			session.setAttribute("usuario", userLogged);
 			
 			if(userLogged.getPerfil().getNome().equals("Administrador")) { //retornar o proprio perfil que sera o nome da sua 'index'; mudar o nome das jps												
 				Funcionario funcionario = funcionarioService.buscarFuncionario(userLogged);
-				System.out.println(funcionario);
 				session.setAttribute("funcionario", funcionario);
 				return "redirect: projetos";
 			}

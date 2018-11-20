@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -105,14 +106,40 @@ public class DemandaController {
 		}	
 	}
 	
-	@RequestMapping("/atualizarDemanda")
+	/*@RequestMapping("/atualizarDemanda")
 	public String atualizarProjeto(@Valid Demanda demanda, Model model, HttpSession session) {
 		demanda = demandaService.atualizar(demanda);
 		model.addAttribute("demanda", demanda);
 		
 		return "DetalheDemanda";
 	}
+	*/
 	
+	@RequestMapping("/editarDemanda")
+	public String editarDemanda(Model model, HttpSession session, int idDemanda) throws IOException {
+		List<Funcionario> analistas = funcionarioService.listarFuncionarios();
+		Demanda demanda = demandaService.buscarDemanda(idDemanda);	
+		
+		model.addAttribute("demanda", demanda);
+		model.addAttribute("analistas", analistas);
+		System.out.println(demanda);
+		return "EditarDemanda";	
+	}
+	
+	@RequestMapping("/atualizar_demanda")
+	public String atualizarDemanda(@Valid Demanda demanda, BindingResult erros, Model model, HttpSession session) throws IOException{		
+		
+		if(!erros.hasErrors()) {	
+			demandaService.atualizar(demanda);
+			return "redirect: projetos";
+			
+		}else {
+			System.out.println(erros.toString());
+			return "redirect: editarDemanda?idDemanda=" + demanda.getId();
+		}
+	}
+	
+
 	@RequestMapping("/iniciarTarefa")
 	public String atualizarProjeto(Model model, HttpSession session, int idDemanda) {
 		demandaService.iniciarTarefa(idDemanda,producaoService);
@@ -120,14 +147,20 @@ public class DemandaController {
 	}
 	
 	@RequestMapping("/pausarTarefa")
-	public String pausarTarefa(Model model, HttpSession session, int idDemanda) {
+	public String pausarTarefa(Model model, HttpSession session, int idDemanda) throws IOException {
 		demandaService.pausarTarefa(idDemanda, producaoService);	
 		
 		Demanda demanda = demandaService.buscarDemanda(idDemanda);
 		demanda.setDuracao(producaoService.calcularTotalProducao(demanda));
 		demandaService.atualizar(demanda);
 		
-		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
+		try {
+			return "redirect: detalheDemanda?idDemanda=" + idDemanda;
+			} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		return null;
 	}
 	
 	@RequestMapping("/finalizarTarefa")

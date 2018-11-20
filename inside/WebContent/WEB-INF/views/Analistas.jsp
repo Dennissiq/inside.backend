@@ -39,8 +39,8 @@
 								<table class="table table-hover table-card">
 									<thead>
 										<tr>
-											<th class="text-gray text-left">Projeto</th>
-											<th class="text-gray">Demanda</th>
+											<!-- <th class="text-gray text-left">Projeto</th> -->
+											<th class="text-gray">Demandas</th>
 											<th class="text-gray"></th>
 										</tr>
 									</thead>
@@ -250,7 +250,7 @@
                     	    class: 'btn btn-primary modal-btn-detail'
                     	}).appendTo(link);
                     	
-                    	projeto.appendTo(tr);
+                    	//projeto.appendTo(tr);
                     	demanda.appendTo(tr);
                     	link.appendTo(tr);
                     	tr.appendTo(body);

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -43,6 +42,8 @@
                   <div class="col-lg-12 col-md-12">                    
                       <form action="atualizar_projeto" method="POST" class="form-inline">
                         <input type="hidden" name="id" id="id" class="form-control" value="${projeto.id}">
+		                <input type="hidden" name="user.login" id="user" class="form-control" value="${projeto.user.login}">
+		                <input type="hidden" name="cliente.id" id="cliente" class="form-control" value="${projeto.cliente.id}">
                         <div class="row">
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
                             <div class="col-lg-3 col-md-3">
@@ -64,10 +65,10 @@
                         <div class="row">
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
                             <div class="col-lg-3 col-md-3">
-                              <h5 for="dataInicio" class="text-gray">Data de Início</h5>
+                              <h5 for="dataInicio" class="text-gray">Data de InÃ­cio</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input data-date-format="dd/mm/yyyy" name='dataInicio' id="datepicker1" class="form-control text-primary">  
+                              <input data-date-format="dd/mm/yyyy" value="${projeto.dataInicio}" name='dataInicio' id="datepicker1" class="form-control text-primary">  
                             </div>
                           </div>
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t">
@@ -75,7 +76,7 @@
                               <h5 for="dataFim" class="text-gray">Data de Fim</h5>
                             </div>
                             <div class="col-lg-9 col-md-9">
-                              <input data-date-format="dd/mm/yyyy" name='dataFim' id="datepicker1" class="form-control text-primary"> 
+                              <input data-date-format="dd/mm/yyyy" value="${projeto.dataFim}" name='dataFim' id="datepicker1" class="form-control text-primary"> 
                             </div>
                           </div>                                               
                         </div>
@@ -87,7 +88,15 @@
                             <div class="col-lg-9 col-md-9">
                               <input type="text" name="status" id="status" class="form-control" value="${projeto.status}" required>
                             </div>
-                          </div>                                              
+                          </div>  
+                          <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
+                            <div class="col-lg-3 col-md-3">
+                              <h5 for="status" class="text-gray">Ramo</h5>
+                            </div>
+                            <div class="col-lg-9 col-md-9">
+                              <input type="text" name="atividade" id="status" class="form-control" value="${projeto.atividade}" required>
+                            </div>
+                          </div>                                             
                         </div>
                         <div class="row">
                           <div class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">
@@ -143,7 +152,9 @@
             <div class="row row-card">
               <div class="col-xs-12 col-xxs-12">
                 <form action="atualizar_projeto" method="POST" class="form-inline">
-                <input type="hidden" name="id" id="nome" class="form-control" value="${projeto.id}">
+	                <input type="hidden" name="id" id="id" class="form-control" value="${projeto.id}">
+	                <input type="hidden" name="user.login" id="user" class="form-control" value="${projeto.user.login}">
+	                <input type="hidden" name="cliente.id" id="cliente" class="form-control" value="${projeto.cliente.id}">
                   <div class="row">
                     <div class="col-xs-12 col-xxs-12 pdd-15-xs-t pdd-15-xxs-t pdd-15-xs-b pdd-15-xxs-b">
                       <div class="col-xs-12 col-xxs-12">
@@ -165,10 +176,10 @@
                   <div class="row">
                     <div class="col-xs-12 col-xxs-12">
                       <div class="col-lg-3 col-md-3">
-                        <h5 for="dataInicio" class="text-gray">Data de Início</h5>
+                        <h5 for="dataInicio" class="text-gray">Data de InÃ­cio</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                         <input data-date-format="dd/mm/yyyy" name='dataInicio' id="datepicker1" class="form-control text-primary">  
+                         <input value="${projeto.dataInicio}" name='dataInicio' id="datepicker1" class="form-control text-primary">  
                       </div> 
                     </div>
                     <div class="col-xs-12 col-xxs-12">
@@ -176,7 +187,7 @@
                         <h5 for="dataFim" class="text-gray">Data de Fim</h5>
                       </div>
                       <div class="col-xs-12 col-xxs-12">
-                         <input data-date-format="dd/mm/yyyy" name='dataFim' id="datepicker1" class="form-control text-primary">
+                         <input value="${projeto.dataFim}" name='dataFim' id="datepicker1" class="form-control text-primary">
                       </div>
                     </div>
                   </div>
@@ -210,7 +221,6 @@
         </div>
       </div>
     </div>
-
 </div>
 
 
@@ -220,21 +230,37 @@
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.min.js"></script>  
+  <script src='fullcalendar/lib/moment.min.js'></script>
   <script src="javascripts/bootstrap.min.js"></script>
   <script src="js/menu-mobile.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>	
   <script src="js/daterangepicker.js"></script>
   <script>
   $(function() {
-	  $('input[name="dataInicio"]').daterangepicker({
+	  
+	  var dtInicio = $('input[name="dataInicio"]');
+	  var dtFim = $('input[name="dataFim"]');
+	  
+	  var _inicio = dtInicio.val().split('-');
+	  dtInicio.val(_inicio[1] + '/' + _inicio[2] + '/' + _inicio[0]);
+	  
+	  var _fim = dtFim.val().split('-');
+	  dtFim.val(_fim[1] + '/' + _fim[2] + '/' + _fim[0]);
+	  
+	  console.log(dtInicio.val());
+	  console.log(dtFim.val());
+	  
+	  dtInicio.daterangepicker({
 	    singleDatePicker: true,
-	    showDropdowns: true
+	    showDropdowns: true,
+	    locale: 'pt-br'
 	  });
 	  
-	  $('input[name="dataFim"]').daterangepicker({
+	  dtFim.daterangepicker({
 	    singleDatePicker: true,
-	    showDropdowns: true
+	    showDropdowns: true,
+	    locale: 'pt-br'
 	  });
 	  
 	 /* $('#datepicker1').datepicker({
