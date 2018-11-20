@@ -34,7 +34,7 @@ CREATE TABLE `tb_arquivo` (
   KEY `fk_tb_arquivo_tb_demanda1_idx` (`ID_DEMANDA`),
   CONSTRAINT `FKky6x90m8jq03tggclrc2amn9f` FOREIGN KEY (`ID_DEMANDA`) REFERENCES `tb_demanda` (`ID_DEMANDA`),
   CONSTRAINT `fk_tb_arquivo_tb_demanda1` FOREIGN KEY (`ID_DEMANDA`) REFERENCES `tb_demanda` (`ID_DEMANDA`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `tb_arquivo` (
 
 LOCK TABLES `tb_arquivo` WRITE;
 /*!40000 ALTER TABLE `tb_arquivo` DISABLE KEYS */;
-INSERT INTO `tb_arquivo` VALUES (1,'C:\\inside\\vlcsnap-2017-09-02-21h19m31s894.png',5,'foto-mto-maneira','png'),(2,'C:\\inside\\BANCO_MER.mwb',5,'mer','mwb'),(3,'C:\\inside\\MER.png',5,'mer-imagem','png'),(4,'C:\\inside\\Aula02-Lab-USJT-2018-ArqSw-SpringMVC-ioc.pdf',5,'doc-informativo-spring','pdf'),(5,'C:\\inside\\login-backgroundjpg',11,'login-background','jpg'),(6,'C:\\inside\\skypng',11,'sky','png');
+INSERT INTO `tb_arquivo` VALUES (1,'C:\\inside\\vlcsnap-2017-09-02-21h19m31s894.png',5,'foto-mto-maneira','png'),(2,'C:\\inside\\BANCO_MER.mwb',5,'mer','mwb'),(3,'C:\\inside\\MER.png',5,'mer-imagem','png'),(4,'C:\\inside\\Aula02-Lab-USJT-2018-ArqSw-SpringMVC-ioc.pdf',5,'doc-informativo-spring','pdf'),(5,'C:\\inside\\login-backgroundjpg',11,'login-background','jpg'),(6,'C:\\inside\\skypng',11,'sky','png'),(7,'C:\\inside\\~SLApng',11,'~SLA','png');
 /*!40000 ALTER TABLE `tb_arquivo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `tb_cargo_func` (
   `ID_CARGO_FUNC` int(11) NOT NULL AUTO_INCREMENT,
   `DESC_CARGO` varchar(50) NOT NULL,
   PRIMARY KEY (`ID_CARGO_FUNC`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `tb_cargo_func` (
 
 LOCK TABLES `tb_cargo_func` WRITE;
 /*!40000 ALTER TABLE `tb_cargo_func` DISABLE KEYS */;
-INSERT INTO `tb_cargo_func` VALUES (2,'Analista Jr');
+INSERT INTO `tb_cargo_func` VALUES (2,'Analista Jr'),(3,'Gestor de Projetos');
 /*!40000 ALTER TABLE `tb_cargo_func` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,9 +82,9 @@ CREATE TABLE `tb_cliente` (
   `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT,
   `NOME_CLIENTE` varchar(130) NOT NULL,
   `REPRESENTANTE` varchar(80) DEFAULT NULL,
-  `TELEFONE` varchar(30) DEFAULT NULL,
+  `telefone` varchar(30) DEFAULT NULL,
   `EMAIL_REP` varchar(80) DEFAULT NULL,
-  `cnpj` varchar(30) DEFAULT NULL,
+  `cnpj` varchar(255) DEFAULT NULL,
   `endereco` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID_CLIENTE`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -96,7 +96,7 @@ CREATE TABLE `tb_cliente` (
 
 LOCK TABLES `tb_cliente` WRITE;
 /*!40000 ALTER TABLE `tb_cliente` DISABLE KEYS */;
-INSERT INTO `tb_cliente` VALUES (2,'Universidade São Judas','Rodrigo Bossini','1152145854','usjr@mail.com','124578569858','Av. Vital Brasil, 1999'),(3,'Teste','Testador','99999999','tester@mail.com','45454541214','Rua teste, 213');
+INSERT INTO `tb_cliente` VALUES (2,'Universidade São Judas','Rodrigo Bossini','(11)5421-4585','usjr@mail.com','12.345.678/9123-45','Av. Vital Brasil, 1999'),(3,'Teste','Testador','(11)2124-2145','tester@mail.com','12.345.678/9123-45','Rua teste, 213');
 /*!40000 ALTER TABLE `tb_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +120,7 @@ CREATE TABLE `tb_comentario` (
   CONSTRAINT `FKknliooh283fmrxxpsmfo3mwq6` FOREIGN KEY (`ID_DEMANDA`) REFERENCES `tb_demanda` (`ID_DEMANDA`),
   CONSTRAINT `fk_tb_comentario_tb_demanda1` FOREIGN KEY (`ID_DEMANDA`) REFERENCES `tb_demanda` (`ID_DEMANDA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tb_comentario_tb_usuario1` FOREIGN KEY (`LOGIN`) REFERENCES `tb_usuario` (`LOGIN`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `tb_comentario` (
 
 LOCK TABLES `tb_comentario` WRITE;
 /*!40000 ALTER TABLE `tb_comentario` DISABLE KEYS */;
-INSERT INTO `tb_comentario` VALUES (1,'Lorem ipsum dolor sit amet, consectetur adipisicing elit.','2018-10-25 20:16:56','janaina.abc3@gmail.com',5),(2,'Finalmente funcionou essa porrada','2018-10-25 20:40:32','janaina.abc3@gmail.com',5),(3,'Teste','2018-10-25 20:42:21','janaina.abc3@gmail.com',5),(4,'OKA','2018-10-25 20:59:10','janaina.abc3@gmail.com',5),(5,'novo comentario','2018-10-25 21:16:32','janaina.abc3@gmail.com',5),(6,'Teste','2018-11-01 02:45:38','admin',10),(7,'Lorem ipsum dolor sit amet, consectetur adipisicing elit.','2018-11-02 19:50:48','janaina.abc3@gmail.com',11);
+INSERT INTO `tb_comentario` VALUES (1,'Lorem ipsum dolor sit amet, consectetur adipisicing elit.','2018-10-25 20:16:56','janaina.abc3@gmail.com',5),(2,'Finalmente funcionou essa porrada','2018-10-25 20:40:32','janaina.abc3@gmail.com',5),(3,'Teste','2018-10-25 20:42:21','janaina.abc3@gmail.com',5),(4,'OKA','2018-10-25 20:59:10','janaina.abc3@gmail.com',5),(5,'novo comentario','2018-10-25 21:16:32','janaina.abc3@gmail.com',5),(6,'Teste','2018-11-01 02:45:38','admin',10),(7,'Lorem ipsum dolor sit amet, consectetur adipisicing elit.','2018-11-02 19:50:48','janaina.abc3@gmail.com',11),(8,'teste','2018-11-07 20:14:06','admin',5),(9,'Lorem ipsum dolor sit amet, consectetur adipisici]][ng elit.','2018-11-07 20:30:02','janaina.abc3@gmail.com',11);
 /*!40000 ALTER TABLE `tb_comentario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,7 +157,7 @@ CREATE TABLE `tb_demanda` (
   CONSTRAINT `FK_TB_DEMANDA_TB_FUNCIONARIO1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `tb_funcionario` (`ID_FUNCIONARIO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_TB_DEMANDA_TB_PROJETO1` FOREIGN KEY (`ID_PROJETO`) REFERENCES `tb_projeto` (`ID_PROJETO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FKp3n6cthpip7ar2x069ksv8we5` FOREIGN KEY (`ID_PROJETO`) REFERENCES `tb_projeto` (`ID_PROJETO`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +166,7 @@ CREATE TABLE `tb_demanda` (
 
 LOCK TABLES `tb_demanda` WRITE;
 /*!40000 ALTER TABLE `tb_demanda` DISABLE KEYS */;
-INSERT INTO `tb_demanda` VALUES (5,'Upload de Arquivos','Implementar upload de arquivos e lista-los para download.',4,2,'em andamento','2018-10-10 00:00:00','2018-11-11 00:00:00','11:30:21'),(10,'Implementação do cronograma','Validar a inserção de uma demanda para um analista dentro de um período busy.',4,3,'aberto','2018-11-01 00:00:00','2018-11-15 00:00:00',NULL),(11,'Teste','Teste',4,2,'em andamento','2018-11-16 00:00:00','2018-11-20 00:00:00','21:00:06');
+INSERT INTO `tb_demanda` VALUES (5,'Upload de Arquivos','Implementar upload de arquivos e lista-los para download.',4,2,'pausado','2018-10-10 00:00:00','2018-11-21 00:00:00',NULL),(10,'Implementação do cronograma','Validar a inserção de uma demanda para um analista dentro de um período busy.',4,3,'em andamento','2018-11-01 00:00:00','2018-11-15 00:00:00','21:00:06'),(11,'Teste','Teste',4,2,'finalizado','2018-11-16 00:00:00','2018-11-20 00:00:00','00:02:14'),(12,'Escopo do Projeto','Desenvolvimento do escopo do projeto.',5,2,'aberto','2018-11-16 00:00:00','2018-11-20 00:00:00',NULL),(13,'Implementação Spring MVC','Implementar estrutura MVC utilizando framework Spring',6,2,'aberto','2018-11-21 00:00:00','2018-12-20 00:00:00',NULL);
 /*!40000 ALTER TABLE `tb_demanda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +184,7 @@ CREATE TABLE `tb_funcionario` (
   `ESPECIALIDADE` varchar(100) NOT NULL,
   `LOCALIZACAO` varchar(100) NOT NULL,
   `CELULAR` varchar(11) DEFAULT NULL,
-  `CPF` varchar(14) NOT NULL,
+  `CPF` varchar(11) NOT NULL,
   `RG` varchar(9) DEFAULT NULL,
   `ID_CARGO_FUNC` int(11) NOT NULL,
   `OBSERVACOES` varchar(500) DEFAULT NULL,
@@ -200,7 +200,7 @@ CREATE TABLE `tb_funcionario` (
   CONSTRAINT `FK_TB_USUARIO_TB_CARGO_FUNC1` FOREIGN KEY (`ID_CARGO_FUNC`) REFERENCES `tb_cargo_func` (`ID_CARGO_FUNC`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FKe6br5on4uhp7j7hctb6igyvkk` FOREIGN KEY (`ID_CARGO_FUNC`) REFERENCES `tb_cargo_func` (`ID_CARGO_FUNC`),
   CONSTRAINT `FKqiymbt0btd7ra5ney5efstjnu` FOREIGN KEY (`LOGIN`) REFERENCES `tb_usuario` (`LOGIN`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,7 +209,7 @@ CREATE TABLE `tb_funcionario` (
 
 LOCK TABLES `tb_funcionario` WRITE;
 /*!40000 ALTER TABLE `tb_funcionario` DISABLE KEYS */;
-INSERT INTO `tb_funcionario` VALUES (2,'Janaina Emilia','janaina.abc3@gmail.com','Analista Jr','So Paulo / SP','111111111','55541244587',NULL,2,NULL,NULL,'janaina.abc3@gmail.com'),(3,'Dennis Siqueira','dennis.siqueira@gmail.com','UX/UI','So Paulo / SP','11954218547','44451245745',NULL,2,NULL,NULL,'dennis.siqueira@gmail.com');
+INSERT INTO `tb_funcionario` VALUES (2,'Janaina Emilia','janaina.abc3@gmail.com','Analista Jr','So Paulo/SP',NULL,'55541244587',NULL,2,NULL,NULL,'janaina.abc3@gmail.com'),(3,'Dennis Siqueira','dennis.siqueira@gmail.com','UX/UI','So Paulo/SP',NULL,'44451245745',NULL,2,NULL,NULL,'dennis.siqueira@gmail.com'),(5,'Ge Rente','ge.rente@mail.com','Gestor de Projetos','So Paulo/SP','11921454578','55514574585',NULL,3,NULL,NULL,'ge.rente@mail.com');
 /*!40000 ALTER TABLE `tb_funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +254,7 @@ CREATE TABLE `tb_producao` (
   KEY `FKrstbdugvc691kxuo40lkn8a95` (`ID_DEMANDA`),
   CONSTRAINT `FK_TB_PRODUCAO_TB_DEMANDA1` FOREIGN KEY (`ID_DEMANDA`) REFERENCES `tb_demanda` (`ID_DEMANDA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FKrstbdugvc691kxuo40lkn8a95` FOREIGN KEY (`ID_DEMANDA`) REFERENCES `tb_demanda` (`ID_DEMANDA`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,7 +263,7 @@ CREATE TABLE `tb_producao` (
 
 LOCK TABLES `tb_producao` WRITE;
 /*!40000 ALTER TABLE `tb_producao` DISABLE KEYS */;
-INSERT INTO `tb_producao` VALUES (5,'2018-11-03','19:37:03','19:37:21',5),(6,'2018-11-03','19:42:35','19:45:38',5),(7,'2018-11-03','19:48:30','19:48:36',5),(8,'2018-11-03','19:52:35','19:52:40',5),(9,'2018-11-03','19:55:38','20:10:39',5),(10,'2018-11-03','20:16:14','20:22:15',5),(11,'2018-11-03','20:25:43','20:42:48',5),(12,'2018-11-03','20:42:52','20:42:58',5),(13,'2018-11-03','20:43:02','20:53:26',5),(14,'2018-11-03','20:53:31','20:53:44',5),(15,'2018-11-03','20:53:58','20:54:01',5),(16,'2018-11-03','20:59:22','20:59:26',5),(17,'2018-11-03','20:59:32','20:59:35',5),(18,'2018-11-03','20:59:40','20:59:44',5),(19,'2018-11-03','21:43:46','21:43:49',5),(20,'2018-11-04','05:21:31','18:59:08',5),(21,'2018-11-04','18:58:48','18:58:54',11),(22,'2018-11-04','18:59:16','18:59:19',5),(23,'2018-11-04','18:59:23','18:59:25',5),(24,'2018-11-04','18:59:30',NULL,5),(25,'2018-11-04','19:00:12',NULL,11);
+INSERT INTO `tb_producao` VALUES (5,'2018-11-03','19:37:03','19:37:21',5),(6,'2018-11-03','19:42:35','19:45:38',5),(7,'2018-11-03','19:48:30','19:48:36',5),(8,'2018-11-03','19:52:35','19:52:40',5),(9,'2018-11-03','19:55:38','20:10:39',5),(10,'2018-11-03','20:16:14','20:22:15',5),(11,'2018-11-03','20:25:43','20:42:48',5),(12,'2018-11-03','20:42:52','20:42:58',5),(13,'2018-11-03','20:43:02','20:53:26',5),(14,'2018-11-03','20:53:31','20:53:44',5),(15,'2018-11-03','20:53:58','20:54:01',5),(16,'2018-11-03','20:59:22','20:59:26',5),(17,'2018-11-03','20:59:32','20:59:35',5),(18,'2018-11-03','20:59:40','20:59:44',5),(19,'2018-11-03','21:43:46','21:43:49',5),(20,'2018-11-04','05:21:31','18:59:08',5),(21,'2018-11-04','18:58:48','18:58:54',11),(22,'2018-11-04','18:59:16','18:59:19',5),(23,'2018-11-04','18:59:23','18:59:25',5),(24,'2018-11-04','18:59:30','20:44:29',5),(25,'2018-11-04','19:00:12','20:29:52',11),(26,'2018-11-07','20:42:55','22:15:23',11),(27,'2018-11-13','22:15:40',NULL,11),(28,'2018-11-15','19:48:55','19:49:01',5),(29,'2018-11-15','19:49:24','19:49:29',5),(30,'2018-11-20','18:01:42','18:01:48',10),(31,'2018-11-20','18:01:51',NULL,10);
 /*!40000 ALTER TABLE `tb_producao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,7 +291,7 @@ CREATE TABLE `tb_projeto` (
   CONSTRAINT `FK_TB_PROJETO_TB_CLIENTE1` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `tb_cliente` (`ID_CLIENTE`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FKceid4ix9uqjw2a7ka71n8ef6b` FOREIGN KEY (`LOGIN`) REFERENCES `tb_usuario` (`LOGIN`),
   CONSTRAINT `FKmsekk2kicixyjqtngg64876g4` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `tb_cliente` (`ID_CLIENTE`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,62 +300,8 @@ CREATE TABLE `tb_projeto` (
 
 LOCK TABLES `tb_projeto` WRITE;
 /*!40000 ALTER TABLE `tb_projeto` DISABLE KEYS */;
-INSERT INTO `tb_projeto` VALUES (4,'Projeto Teste',2,'Detalhes do projeto','-','2020-01-10','2020-01-12','85','admin','Aberto');
+INSERT INTO `tb_projeto` VALUES (4,'Projeto Beta',2,'Detalhes do projeto','Educacional','2018-11-20','2019-01-20','85','admin','aberto'),(5,'UniGo',2,'Projeto de conclusão de curso. Grória a Deux.','-','2019-03-11','2020-03-02','0','admin','aberto'),(6,'Media Center',2,'Projeto top em andamento','Educacional','2018-10-08','2019-01-08','0','admin','aberto');
 /*!40000 ALTER TABLE `tb_projeto` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tb_recurso`
---
-
-DROP TABLE IF EXISTS `tb_recurso`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_recurso` (
-  `id_recurso` int(11) NOT NULL AUTO_INCREMENT,
-  `id_demanda` int(11) DEFAULT NULL,
-  `login` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_recurso`),
-  KEY `FKphgohebb17yodmgjnb1yel947` (`id_demanda`),
-  KEY `FKtf6twftghvbkju5ej8rwyt5ua` (`login`),
-  CONSTRAINT `FKphgohebb17yodmgjnb1yel947` FOREIGN KEY (`id_demanda`) REFERENCES `tb_demanda` (`ID_DEMANDA`),
-  CONSTRAINT `FKtf6twftghvbkju5ej8rwyt5ua` FOREIGN KEY (`login`) REFERENCES `tb_usuario` (`LOGIN`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_recurso`
---
-
-LOCK TABLES `tb_recurso` WRITE;
-/*!40000 ALTER TABLE `tb_recurso` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_recurso` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tb_recurso_tb_comentario`
---
-
-DROP TABLE IF EXISTS `tb_recurso_tb_comentario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_recurso_tb_comentario` (
-  `tb_recurso_id_recurso` int(11) NOT NULL,
-  `comentario_id_comentario` int(11) NOT NULL,
-  UNIQUE KEY `UK_oxxy5xma6xq35jj1outrpqts7` (`comentario_id_comentario`),
-  KEY `FKn6ujt7fniwq6wgmijq8mh6hll` (`tb_recurso_id_recurso`),
-  CONSTRAINT `FK5tk0ica2bv7xw7g405con9end` FOREIGN KEY (`comentario_id_comentario`) REFERENCES `tb_comentario` (`ID_COMENTARIO`),
-  CONSTRAINT `FKn6ujt7fniwq6wgmijq8mh6hll` FOREIGN KEY (`tb_recurso_id_recurso`) REFERENCES `tb_recurso` (`id_recurso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_recurso_tb_comentario`
---
-
-LOCK TABLES `tb_recurso_tb_comentario` WRITE;
-/*!40000 ALTER TABLE `tb_recurso_tb_comentario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_recurso_tb_comentario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -382,7 +328,7 @@ CREATE TABLE `tb_usuario` (
 
 LOCK TABLES `tb_usuario` WRITE;
 /*!40000 ALTER TABLE `tb_usuario` DISABLE KEYS */;
-INSERT INTO `tb_usuario` VALUES ('admin','admin',3),('analista','analista',4),('dennis.siqueira@gmail.com','61071',4),('janaina.abc3@gmail.com','49560',4);
+INSERT INTO `tb_usuario` VALUES ('admin','admin',3),('analista','analista',4),('dennis.siqueira@gmail.com','123',4),('ge.rente@mail.com','57166',3),('janaina.abc3@gmail.com','janaina',4),('teste@mail.com','59152',4);
 /*!40000 ALTER TABLE `tb_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -395,4 +341,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-07 19:44:44
+-- Dump completed on 2018-11-20 20:51:24
