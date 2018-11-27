@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import br.inside.model.entity.Demanda;
 import br.inside.model.entity.Projeto;
 
 @Repository
@@ -30,6 +31,20 @@ public class ProjetoDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Long> quantidadeAnalistas(){
+		/*String jpql = "select d from tb_demanda d where d.projeto = :projeto";*/
+		//select id_projeto as projeto, count(distinct id_funcionario) as funcionarios from tb_demanda group by id_projeto
+		String jpql = "select count(distinct d.funcionario) from tb_demanda d group by d.projeto";
+		Query query = manager.createQuery(jpql);
+/*		query.setParameter("projeto", projeto);*/
+		
+		List<Long> result = query.getResultList();
+		System.out.println(result);
+		return result;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Projeto> listarProjetos(){
 		return manager.createQuery("select p from tb_projeto p").getResultList();
 	}
@@ -46,16 +61,15 @@ public class ProjetoDAO {
 		return result;
 	}
 	
-	public int tarefasRealizadas(int id_projeto) {
+	public Long tarefasRealizadas(int id_projeto) {
 		String jpql = "select count(d) from tb_demanda d where d.status = 'finalizado' AND d.projeto.id = :id_projeto";
 		
 		Query query = manager.createQuery(jpql);
-		query.setParameter("id_projeto", "%"+id_projeto+"%");
+		query.setParameter("id_projeto", id_projeto);
 		
-		int result = query.getFirstResult();
+		List<Long> result = query.getResultList();
 		
-		System.out.println(result);
-		return result;
+		return result.get(0);
 	}
 	
 	/*public Projeto funcionarioPorProjeto(int id_projeto) {

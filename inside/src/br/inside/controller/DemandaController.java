@@ -117,7 +117,7 @@ public class DemandaController {
 	
 	@RequestMapping("/editarDemanda")
 	public String editarDemanda(Model model, HttpSession session, int idDemanda) throws IOException {
-		List<Funcionario> analistas = funcionarioService.listarFuncionarios();
+		List<Funcionario> analistas = funcionarioService.listarFuncionarios(2);
 		Demanda demanda = demandaService.buscarDemanda(idDemanda);	
 		
 		model.addAttribute("demanda", demanda);

@@ -30,7 +30,7 @@
 		<property name="url" value="jdbc:mysql://localhost/pi_6_inside_2"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="root"></property>
-
+	</bean>
 	
 	<!-- Upload Files -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />

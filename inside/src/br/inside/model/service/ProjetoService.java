@@ -39,7 +39,11 @@ public class ProjetoService {
 		return dao.listarProjetos(chave);
 	}
 	
-	public int tarefasRealizadas(int id_projeto) {
+	public List<Long> quantidadeAnalistas(){
+		return dao.quantidadeAnalistas();
+	}
+	
+	public Long tarefasRealizadas(int id_projeto) {
 		return dao.tarefasRealizadas(id_projeto);
 	}
 	

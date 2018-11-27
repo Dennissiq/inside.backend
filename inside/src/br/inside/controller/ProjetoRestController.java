@@ -3,6 +3,8 @@ package br.inside.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,33 +32,37 @@ public class ProjetoRestController {
 	@Autowired
 	private FuncionarioService funcionarioService;
 	
-/*	@RequestMapping(method = RequestMethod.GET, value ="rest/demandas")
-	public @ResponseBody List<Demanda> projetosView(@RequestParam String id) {
-		List<Demanda> lista;
-		
-		try {						
-			Funcionario f = funcionarioService.buscarFuncionario(Integer.parseInt(id));
-			lista = demandaService.listarDemandasAtivasPorAnalista(f);
-			return lista;
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			return new ArrayList<Demanda>();
-		}		
-	}*/
-	
-/*	@RequestMapping(method = RequestMethod.GET, value ="rest/allFuncionarios/{idProjeto}")
-	public @ResponseBody List<Projeto> projetosView(@PathVariable("idProjeto") int idProjeto) {
-		List<Projeto> lista;
+	@RequestMapping(method = RequestMethod.GET, value ="rest/analistasPorProjeto")
+	public @ResponseBody List<Long> demandasView() {
+		//List<Integer> lista;
 		
 		try {			
-			Projeto projeto = projetoService.buscarProjeto(idProjeto);
-			lista = projetoService.listarProjetos();
+			/*Projeto projeto = projetoService.buscarProjeto(idProjeto);*/
+			List<Long> list = projetoService.quantidadeAnalistas();
+			return list;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+			return new ArrayList<Long>();
+		}		
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value ="rest/tarefasRealizadas/{id}")
+	public @ResponseBody Long projetosView(@PathVariable("id") String id) {
+		
+		Long lista;
+		
+		try {			
+			/*Projeto projeto = projetoService.buscarProjeto(idProjeto);*/
+			lista = projetoService.tarefasRealizadas(Integer.parseInt(id));
+			System.out.println(lista);
 			return lista;
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			return new ArrayList<Projeto>();
+			System.out.println(e.toString());
+			return (long) -1;
 		}		
-	}*/
+	}
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -72,8 +72,8 @@
 										
 										<div class="line-gray"></div>	
 										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
-											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 / ${fn:length(projeto.demandas)} </span> </h5>
-											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 0 </span> </h5> 
+											<%-- <h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray tarefas" data-projeto="${projeto.id}">0</span> / ${fn:length(projeto.demandas)}</h5> --%>
+										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray qtdFunc"> </span> </h5> 
 										</div>
 										<div class="col-md-6 col-lg-6 pdd-30-md-b pdd-30-lg-b">
 											<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de horas previstas no projeto: <span class="text-gray"> ${projeto.horas}h </span> </h5> 
@@ -171,7 +171,7 @@
 									<h5 class="mat-card-kit-title text-left text-gray text-bold"><a class="text-gray" href="detalheProjeto?id=${projeto.id}">Editar projeto</a></h5>
 									<div class="line-gray"></div>	
 									<div class="col-xs-12 col-xxs-12 pdd-10-xs-b pdd-10-xxs-b">
-										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 / ${fn:length(projeto.demandas)} </span> </h5>
+										<%-- <h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 / ${fn:length(projeto.demandas)} </span> </h5> --%>
 										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 0 </span> </h5> 
 										<h5 class="mat-card-kit-title text-gray text-bold pdd-15-xs-b pdd-15-xxs-b">Quantidade de horas previstas no projeto: <span class="text-gray">
 											${projeto.horas}h</span>n</h5>
@@ -244,6 +244,75 @@
   <script src="js/jquery.min.js"></script>
   <script src="javascripts/bootstrap.min.js"></script>
   <script src="js/menu-mobile.js"></script>
+  
+  <script> 
+	  
+/*  	  var url = "rest/projetos";
+	
+	  $.ajax({
+          type: "GET",
+          dataType:"json",
+          url: url,
+          // data: data, 
+          success : function(response) {
+          	console.log(response);
+          	
+         	for ( var i in response) {
+          		// console.log(i)
+          		
+          		for (var y in response[i].demandas) {
+          			var funcionarios = response[i].demandas[y].funcionario.idFuncionario;
+          			
+          			// console.log(funcionarios); 
+          			
+                  	var qtdFunc = $("#qtdFunc" + response[i].id).append(funcionarios);
+                  	
+                  	console.log(qtdFunc);
+          		}
+          		
+          		
+          			
+          	} 
+         	
+          
+          	
+          }
+	  }); */ 
+	  
+	  var url = "rest/analistasPorProjeto";
+		
+	  $.ajax({
+          type: "GET",
+          dataType:"json",
+          url: url,
+          /* data: data, */
+          success : function(response) {
+          	console.log(response);
+          	
+         	for ( var i in response) {
+         		var funcionario = response[i];
+              	$(".qtdFunc")[i].append(funcionario);
+         	}
+          }
+	  });
+  
+	  var lista = $(".tarefas");
+	  for (var i = 0; i < lista.length; i++) {
+		  var id = lista.eq(i).data("projeto");
+		  console.log(id);
+		  $.ajax({
+	          type: "GET",
+	          dataType:"json",
+	          url: "rest/tarefasRealizadas/" + id,
+	          success : function(response) {
+	        	  $(lista.eq(i)).append(response);
+	          }
+		  });
+	 }
+	  
+	  
+  
+  </script>
 
   
 

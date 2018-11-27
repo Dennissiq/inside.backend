@@ -72,9 +72,9 @@
                   <div class="line-gray"></div>
                   <div class="col-md-12 col-lg-12">
                     <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>${demanda.duracao}</span></label> 
-                    <c:if test="${usuario.perfil.nome == 'Analista'}">
+                 <%--    <c:if test="${usuario.perfil.nome == 'Analista'}">
                     	<a href="#" class='text-gray'>[editar tempo]</a>
-                    </c:if>
+                    </c:if> --%>
                   </div>	
                    <div class="col-md-12 col-lg-12">
                     <label  class='text-gray time-pend-task'>Período para desenvolvimento:</label> 
@@ -337,9 +337,9 @@
                       <label class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>00:00</span></label>
                     </div>
                     <div class="col-xs-12 col-xxs-12 pdd-10-xs-t pdd-10-xxs-t pdd-15-xs-b pdd-15-xxs-b">
-                     <c:if test="${usuario.perfil.nome == 'Analista'}">
+                <%--      <c:if test="${usuario.perfil.nome == 'Analista'}">
                     	<a href="#" class='text-gray'>[editar tempo]</a>
-                    </c:if>
+                    </c:if> --%>
                     </div>
                    <div class="col-md-12 col-lg-12">
                     <c:if test="${usuario.perfil.nome == 'Administrador'}">
