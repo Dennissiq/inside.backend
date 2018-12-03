@@ -102,13 +102,16 @@
 												<td class="text-bold">${demanda.projeto.descricao}</td>
 												<c:choose>
 													<c:when test="${demanda.status == 'aberto'}">											
-														<td class="text-danger text-bold text-center"> <i class="fas fa-exclamation-circle fa-1x"></i></td>
+														<td class="text-danger text-bold"> <i class="fas fa-exclamation-circle fa-1x"></i></td>
 													</c:when>
 													<c:when test="${demanda.status == 'finalizado'}">
-														<td class="text-success text-bold text-center"> <i class="fas fa-check fa-1x"></i></td>
+														<td class="text-success text-bold"> <i class="fas fa-check fa-1x"></i></td>
 													</c:when>
 													<c:when test="${demanda.status == 'em andamento'}">																											
-														<td class="text-warning text-bold text-center"> <i class="fas fa-clock fa-1x"></i></td>
+														<td class="text-warning text-bold"> <i class="fas fa-clock fa-1x"></i></td>
+													</c:when>
+													<c:when test="${demanda.status == 'pausado'}">																											
+														<td class="text-warning text-bold"> <i class="fas fa-pause fa-1x"></i></td>
 													</c:when>
 												</c:choose>
 												<td class="text-center"><a href="detalheDemanda?idDemanda=${demanda.id}"><i class="fa fa-search text-gray" aria-hidden="true"></i></a> </td>

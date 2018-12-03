@@ -1,6 +1,7 @@
 package br.inside.model.service;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +42,7 @@ public class DemandaService {
 		if(d.getStatus().equals("aberto") || d.getStatus().equals("pausado") ) {
 			producao.setData(new Date());
 			producao.setDemanda(dao.buscarDemanda(idDemanda));
-			producao.setHoraInicio(new Timestamp(new Date().getTime()));			
+			producao.setHoraInicio(new Time(new Date().getTime()));			
 			ps.criar(producao);
 		}
 		
@@ -52,7 +53,7 @@ public class DemandaService {
 	public void pausarTarefa(int idDemanda, ProducaoService ps) {
 		Demanda demanda = dao.buscarDemanda(idDemanda);
 		Producao producao = ps.buscarProducao(demanda);
-		producao.setHoraFim(new Timestamp(new Date().getTime()));			
+		producao.setHoraFim(new Time(new Date().getTime()));			
 		ps.atualizar(producao);
 				
 		dao.pausarTarefa(idDemanda);

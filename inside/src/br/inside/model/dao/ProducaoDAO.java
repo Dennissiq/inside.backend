@@ -1,7 +1,12 @@
 package br.inside.model.dao;
 
-import java.sql.Timestamp;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +21,9 @@ import br.inside.model.entity.Projeto;
 
 @Repository
 public class ProducaoDAO {
-
+	
+	static final int HOUR = 1;
+	
 	@PersistenceContext
 	EntityManager manager;
 	
@@ -83,7 +90,13 @@ public class ProducaoDAO {
 		return result;
 	}
 	
-	public Timestamp calcularDuracao(Demanda demanda) {
+	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+	    long diffInMillies = date2.getTime() - date1.getTime();
+	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public Time calcularDuracao(Demanda demanda) {
 		String jpql = "select p from tb_producao p where p.demanda = :demanda";
 		
 		Query query = manager.createQuery(jpql);
@@ -91,14 +104,39 @@ public class ProducaoDAO {
 		
 		@SuppressWarnings("unchecked")
 		List<Producao> producoes = query.getResultList();
+				
+		Time time = new Time(0);
+		DateFormat df = new SimpleDateFormat("HH:mm:ss");
 		
-		Timestamp duracao = new Timestamp(0);
+		System.out.println(producoes.size());
 		
 		for (Producao producao : producoes) {
-			long aux = producao.getHoraFim().getTime() - producao.getHoraInicio().getTime();
-			duracao.setTime(duracao.getTime() + aux);			
+			long diffTime = producao.getHoraFim().getTime() - producao.getHoraInicio().getTime();		
+			long sum = time.getTime() + diffTime;
+				
+			long totalSecs = sum/1000;
+	        int hours = (int)(totalSecs / 3600);
+	        int minutes = (int)(totalSecs / 60) % 60;
+	        int seconds = (int)totalSecs % 60;				       
+	        	
+	        System.out.println("hours: " + (totalSecs / 3600));
+	        
+	        if((totalSecs / 3600) >= 0) {   
+	        	time.setHours(hours);
+	        }else{
+	        	time.setHours(HOUR);
+	        }
+	        
+	        System.out.println("time.hours: " + time.getHours());
+	        
+			time.setMinutes(minutes);
+			time.setSeconds(seconds);
+			
+			String _time = df.format(time);
+			
+			System.out.println(_time);
 		}
 		
-		return duracao;
+		return time;
 	}
 }

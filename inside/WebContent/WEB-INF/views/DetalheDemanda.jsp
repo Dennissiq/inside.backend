@@ -50,26 +50,30 @@
             <div class="line-gray"></div>
             <div class="row row-card">              
               <div class=" col-md-12 col-lg-12">
-                <div class=" row row-card mat-card-kit">                  
-                  <c:choose>
-					<c:when test="${demanda.status == 'aberto'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-danger'>
-						<i class="fas fa-exclamation-circle fa-1x"></i> ${demanda.status}</span></h4>						
-					</c:when>
-					<c:when test="${demanda.status == 'finalizado'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-success'>
-						<i class="fas fa-check fa-1x"></i> ${demanda.status}</span></h4>
-					</c:when>
-					<c:when test="${demanda.status == 'em andamento'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
-						<i class="fas fa-clock fa-1x"></i> ${demanda.status}</span></h4>						
-					</c:when>
-					<c:when test="${demanda.status == 'pausado'}">
-						<h4 class="mat-card-kit-title text-gray text-bold">Status: <span class='text-warning'>
-						<i class="fas fa-pause fa-1x"></i> ${demanda.status}</span></h4>						
-					</c:when>
-				</c:choose>
-                  <div class="line-gray"></div>
+                <div class=" row row-card mat-card-kit">  
+                  	<c:choose>
+						<c:when test="${demanda.status == 'aberto'}">
+							<h4 class="mat-card-kit-title text-gray text-bold demanda-status-class">Status: <span class='text-danger'>
+							<i class="fas fa-exclamation-circle fa-1x"></i> ${demanda.status}</span></h4>						
+						</c:when>
+						<c:when test="${demanda.status == 'finalizado'}">
+							<h4 class="mat-card-kit-title text-gray text-bold demanda-status-class">Status: <span class='text-success'>
+							<i class="fas fa-check fa-1x"></i> ${demanda.status}</span></h4>
+						</c:when>
+						<c:when test="${demanda.status == 'em andamento'}">
+							<h4 class="mat-card-kit-title text-gray text-bold demanda-status-class">Status: <span class='text-warning'>
+							<i class="fas fa-clock fa-1x"></i> ${demanda.status}</span></h4>						
+						</c:when>
+						<c:when test="${demanda.status == 'pausado'}">
+							<h4 class="mat-card-kit-title text-gray text-bold demanda-status-class">Status: <span class='text-warning'>
+							<i class="fas fa-pause fa-1x"></i> ${demanda.status}</span></h4>						
+						</c:when>
+					</c:choose>
+				
+					<c:if test="${usuario.perfil.nome == 'Administrador'}">
+						<a href="editarDemanda?idDemanda=${demanda.id}"><i class="fas fa-edit text-gray detalhe-demanda-link" aria-hidden="true"></i></a>
+					</c:if>
+                  <div class="line-gray demanda-break"></div>
                   <div class="col-md-12 col-lg-12">
                     <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>
           				<c:if test="${demanda.duracao == null}">
@@ -94,21 +98,22 @@
                   	 	<label  class='text-gray time-pend-task'>Responsável: <span>${demanda.funcionario.nome}</span></label>                   	                   	 
                   	</c:if>
                   </div>	
-                  <c:if test="${usuario.perfil.nome == 'Analista'}">
-                  	<c:if test="${demanda.status != 'em andamento' && demanda.status != 'finalizado'}">
-                   	 <div class="play-task col-md-12 col-lg-12">
-                  	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>                  	 
-                  	 <a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
-                  	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>  
-                  	 </div>
-                  	 
+                   <c:if test="${usuario.perfil.nome == 'Analista'}">
+	                 <c:if test="${demanda.status == 'aberto'}">
+	                   	 <div class="play-task col-md-12 col-lg-12">
+		                  	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>
+	                  	 </div>                  	 
                   	</c:if>
-                  	<c:if test="${demanda.status == 'em andamento' && demanda.status != 'finalizado'}">
+                  	<c:if test="${demanda.status == 'pausado'}">
                    	 <div class="play-task col-md-12 col-lg-12">
-                  	 	<a href="pausarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
-                  	 		<p><i class="fa fa-stop-circle fa-1x"></i> Pausar tarefa</p></a>
-                  	 		<a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
-                  	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>                  	 
+	                  	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>                  	 
+	                  	 <a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'> <p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>  
+                  	 </div>                  	 
+                  	</c:if>
+                  	<c:if test="${demanda.status == 'em andamento'}">
+                   	 <div class="play-task col-md-12 col-lg-12">
+                  	 	<a href="pausarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><p><i class="fa fa-stop-circle fa-1x"></i> Pausar tarefa</p></a>
+                  	 	<a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'> <p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>                  	 
                   	 </div>
                   	</c:if>
                   </c:if>
@@ -198,7 +203,7 @@
 		                    <p class='text-gray col-md-7 col-lg-8'>
 		                      <i class='fa fa-file fa-1x'></i> ${arquivo.nome}.${arquivo.type}
 		                    </p>
-		                    <a href="./uploads/${arquivo.nome}.${arquivo.type}" target="_blank" class='util-link col-md-2 col-lg-2'>
+		                    <a href="./uploads/${arquivo.nome}.${arquivo.type}" download class='util-link col-md-2 col-lg-2'>
 		                     <i class='fa fa-download fa-1x'></i>  Download
 		                    </a>
 		                   </div>
@@ -347,6 +352,12 @@
                       	<fmt:formatDate value="${demanda.duracao}" pattern="HH:mm:ss"/>
                       </span></label>
                     </div>
+                    <div class="col-xs-12 col-xxs-12">
+                    <label  class='text-gray time-pend-task'>Período para desenvolvimento: 
+                    	de <span class='projeto-inicio-mob'>${demanda.dtInicio.toString().split(" ")[0]}</span> 
+                    	até <span class='projeto-fim-mob'>${demanda.dtFim.toString().split(" ")[0]}</span>
+                    </label>       
+                  </div>
                     <div class="col-xs-12 col-xxs-12 pdd-10-xs-t pdd-10-xxs-t pdd-15-xs-b pdd-15-xxs-b">
                 <%--      <c:if test="${usuario.perfil.nome == 'Analista'}">
                     	<a href="#" class='text-gray'>[editar tempo]</a>
@@ -358,20 +369,21 @@
                   	</c:if>
                   </div>	
                   <c:if test="${usuario.perfil.nome == 'Analista'}">
-                  	<c:if test="${demanda.status != 'em andamento' && demanda.status != 'finalizado'}">
-                   	 <div class="play-task col-xs-12 col-xxs-12">
-                  	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>                  	 
-                  	 <a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
-                  	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>  
-                  	 </div>
-                  	 
+                  	 <c:if test="${demanda.status == 'aberto'}">
+	                   	 <div class="play-task col-xs-12 col-xxs-12">
+		                  	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>
+	                  	 </div>                  	 
                   	</c:if>
-                  	<c:if test="${demanda.status == 'em andamento' && demanda.status != 'finalizado'}">
-                   	 <div class="play-task col-md-12 col-lg-12">
-                  	 	<a href="pausarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
-                  	 		<p><i class="fa fa-stop-circle fa-1x"></i> Pausar tarefa</p></a>
-                  	 		<a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'>
-                  	 		<p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>                  	 
+                  	<c:if test="${demanda.status == 'pausado'}">
+                   	 <div class="play-task col-xs-12 col-xxs-12">
+	                  	 <a href="iniciarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><i class="fa fa-play-circle fa-1x"></i> Iniciar tarefa</a>                  	 
+	                  	 <a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'> <p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>  
+                  	 </div>                  	 
+                  	</c:if>
+                  	<c:if test="${demanda.status == 'em andamento'}">
+                   	 <div class="play-task col-xs-12 col-xxs-12">
+                  	 	<a href="pausarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'><p><i class="fa fa-stop-circle fa-1x"></i> Pausar tarefa</p></a>
+                  	 	<a href="finalizarTarefa?idDemanda=${demanda.id}" class='play pdd-15-md-b'> <p><i class="fa fa-check-circle fa-1x"></i> Finalizar tarefa</p></a>                  	 
                   	 </div>
                   	</c:if>
                   </c:if>
@@ -452,28 +464,21 @@
                     <h5 class="mat-card-kit-title text-gray text-bold">Anexos</h5>
                     <div class="line-gray"></div>
                     <div class="col-xs-12 col-xxs-12 pdd-10-xs-t pdd-10-xxs-t">
-<!--                       <div class="util pdd-15-xxs-t pdd-15-xxs-b pdd-15-xs-t pdd-15-xs-b col-xs-12 col-xxs-12">
-                        <p class='text-gray col-xs-12 col-xxs-12 text-center'>
-                          <i class='fa fa-file fa-1x'></i> print-bug-sm.jpg
-                        </p>
-                        <a href="#" class='util-link col-xs-6 col-xxs-6 text-center'>
-                          <i class='fa fa-download fa-1x'></i> Download
-                        </a>
-                        <a href="#" class='util-link col-xs-6 col-xxs-6 text-center'>
-                          <i class='fa fa-eye fa-1x'></i> Visualizar
-                        </a>
-                      </div>
-                      <div class="util pdd-15-xxs-t pdd-15-xxs-b pdd-15-xs-t pdd-15-xs-b col-xs-12 col-xxs-12">
-                        <p class='text-gray col-xs-12 col-xxs-12 text-center'>
-                          <i class='fa fa-file fa-1x'></i> print-bug-sm.jpg
-                        </p>
-                        <a href="#" class='util-link col-xs-6 col-xxs-6 text-center'>
-                          <i class='fa fa-download fa-1x'></i> Download
-                        </a>
-                        <a href="#" class='util-link col-xs-6 col-xxs-6 text-center'>
-                          <i class='fa fa-eye fa-1x'></i> Visualizar
-                        </a>
-                      </div> -->
+
+                    
+	                  	<c:if test="${not empty demanda.arquivos}">						
+							<c:forEach var="arquivo" items="${demanda.arquivos}">
+			                   <div class="util pdd-15-xxs-t pdd-10-xxs-b col-xs-12 col-xxs-12">
+			                    <p class='text-gray col-md-7 col-lg-8'>
+			                      <i class='fa fa-file fa-1x'></i> ${arquivo.nome}.${arquivo.type}
+			                    </p>
+			                    <a href="./uploads/${arquivo.nome}.${arquivo.type}" download class='util-link col-md-2 col-lg-2'>
+			                     <i class='fa fa-download fa-1x'></i>  Download
+			                    </a>
+			                   </div>
+		                   </c:forEach>
+	              		</c:if> 
+	              
 		                <form action="upload" method="post" enctype="multipart/form-data">
 			                <label for="file">Arquivo</label>
 			                <div class="row">
@@ -527,6 +532,9 @@
 		
 		$(".projeto-inicio").text(a);
 		$(".projeto-fim").text(b);
+		
+		$(".projeto-inicio-mob").text(a);
+		$(".projeto-fim-mob").text(b);
 	});
   </script>
 

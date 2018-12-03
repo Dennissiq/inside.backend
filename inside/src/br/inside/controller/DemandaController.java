@@ -204,10 +204,10 @@ public class DemandaController {
 			
 			String type = _fileName.split("\\.")[1];
 			String fileName = nome + "." + type;
-			String filePath = "C:/Users/janai/Documents/Faculdade/Semestres/6º Semestre/PI/Projeto/inside.backend/inside/WebContent/uploads";
+			String filePath = "C:/TI/Utilitarios/inside.backend/inside/WebContent/uploads";
 			
 			File fileToSave = new File(filePath+"/"+fileName);
-			File file = new File("C:\\Users\\janai\\Documents\\Faculdade\\Semestres\\6º Semestre\\PI\\Projeto\\inside.backend\\inside\\WebContent\\uploads");
+			File file = new File("C:\\TI\\Utilitarios\\inside.backend\\inside\\WebContent\\uploads");
 			
 
 	        if (!file.exists()) {
@@ -218,12 +218,12 @@ public class DemandaController {
 	            }
 	        }
 	        
+	        multipartFile.transferTo(fileToSave);
+	        
 	        Arquivo arquivo = new Arquivo();
-	        arquivo.setDiretorio("C:\\Users\\janai\\Documents\\Faculdade\\Semestres\\6º Semestre\\PI\\Projeto\\inside.backend\\inside\\WebContent\\uploads\\" + fileName);
+	        arquivo.setDiretorio("C:\\TI\\Utilitarios\\inside.backend\\inside\\WebContent\\uploads\\" + fileName);
 	        arquivo.setNome(nome);
 	        arquivo.setType(type);
-			
-	        multipartFile.transferTo(fileToSave);
 			
 			Demanda demanda = demandaService.buscarDemanda(Integer.parseInt(idDemanda));
 			

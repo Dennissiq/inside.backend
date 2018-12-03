@@ -1,6 +1,6 @@
 package br.inside.model.service;
 
-import java.sql.Timestamp;
+import java.sql.Time;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -49,7 +49,7 @@ public class ProducaoService {
 		return dao.listarProducoes(projeto);
 	}
 	
-	public Timestamp calcularTotalProducao(Demanda demanda) {
+	public Time calcularTotalProducao(Demanda demanda) {
 		return dao.calcularDuracao(demanda);
 	}
 }

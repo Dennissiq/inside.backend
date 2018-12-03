@@ -43,9 +43,10 @@ $(document).ready(function() {
     	
     	for ( var d in demandas) {
     		var demanda = {
+    			allDay: false,
 				title: demandas[d].descricao,
 	            start: demandas[d].dtInicio,
-	            end: demandas[d].dtFim,
+	            end: demandas[d].dtFim + "T23:59:00",	        	
 	            url: 'detalheDemanda?idDemanda=' + demandas[d].id,
 	            backgroundColor: background(demandas[d].status)
     		}
@@ -92,17 +93,19 @@ $(document).ready(function() {
         			window.location.replace(event.url);             	
         	      },
         	     eventDrop: function(event, delta, revertFunc) {
-        	        if (!confirm("Are you sure about this change?")) {
-        	          revertFunc();
-        	        }
+//        	        if (!confirm("Confirme para realizar a atualizacao")) {
+//        	          revertFunc();
+//        	        }
+        	        
+        	        console.log(event);
         	        
         	        var id = event.url.split("=")[1];
         	        var url = "rest/demanda";
-    	            var data = { id: parseInt(id), dtInicio: event.start._d, dtFim: event.end._d };
+    	            var data = { id: parseInt(id), dtInicio: event.start._d.getTime(), dtFim: event.end._d.getTime() };
     	            
     	            console.log(data);
     	            
-        	        ajax("PUT", url, data, function(demanda){
+        	        ajax("get", url, data, function(demanda){
         	        	console.log("sucess");
         	        });
         	      },

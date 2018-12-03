@@ -46,10 +46,9 @@
 							<div class="row row-card">
 								<div class="col-lg-12 col-md-12">
 									<form action="atualizar_demanda" method="POST" class="form-inline">
-										<input type="hidden" name="id" id="descricao"
-											class="form-control" value="${demanda.id}">
-											<input type="hidden" name="projeto.id" id="descricao"
-											class="form-control" value="${demanda.projeto.id}">
+										<input type="hidden" name="id" id="descricao" class="form-control" value="${demanda.id}">
+										<input type="hidden" name="projeto.id" id="descricao" class="form-control" value="${demanda.projeto.id}">
+										<input type="hidden" name="duracao" class="form-control" value="${demanda.duracao}">
 										<div class="row">
 											<div
 												class="col-lg-6 col-md-6 pdd-30-lg-t pdd-30-md-t pdd-15-lg-l">

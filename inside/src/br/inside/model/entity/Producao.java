@@ -1,7 +1,6 @@
 package br.inside.model.entity;
 
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -28,10 +27,10 @@ public class Producao {
 	
 	@NotNull
 	@Column(name="hr_inicio")
-	private Timestamp horaInicio;
+	private Time horaInicio;
 	
 	@Column(name="hr_fim")
-	private Timestamp horaFim;
+	private Time horaFim;
 		
 	@ManyToOne
 	@JoinColumn(name="id_demanda")
@@ -53,19 +52,19 @@ public class Producao {
 		this.data = data;
 	}
 
-	public Timestamp getHoraInicio() {
+	public Time getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(Timestamp horaInicio) {
+	public void setHoraInicio(Time horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public Timestamp getHoraFim() {
+	public Time getHoraFim() {
 		return horaFim;
 	}
 
-	public void setHoraFim(Timestamp horaFim) {
+	public void setHoraFim(Time horaFim) {
 		this.horaFim = horaFim;
 	}
 

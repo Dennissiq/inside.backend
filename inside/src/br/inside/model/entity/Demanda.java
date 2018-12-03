@@ -1,5 +1,6 @@
 package br.inside.model.entity;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +49,7 @@ public class Demanda {
 	@NotNull
 	private String detalhes;
 	
-	private Timestamp duracao;
+	private Time duracao;
 		
 	private String status;
 
@@ -111,11 +112,11 @@ public class Demanda {
 		this.detalhes = detalhes;
 	}
 
-	public Timestamp getDuracao() {
+	public Time getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(Timestamp duracao) {
+	public void setDuracao(Time duracao) {
 		this.duracao = duracao;
 	}
 

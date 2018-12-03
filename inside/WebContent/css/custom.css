@@ -308,3 +308,16 @@ body {
 .calendario-container {
 	margin-left: 7%;
 }
+
+.demanda-status-class {
+	width: 90%;
+	float: left;
+}
+
+.detalhe-demanda-link {
+	padding-top: 10px;
+}
+
+.demanda-break{
+	clear: both;
+}

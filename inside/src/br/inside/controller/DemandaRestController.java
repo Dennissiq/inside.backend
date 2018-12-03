@@ -1,7 +1,8 @@
 package br.inside.controller;
 
-import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,19 +64,24 @@ public class DemandaRestController {
 			return new ArrayList<Demanda>();
 		}		
 	}
-	
-	
-	@RequestMapping(method = RequestMethod.PUT, value = "rest/demanda")
-	public ResponseEntity<Demanda> editarDemanda(@RequestParam int id) {		
-		System.out.println(id);
-		//System.out.println(dtInicio);
-		//System.out.println(dtFim);
 		
-		try {
-			Demanda demanda = demandaService.buscarDemanda(id);
-			//demanda.setDtInicio(dtInicio);
-			//demanda.setDtFim(dtFim);
-			//demanda = demandaService.atualizar(demanda);
+	@RequestMapping(method = RequestMethod.GET, value = "rest/demanda")
+	public ResponseEntity<Demanda> editarDemanda(@RequestParam String id, @RequestParam long dtInicio, @RequestParam long dtFim) {
+		try {						
+			Date dataInicial = new Date(dtInicio);
+			Date dataFinal = new Date(dtFim);
+			
+			Demanda demanda = demandaService.buscarDemanda(Integer.parseInt(id));
+			
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(dataInicial);
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			
+			demanda.setDtInicio(calendar.getTime());
+			demanda.setDtFim(dataFinal);
+			
+			demanda = demandaService.atualizar(demanda);
+			
 			return new ResponseEntity<Demanda>(demanda, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
