@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import br.inside.model.entity.User;
+
 public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object controller)
@@ -12,7 +14,23 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		
 		String uri = request.getRequestURI();
 		
+		System.out.println(uri);
+		
 		if (request.getSession().getAttribute("usuario") != null) {
+			User user = (User) request.getSession().getAttribute("usuario");
+			
+			if(user.getPerfil().getNome().equals("Analista")) {
+				if(uri.contains("projetos") || uri.contains("novoProjeto") || uri.contains("editarProjeto")
+					|| uri.contains("editarDemanda") || uri.contains("novaDemanda") || uri.contains("addDemanda")
+					|| uri.contains("cliente") 
+					|| uri.contains("listar_analistas") || uri.contains("novo_analista")
+					|| uri.contains("listar_gestores") || uri.contains("novo_admin")){
+					
+					response.sendRedirect("index");
+					return false;
+				}				
+			}
+			
 			return true;
 		}
 		
@@ -22,7 +40,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 			
 			return true;		
 		}
-		response.sendRedirect("index");		
+		response.sendRedirect("index");	
 		return false;
 	}
 }
