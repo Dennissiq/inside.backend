@@ -95,7 +95,8 @@ public class ProducaoDAO {
 		Timestamp duracao = new Timestamp(0);
 		
 		for (Producao producao : producoes) {
-			duracao.setTime(duracao.getTime() + (producao.getHoraFim().getTime() - producao.getHoraInicio().getTime()));
+			long aux = producao.getHoraFim().getTime() - producao.getHoraInicio().getTime();
+			duracao.setTime(duracao.getTime() + aux);			
 		}
 		
 		return duracao;

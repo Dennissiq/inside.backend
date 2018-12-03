@@ -46,7 +46,7 @@
 				<h6 class="text-gray pull-right text-bold"> <a href="logout"> <i class="fa fa-sign-out"></i> sair</a></h6>
 			</div>
 		</div>
-		<div class="col-md-10 col-lg-11 col-lg-offset-1 col-md-offset-1">            
+		<div class="calendario-container">            
 	        <div class="container-fluid">
 	        	<input type="hidden" name="perfil" id="perfil" value="${usuario.perfil.nome}">
 				<c:if test="${projeto != null}">
@@ -58,8 +58,7 @@
 				 <h2 class="text-primary text-bold" style="margin-top:-10px">Cronograma</h2>
 				 <div class="mat-card-kit ">
 				 	<div class="row">
-               			<div id="calendar" class="col-md-12 col-lg-12">
-               			</div>
+               			<div id="calendar" class="col-md-12 col-lg-12"></div>
                		</div>					
 				</div>
 	        </div>

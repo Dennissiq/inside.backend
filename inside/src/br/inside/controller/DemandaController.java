@@ -104,16 +104,7 @@ public class DemandaController {
 			e.printStackTrace();
 			return "CadastroDemanda";
 		}	
-	}
-	
-	/*@RequestMapping("/atualizarDemanda")
-	public String atualizarProjeto(@Valid Demanda demanda, Model model, HttpSession session) {
-		demanda = demandaService.atualizar(demanda);
-		model.addAttribute("demanda", demanda);
-		
-		return "DetalheDemanda";
-	}
-	*/
+	}	
 	
 	@RequestMapping("/editarDemanda")
 	public String editarDemanda(Model model, HttpSession session, int idDemanda) throws IOException {
@@ -122,7 +113,6 @@ public class DemandaController {
 		
 		model.addAttribute("demanda", demanda);
 		model.addAttribute("analistas", analistas);
-		System.out.println(demanda);
 		return "EditarDemanda";	
 	}
 	
@@ -137,8 +127,7 @@ public class DemandaController {
 			System.out.println(erros.toString());
 			return "redirect: editarDemanda?idDemanda=" + demanda.getId();
 		}
-	}
-	
+	}	
 
 	@RequestMapping("/iniciarTarefa")
 	public String atualizarProjeto(Model model, HttpSession session, int idDemanda) {
@@ -175,7 +164,6 @@ public class DemandaController {
 		model.addAttribute("demanda", demanda);
 		
 		return "redirect: detalheDemanda?idDemanda=" + idDemanda;
-		//return "DetalheDemanda";
 	}
 	
 	@RequestMapping("/detalheDemanda")
@@ -212,19 +200,15 @@ public class DemandaController {
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 			MultipartFile multipartFile = multipartRequest.getFile("file");
 						
-			String _fileName = multipartFile.getOriginalFilename();			
-			System.out.println(_fileName.split("\\."));
-			String _nome = nome;
+			String _fileName = multipartFile.getOriginalFilename();
+			
 			String type = _fileName.split("\\.")[1];
+			String fileName = nome + "." + type;
+			String filePath = "C:/Users/janai/Documents/Faculdade/Semestres/6º Semestre/PI/Projeto/inside.backend/inside/WebContent/uploads";
 			
-			String fileName = _nome + type;
-			
-			Arquivo arquivo = new Arquivo();
-			
-			String filePath = "C:/inside";
 			File fileToSave = new File(filePath+"/"+fileName);
+			File file = new File("C:\\Users\\janai\\Documents\\Faculdade\\Semestres\\6º Semestre\\PI\\Projeto\\inside.backend\\inside\\WebContent\\uploads");
 			
-			File file = new File("C:\\inside");
 
 	        if (!file.exists()) {
 	            if (file.mkdir()) {
@@ -234,21 +218,21 @@ public class DemandaController {
 	            }
 	        }
 	        
-	        arquivo.setDiretorio("C:\\inside\\" + fileName);
-	        arquivo.setNome(_nome);
+	        Arquivo arquivo = new Arquivo();
+	        arquivo.setDiretorio("C:\\Users\\janai\\Documents\\Faculdade\\Semestres\\6º Semestre\\PI\\Projeto\\inside.backend\\inside\\WebContent\\uploads\\" + fileName);
+	        arquivo.setNome(nome);
 	        arquivo.setType(type);
-			multipartFile.transferTo(fileToSave);
+			
+	        multipartFile.transferTo(fileToSave);
 			
 			Demanda demanda = demandaService.buscarDemanda(Integer.parseInt(idDemanda));
+			
 			arquivo.setDemanda(demanda);
 			
 			arquivo = demandaService.addArquivo(arquivo);
 			
 			demanda = demandaService.buscarDemanda(Integer.parseInt(idDemanda));
-			model.addAttribute("demanda", demanda);
-			
-			
-			System.out.println(arquivo.toString());
+						
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

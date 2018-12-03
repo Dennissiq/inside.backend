@@ -72,8 +72,6 @@ $(document).ready(function() {
             	data = null;
         	}
     	}
-    	
-        console.log(url);
         
         ajax("GET", url, data, function(demandas){
         	$('#calendar').fullCalendar({
@@ -97,6 +95,16 @@ $(document).ready(function() {
         	        if (!confirm("Are you sure about this change?")) {
         	          revertFunc();
         	        }
+        	        
+        	        var id = event.url.split("=")[1];
+        	        var url = "rest/demanda";
+    	            var data = { id: parseInt(id), dtInicio: event.start._d, dtFim: event.end._d };
+    	            
+    	            console.log(data);
+    	            
+        	        ajax("PUT", url, data, function(demanda){
+        	        	console.log("sucess");
+        	        });
         	      },
         	      selectable: true,
         	      selectHelper: true,

@@ -71,15 +71,24 @@
 				</c:choose>
                   <div class="line-gray"></div>
                   <div class="col-md-12 col-lg-12">
-                    <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>${demanda.duracao}</span></label> 
+                    <label  class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>
+          				<c:if test="${demanda.duracao == null}">
+          					00:00:00
+          				</c:if>
+          				<c:if test="${demanda.duracao != null}">
+          					<fmt:formatDate value="${demanda.duracao}" pattern="HH:mm:ss"/>
+          				</c:if>                    	
+                    </span></label> 
                  <%--    <c:if test="${usuario.perfil.nome == 'Analista'}">
                     	<a href="#" class='text-gray'>[editar tempo]</a>
                     </c:if> --%>
                   </div>	
                    <div class="col-md-12 col-lg-12">
-                    <label  class='text-gray time-pend-task'>Período para desenvolvimento:</label> 
-                    <label  class='text-gray time-pend-task'>${demanda.dtInicio.toString().split(" ")[0]} - ${demanda.dtFim.toString().split(" ")[0]}</label>
-                  </div>	
+                    <label  class='text-gray time-pend-task'>Período para desenvolvimento: 
+                    	de <span class='projeto-inicio'>${demanda.dtInicio.toString().split(" ")[0]}</span> 
+                    	até <span class='projeto-fim'>${demanda.dtFim.toString().split(" ")[0]}</span>
+                    </label>       
+                  </div>
                   <div class="col-md-12 col-lg-12">
                     <c:if test="${usuario.perfil.nome == 'Administrador'}">
                   	 	<label  class='text-gray time-pend-task'>Responsável: <span>${demanda.funcionario.nome}</span></label>                   	                   	 
@@ -189,7 +198,7 @@
 		                    <p class='text-gray col-md-7 col-lg-8'>
 		                      <i class='fa fa-file fa-1x'></i> ${arquivo.nome}.${arquivo.type}
 		                    </p>
-		                    <a href="./${arquivo.diretorio}" target="_blank" class='util-link col-md-2 col-lg-2'>
+		                    <a href="./uploads/${arquivo.nome}.${arquivo.type}" target="_blank" class='util-link col-md-2 col-lg-2'>
 		                     <i class='fa fa-download fa-1x'></i>  Download
 		                    </a>
 		                   </div>
@@ -334,7 +343,9 @@
 				</c:choose>
                     <div class="line-gray"></div>
                     <div class="col-xs-12 col-xxs-12">
-                      <label class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>00:00</span></label>
+                      <label class='text-gray time-pend-task'>Tempo gasto na tarefa: <span>
+                      	<fmt:formatDate value="${demanda.duracao}" pattern="HH:mm:ss"/>
+                      </span></label>
                     </div>
                     <div class="col-xs-12 col-xxs-12 pdd-10-xs-t pdd-10-xxs-t pdd-15-xs-b pdd-15-xxs-b">
                 <%--      <c:if test="${usuario.perfil.nome == 'Analista'}">
@@ -506,7 +517,18 @@
   <script src="js/jquery.min.js"></script>
   <script src="javascripts/bootstrap.min.js"></script>
   <script src="js/menu-mobile.js"></script>
-
+  <script>
+	$(function () {
+		var inicio = $(".projeto-inicio").text();
+		var fim = $(".projeto-fim").text();
+		
+		var a = inicio.split('-').reverse().join("/");
+		var b = fim.split('-').reverse().join("/");
+		
+		$(".projeto-inicio").text(a);
+		$(".projeto-fim").text(b);
+	});
+  </script>
 
   <!-- Menu Toggle Script -->
   

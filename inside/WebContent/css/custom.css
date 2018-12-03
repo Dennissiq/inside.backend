@@ -304,3 +304,7 @@ body {
 .modal-btn-detail:hover{
 	color: white !important;
 }
+
+.calendario-container {
+	margin-left: 7%;
+}
