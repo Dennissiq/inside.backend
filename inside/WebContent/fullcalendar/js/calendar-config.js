@@ -57,6 +57,15 @@ $(document).ready(function() {
     	return list;
     }
     
+    function verifyUser(){
+    	var perfil = $("#perfil").val();    
+    	
+    	if(perfil == "Administrador")
+    		return true;
+    	else
+    		return false;
+    }
+    
     function initializeData(){
     	var perfil = $("#perfil").val();    	
     	var idFuncionario = $("#idFuncionario").val();
@@ -72,8 +81,7 @@ $(document).ready(function() {
             	url = "rest/allDemandas/" + idProjeto;
             	data = null;
         	}
-    	}
-        
+    	}        
         ajax("GET", url, data, function(demandas){
         	$('#calendar').fullCalendar({
             	 //themeSystem: themeSystem,
@@ -86,20 +94,16 @@ $(document).ready(function() {
         		 buttonIcons: false, // show the prev/next text
         		 weekNumbers: true,
         		 navLinks: true, // can click day/week names to navigate views
-        		 editable: true,
+        		 editable: verifyUser(),
         		 eventLimit: true, // allow "more" link when too many events
         		 events: parseEvents(demandas),
         		 eventClick: function(event) {
         			window.location.replace(event.url);             	
         	      },
         	     eventDrop: function(event, delta, revertFunc) {
-//        	        if (!confirm("Confirme para realizar a atualizacao")) {
-//        	          revertFunc();
-//        	        }
-        	        
-        	        console.log(event);
-        	        
-        	        var id = event.url.split("=")[1];
+        	    	console.log(event);
+        	    	
+    	    		var id = event.url.split("=")[1];
         	        var url = "rest/demanda";
     	            var data = { id: parseInt(id), dtInicio: event.start._d.getTime(), dtFim: event.end._d.getTime() };
     	            
@@ -149,6 +153,94 @@ $(document).ready(function() {
         });
     }
     
+    function initializeDataMobile() {
+        var perfil = $("#perfilMobile").val();
+        var idFuncionario = $("#idFuncionarioMobile").val();
+
+        console.log(perfil);
+
+        if (perfil == "Analista") {
+            var url = "rest/demandas";
+            var data = { id: idFuncionario };
+        } else {
+            if ($("#idProjetoMobile") != undefined) {
+                idProjeto = $("#idProjetoMobile").val();
+                url = "rest/allDemandas/" + idProjeto;
+                data = null;
+            }
+        }
+        ajax("GET", url, data, function (demandas) {
+            $('#calendarMobile').fullCalendar({
+                //themeSystem: themeSystem,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listMonth'
+                },
+                height: 580,
+                buttonIcons: false, // show the prev/next text
+                weekNumbers: true,
+                navLinks: true, // can click day/week names to navigate views
+                editable: verifyUser(),
+                eventLimit: true, // allow "more" link when too many events
+                events: parseEvents(demandas),
+                eventClick: function (event) {
+                    window.location.replace(event.url);
+                },
+                eventDrop: function (event, delta, revertFunc) {
+                	console.log(event);
+        	        
+        	        var id = event.url.split("=")[1];
+        	        var url = "rest/demanda";
+    	            var data = { id: parseInt(id), dtInicio: event.start._d.getTime(), dtFim: event.end._d.getTime() };
+    	            
+    	            console.log(data);
+    	            
+        	        ajax("get", url, data, function(demanda){
+        	        	console.log("sucess");
+        	        });
+                },
+                selectable: true,
+                selectHelper: true,
+                select: function (start, end) {
+
+                    if ($("#idProjetoMobile") != undefined) {
+                        window.location.replace("novaDemanda?idProjeto=" + idProjeto);
+                    }
+
+                    /*var title = prompt('Event Title:');
+                    var eventData;
+                    if (title) {
+                      eventData = {
+                        title: title,
+                        start: start,
+                        end: end
+                      };
+                      $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                    }
+                    $('#calendar').fullCalendar('unselect');*/
+                },
+                businessHours: {
+                    // days of week. an array of zero-based day of week integers (0=Sunday)
+                    dow: [1, 2, 3, 4, 5], // Monday - Thursday
+
+                    start: '9:00', // a start time (10am in this example)
+                    end: '18:00', // an end time (6pm in this example)
+                },
+                buttonText: {
+                    month: 'Mes',
+                    list: 'Lista'
+                },
+                buttonIcons: {
+                    prev: 'left-single-arrow',
+                    next: 'right-single-arrow',
+                },
+                hiddenDays: [0, 6]
+            });
+        });
+    }
+    
     initializeData();
+    initializeDataMobile();
     
   });

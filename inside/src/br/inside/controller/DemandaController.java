@@ -204,11 +204,17 @@ public class DemandaController {
 			
 			String type = _fileName.split("\\.")[1];
 			String fileName = nome + "." + type;
+
+			//comentar-start
 			String filePath = "C:/TI/Utilitarios/inside.backend/inside/WebContent/uploads";
 			
 			File fileToSave = new File(filePath+"/"+fileName);
 			File file = new File("C:\\TI\\Utilitarios\\inside.backend\\inside\\WebContent\\uploads");
+			//comentar-end
 			
+//			String filePath = "D:/Users/tiden/git/inside.backend/inside/WebContent/uploads";
+//			File fileToSave = new File(filePath+"/"+fileName);
+
 
 	        if (!file.exists()) {
 	            if (file.mkdir()) {
@@ -221,7 +227,13 @@ public class DemandaController {
 	        multipartFile.transferTo(fileToSave);
 	        
 	        Arquivo arquivo = new Arquivo();
+
+	        //comentar-start
 	        arquivo.setDiretorio("C:\\TI\\Utilitarios\\inside.backend\\inside\\WebContent\\uploads\\" + fileName);
+	        //comentar-end
+
+	        //arquivo.setDiretorio("D:\\Users\\tiden\\git\\inside.backend\\inside\\WebContent\\uploads" + fileName);
+
 	        arquivo.setNome(nome);
 	        arquivo.setType(type);
 			

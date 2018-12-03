@@ -168,13 +168,14 @@
 											</c:when>
 										</c:choose>
 									</h5>
-									<h5 class="mat-card-kit-title text-left text-gray text-bold"><a class="text-gray" href="detalheProjeto?id=${projeto.id}">Editar projeto</a></h5>
+									<h5 class="mat-card-kit-title text-left text-gray text-bold"><a class="text-gray" href="cronograma?idProjeto=${projeto.id}"> <i class="fas fa-calendar fa-1x"></i> Cronograma</a></h5>
+									<h5 class="mat-card-kit-title text-left text-gray text-bold"><a class="text-gray" href="editarProjeto?id=${projeto.id}"><i class="fas fa-edit fa-1x"></i> Editar projeto</a></h5>
 									<div class="line-gray"></div>	
 									<div class="col-xs-12 col-xxs-12 pdd-10-xs-b pdd-10-xxs-b">
 										<%-- <h5 class="mat-card-kit-title text-gray text-bold">Quantidade de tarefas realizadas:<span class="text-gray"> 0 / ${fn:length(projeto.demandas)} </span> </h5> --%>
-										<h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 0 </span> </h5> 
+										<!-- <h5 class="mat-card-kit-title text-gray text-bold">Quantidade de analistas no projeto:<span class="text-gray"> 0 </span> </h5>  -->
 										<h5 class="mat-card-kit-title text-gray text-bold pdd-15-xs-b pdd-15-xxs-b">Quantidade de horas previstas no projeto: <span class="text-gray">
-											${projeto.horas}h</span>n</h5>
+											${projeto.horas}h</span></h5>
 										
 									</div>
 									<div class="col-xs-12 col-xxs-12 pdd-30-xs-b pdd-30-xxs-b ">

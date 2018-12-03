@@ -465,30 +465,44 @@
                     <div class="line-gray"></div>
                     <div class="col-xs-12 col-xxs-12 pdd-10-xs-t pdd-10-xxs-t">
 
-                    
-	                  	<c:if test="${not empty demanda.arquivos}">						
-							<c:forEach var="arquivo" items="${demanda.arquivos}">
-			                   <div class="util pdd-15-xxs-t pdd-10-xxs-b col-xs-12 col-xxs-12">
-			                    <p class='text-gray col-md-7 col-lg-8'>
-			                      <i class='fa fa-file fa-1x'></i> ${arquivo.nome}.${arquivo.type}
-			                    </p>
-			                    <a href="./uploads/${arquivo.nome}.${arquivo.type}" download class='util-link col-md-2 col-lg-2'>
-			                     <i class='fa fa-download fa-1x'></i>  Download
-			                    </a>
-			                   </div>
-		                   </c:forEach>
-	              		</c:if> 
-	              
-		                <form action="upload" method="post" enctype="multipart/form-data">
-			                <label for="file">Arquivo</label>
-			                <div class="row">
-								 <input type="file" name="file"/>
-			                </div>
-	   		                <div class="row pdd-10-xs-t pdd-10-xxs-t">
-								 <input type="submit" name="submit" value="upload" />
-								 <input type="hidden" name='idDemanda' value="${String.valueOf(demanda.id)}" class="form-control text-primary">
-			                </div>
-						</form>
+                  	<c:if test="${not empty demanda.arquivos}">						
+						<c:forEach var="arquivo" items="${demanda.arquivos}">
+	                   		
+		                   
+		                   <div class="util pdd-15-lg-t pdd-10-lg-b col-md-12 col-lg-12">
+		                    <p class='text-gray col-xs-12 col-xxs-12'>
+		                      <i class='fa fa-file fa-1x'></i> ${arquivo.nome}.${arquivo.type}
+		                    </p>
+		                    <a href="./uploads/${arquivo.nome}.${arquivo.type}" target="_blank" class='util-link col-xs-12 col-xxs-12'>
+		                     <i class='fa fa-download fa-1x'></i>  Download
+		                    </a>
+		                   </div>
+	                   </c:forEach>
+              		</c:if> 
+                <form action="upload" method="post" enctype="multipart/form-data">
+                	<input type="hidden" name='idDemanda' value="${String.valueOf(demanda.id)}" class="form-control text-primary"> 	
+				 	
+				 	<div class="col-md-10 col-lg-10">
+						<label for="file" class='text-gray time-pend-task'>Escolha um arquivo</label> 
+                	</div>
+                	
+				 	<div class="col-md-10 col-lg-10">
+						<input type="file" name="file" />
+					</div>
+					
+					<div class="col-md-10 col-lg-10">
+						<label for="nome" class='text-gray time-pend-task'>Nome para o arquivo</label> 
+                	</div>
+                	
+					<div class="col-md-12 col-lg-12 pdd-15-xs-b pdd-15-xxs-b ">
+						<div class="col-md-10 col-lg-10">						
+							<input type="text" name="nome" value="upload" class="form-control" />
+						</div>
+						<div class="col-md-2 col-lg-2 pdd-15-xs-t pdd-15-xxs-t">
+							<input type="submit" name="submit" class="btn btn-primary text-white" value="upload" />
+						</div>
+					</div>
+				</form>
 
 
                       <!-- <div class="col-xs-6 col xxs-6">
