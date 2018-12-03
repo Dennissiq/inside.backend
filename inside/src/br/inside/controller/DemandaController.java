@@ -204,10 +204,10 @@ public class DemandaController {
 			
 			String type = _fileName.split("\\.")[1];
 			String fileName = nome + "." + type;
-			String filePath = "C:/Users/janai/Documents/Faculdade/Semestres/6º Semestre/PI/Projeto/inside.backend/inside/WebContent/uploads";
+			String filePath = "D:/Users/tiden/git/inside.backend/inside/WebContent/uploads";
 			
 			File fileToSave = new File(filePath+"/"+fileName);
-			File file = new File("C:\\Users\\janai\\Documents\\Faculdade\\Semestres\\6º Semestre\\PI\\Projeto\\inside.backend\\inside\\WebContent\\uploads");
+			File file = new File("D:\\Users\\tiden\\git\\inside.backend\\inside\\WebContent\\uploads");
 			
 
 	        if (!file.exists()) {
@@ -219,7 +219,7 @@ public class DemandaController {
 	        }
 	        
 	        Arquivo arquivo = new Arquivo();
-	        arquivo.setDiretorio("C:\\Users\\janai\\Documents\\Faculdade\\Semestres\\6º Semestre\\PI\\Projeto\\inside.backend\\inside\\WebContent\\uploads\\" + fileName);
+	        arquivo.setDiretorio("D:\\Users\\tiden\\git\\inside.backend\\inside\\WebContent\\uploads" + fileName);
 	        arquivo.setNome(nome);
 	        arquivo.setType(type);
 			

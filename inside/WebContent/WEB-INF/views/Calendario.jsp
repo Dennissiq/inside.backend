@@ -29,7 +29,7 @@
 </head>
 <body>
   <!-- Sidebar-->
-  <div class="">
+  <div class="invisible-xs invisible-xxs">
 	<div id="wrapper" class="toggled">
 		
 		<c:choose>
@@ -65,12 +65,44 @@
         </div>
 	</div>
   </div>
+  
+  <div class="invisible-md invisible-xlg invisible-lg">
+  
+    	<c:choose>
+			<c:when test="${usuario.perfil.nome == 'Administrador'}">
+				<c:import url="importViews/MenuAdminMobile.jsp"></c:import>
+			</c:when>
+			<c:when test="${usuario.perfil.nome == 'Analista'}">
+				<c:import url="importViews/MenuAnalistaMobile.jsp"></c:import>
+			</c:when>
+		</c:choose>
 	
+		<div class="calendario-container">            
+	        <div class="container-fluid">
+	        	<input type="hidden" name="perfil" id="perfilMobile" value="${usuario.perfil.nome}">
+				<c:if test="${projeto != null}">
+					<input type="hidden" name="idProjeto" id="idProjetoMobile" value="${projeto.id}">
+				</c:if>
+				<c:if test="${funcionario != ''}">
+					<input type="hidden" name="idFuncionario" id="idFuncionarioMobile" value="${funcionario.idFuncionario}">
+				</c:if>
+				 <h2 class="text-primary text-bold pdd-30-xs-t pdd-30-xxs-t" style="margin-top:-10px">Cronograma</h2>
+				 <div class="mat-card-kit ">
+				 	<div class="row">
+               			<div id="calendarMobile" class="col-md-12 col-lg-12"></div>
+               		</div>					
+				</div>
+	        </div>
+        </div>
+  </div>
+  
+
 	<script src='fullcalendar/lib/jquery.min.js'></script>	
 	<script src='fullcalendar/lib/moment.min.js'></script>
 	<script src='fullcalendar/js/theme-chooser.js'></script>
 	<script src='fullcalendar/js/fullcalendar.min.js'></script>
 	<script src='fullcalendar/js/pt-br.js'></script>
+	<script src="js/menu-mobile.js"></script>
 	
 	<!-- <script src='fullcalendar/js/locale-all.js'></script> -->
 

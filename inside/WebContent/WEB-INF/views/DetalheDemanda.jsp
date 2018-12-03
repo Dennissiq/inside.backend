@@ -452,38 +452,44 @@
                     <h5 class="mat-card-kit-title text-gray text-bold">Anexos</h5>
                     <div class="line-gray"></div>
                     <div class="col-xs-12 col-xxs-12 pdd-10-xs-t pdd-10-xxs-t">
-<!--                       <div class="util pdd-15-xxs-t pdd-15-xxs-b pdd-15-xs-t pdd-15-xs-b col-xs-12 col-xxs-12">
-                        <p class='text-gray col-xs-12 col-xxs-12 text-center'>
-                          <i class='fa fa-file fa-1x'></i> print-bug-sm.jpg
-                        </p>
-                        <a href="#" class='util-link col-xs-6 col-xxs-6 text-center'>
-                          <i class='fa fa-download fa-1x'></i> Download
-                        </a>
-                        <a href="#" class='util-link col-xs-6 col-xxs-6 text-center'>
-                          <i class='fa fa-eye fa-1x'></i> Visualizar
-                        </a>
-                      </div>
-                      <div class="util pdd-15-xxs-t pdd-15-xxs-b pdd-15-xs-t pdd-15-xs-b col-xs-12 col-xxs-12">
-                        <p class='text-gray col-xs-12 col-xxs-12 text-center'>
-                          <i class='fa fa-file fa-1x'></i> print-bug-sm.jpg
-                        </p>
-                        <a href="#" class='util-link col-xs-6 col-xxs-6 text-center'>
-                          <i class='fa fa-download fa-1x'></i> Download
-                        </a>
-                        <a href="#" class='util-link col-xs-6 col-xxs-6 text-center'>
-                          <i class='fa fa-eye fa-1x'></i> Visualizar
-                        </a>
-                      </div> -->
-		                <form action="upload" method="post" enctype="multipart/form-data">
-			                <label for="file">Arquivo</label>
-			                <div class="row">
-								 <input type="file" name="file"/>
-			                </div>
-	   		                <div class="row pdd-10-xs-t pdd-10-xxs-t">
-								 <input type="submit" name="submit" value="upload" />
-								 <input type="hidden" name='idDemanda' value="${String.valueOf(demanda.id)}" class="form-control text-primary">
-			                </div>
-						</form>
+                  	<c:if test="${not empty demanda.arquivos}">						
+						<c:forEach var="arquivo" items="${demanda.arquivos}">
+	                   		
+		                   
+		                   <div class="util pdd-15-lg-t pdd-10-lg-b col-md-12 col-lg-12">
+		                    <p class='text-gray col-xs-12 col-xxs-12'>
+		                      <i class='fa fa-file fa-1x'></i> ${arquivo.nome}.${arquivo.type}
+		                    </p>
+		                    <a href="./uploads/${arquivo.nome}.${arquivo.type}" target="_blank" class='util-link col-xs-12 col-xxs-12'>
+		                     <i class='fa fa-download fa-1x'></i>  Download
+		                    </a>
+		                   </div>
+	                   </c:forEach>
+              		</c:if> 
+                <form action="upload" method="post" enctype="multipart/form-data">
+                	<input type="hidden" name='idDemanda' value="${String.valueOf(demanda.id)}" class="form-control text-primary"> 	
+				 	
+				 	<div class="col-md-10 col-lg-10">
+						<label for="file" class='text-gray time-pend-task'>Escolha um arquivo</label> 
+                	</div>
+                	
+				 	<div class="col-md-10 col-lg-10">
+						<input type="file" name="file" />
+					</div>
+					
+					<div class="col-md-10 col-lg-10">
+						<label for="nome" class='text-gray time-pend-task'>Nome para o arquivo</label> 
+                	</div>
+                	
+					<div class="col-md-12 col-lg-12 pdd-15-xs-b pdd-15-xxs-b ">
+						<div class="col-md-10 col-lg-10">						
+							<input type="text" name="nome" value="upload" class="form-control" />
+						</div>
+						<div class="col-md-2 col-lg-2 pdd-15-xs-t pdd-15-xxs-t">
+							<input type="submit" name="submit" class="btn btn-primary text-white" value="upload" />
+						</div>
+					</div>
+				</form>
 
 
                       <!-- <div class="col-xs-6 col xxs-6">
